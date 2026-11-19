@@ -65,6 +65,8 @@
             scroll-behavior: smooth;
             max-width: 100%;
             overflow-x: clip;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         body {
@@ -72,7 +74,7 @@
             background: transparent;
             color: var(--ink-body);
             min-height: 100vh;
-            min-height: 100dvh;
+            min-height: 100svh;
             width: 100%;
             max-width: 100%;
             overflow-x: clip;
@@ -89,11 +91,15 @@
            ========================================================================== */
         .stadium-stage {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100svh;
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            background: linear-gradient(180deg, #74C8F8 0%, #CBEBFF 34%, #25A43F 36%, #166D28 100%);
+            background: linear-gradient(180deg, #5BBDF5 0%, #CBEBFF 32%, #25A43F 34%, #166D28 100%);
         }
 
         #stadiumDay3D {
@@ -108,8 +114,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 50% 14%, rgba(255, 253, 246, 0.04) 0%, rgba(255, 253, 246, 0.24) 55%, rgba(255, 253, 246, 0.44) 100%),
-                linear-gradient(180deg, rgba(255, 253, 246, 0.04) 0%, rgba(255, 253, 246, 0.22) 48%, rgba(255, 253, 246, 0.42) 100%);
+                radial-gradient(circle at 50% 14%, rgba(255, 253, 246, 0.02) 0%, rgba(255, 253, 246, 0.20) 55%, rgba(255, 253, 246, 0.38) 100%),
+                linear-gradient(180deg, rgba(255, 253, 246, 0.03) 0%, rgba(255, 253, 246, 0.18) 48%, rgba(255, 253, 246, 0.36) 100%);
         }
 
         /* ==========================================================================
@@ -120,7 +126,7 @@
             background: linear-gradient(90deg, var(--turf-deep) 0%, var(--turf-green) 55%, var(--tomato-red) 100%);
             color: #FFFFFF;
             font-family: var(--font-mono);
-            font-size: clamp(0.64rem, 2.3vw, 0.71rem);
+            font-size: clamp(0.62rem, 2.2vw, 0.70rem);
             font-weight: 800;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -150,15 +156,16 @@
         }
 
         /* ==========================================================================
-           4. CONTENEDOR MAESTRO
+           4. CONTENEDOR MAESTRO BLINDADO PARA IG / WPP WEBVIEW
            ========================================================================== */
         .hub-shell {
             width: 100%;
             max-width: 500px;
-            padding: 16px clamp(12px, 3.8vw, 18px) 20px;
+            min-width: 0;
+            padding: 14px clamp(10px, 3.6vw, 18px) 20px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 15px;
             z-index: 5;
             position: relative;
         }
@@ -171,21 +178,25 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 10px;
+            gap: 9px;
+            width: 100%;
+            min-width: 0;
         }
 
         .ig-pill-top {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 7px;
+            max-width: 100%;
             background: rgba(255, 253, 248, 0.94);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1.5px solid var(--border-turf);
             border-radius: 999px;
-            padding: 5px 13px;
+            padding: 5px 12px;
             font-family: var(--font-mono);
-            font-size: 0.64rem;
+            font-size: clamp(0.56rem, 2.35vw, 0.64rem);
             font-weight: 800;
             color: var(--ink-carbon);
             text-decoration: none;
@@ -201,6 +212,7 @@
         .live-dot {
             width: 8px;
             height: 8px;
+            min-width: 8px;
             border-radius: 50%;
             background: var(--tomato-red);
             box-shadow: 0 0 0 3px rgba(225, 37, 27, 0.24);
@@ -214,8 +226,8 @@
 
         /* MEDALLÓN CIRCULAR NEGRO OFICIAL VAR. CON EL SVG CORREGIDO */
         .var-medallion {
-            width: clamp(124px, 33vw, 148px);
-            height: clamp(124px, 33vw, 148px);
+            width: clamp(114px, 31vw, 146px);
+            height: clamp(114px, 31vw, 146px);
             border-radius: 50%;
             background: radial-gradient(circle at 35% 30%, #242926 0%, #0D100E 70%, #050706 100%);
             border: 4px solid #FFFFFF;
@@ -224,7 +236,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 18px;
+            padding: 16px;
             position: relative;
             cursor: pointer;
             animation: coinFloat 5.2s ease-in-out infinite;
@@ -252,7 +264,7 @@
             border: 2.5px solid #FFFFFF;
             border-radius: 999px;
             font-family: var(--font-mono);
-            font-size: 0.62rem;
+            font-size: 0.60rem;
             font-weight: 900;
             padding: 3px 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
@@ -260,15 +272,16 @@
 
         .hero-brand-line {
             font-family: var(--font-mono);
-            font-size: 0.72rem;
+            font-size: clamp(0.60rem, 2.5vw, 0.72rem);
             font-weight: 800;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--ink-carbon);
-            background: rgba(255, 253, 246, 0.86);
+            background: rgba(255, 253, 246, 0.88);
             padding: 4px 12px;
             border-radius: 999px;
             border: 1px solid rgba(18, 22, 20, 0.1);
+            max-width: 100%;
         }
 
         /* CARTEL ESTILO PASTO VERDE DE INSTAGRAM */
@@ -277,32 +290,34 @@
             color: #FFFFFF;
             border: 2.5px solid #FFFFFF;
             border-radius: 18px;
-            padding: 13px 16px;
+            padding: 12px 15px;
             box-shadow: 0 12px 26px -6px rgba(19, 107, 37, 0.45);
             width: 100%;
+            min-width: 0;
             position: relative;
         }
 
         .grass-slogan-quote {
             font-family: var(--font-display);
-            font-size: clamp(0.95rem, 3.6vw, 1.12rem);
+            font-size: clamp(0.90rem, 3.6vw, 1.10rem);
             line-height: 1.24;
             letter-spacing: 0.015em;
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+            overflow-wrap: break-word;
         }
 
         .grass-slogan-sub {
-            font-size: 0.79rem;
+            font-size: clamp(0.74rem, 2.9vw, 0.79rem);
             font-weight: 700;
             color: #FFF6CC;
-            margin-top: 6px;
+            margin-top: 5px;
             line-height: 1.35;
         }
 
         /* ==========================================================================
-           6. MOSAICO VISUAL PROTAGÓNICO (VIDEO + FOTOS ARRIBA)
+           6. ELEGÍ TU CANCHA ARRIBA: LAS 3 SUCURSALES CON WHATSAPP DIRECTO REAL
            ========================================================================== */
-        .showcase-card {
+        .branches-card {
             background: var(--card-surface);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -314,6 +329,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
+            min-width: 0;
         }
 
         .section-top-bar {
@@ -322,18 +339,20 @@
             justify-content: space-between;
             gap: 8px;
             padding: 0 2px;
+            min-width: 0;
         }
 
         .section-heading {
             font-family: var(--font-display);
-            font-size: clamp(0.96rem, 3.5vw, 1.08rem);
+            font-size: clamp(0.92rem, 3.5vw, 1.06rem);
             color: var(--ink-carbon);
             letter-spacing: 0.02em;
+            min-width: 0;
         }
 
         .section-tag-pill {
             font-family: var(--font-mono);
-            font-size: 0.62rem;
+            font-size: 0.60rem;
             font-weight: 800;
             text-transform: uppercase;
             padding: 3px 9px;
@@ -341,178 +360,129 @@
             background: var(--turf-soft);
             color: var(--turf-deep);
             border: 1px solid var(--border-turf);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        /* Mosaico asimétrico 2 columnas: video alto izq + 2 fotos der */
-        .media-bento {
-            display: grid;
-            grid-template-columns: 1.12fr 0.88fr;
-            grid-template-rows: 132px 132px;
-            gap: 9px;
-        }
-
-        .media-tile {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #1B221D;
-            border: 2px solid #FFFFFF;
-            box-shadow: 0 6px 14px rgba(18, 22, 20, 0.14);
-            cursor: pointer;
-        }
-
-        .media-tile.video-hero {
-            grid-row: span 2;
-            cursor: default;
-        }
-
-        .media-tile video,
-        .media-tile img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.45s var(--spring);
-        }
-
-        .media-tile:not(.video-hero):hover img {
-            transform: scale(1.05);
-        }
-
-        .tile-badge {
-            position: absolute;
-            left: 8px;
-            bottom: 8px;
-            background: rgba(18, 22, 20, 0.82);
-            backdrop-filter: blur(6px);
-            color: #FFFFFF;
-            font-family: var(--font-mono);
-            font-size: 0.60rem;
-            font-weight: 800;
-            padding: 4px 8px;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .tile-badge.live {
-            top: 8px;
-            bottom: auto;
-            background: var(--tomato-red);
-            color: #FFFFFF;
-        }
-
-        /* Tira inferior horizontal con las otras 2 fotos */
-        .media-bottom-row {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 9px;
-        }
-
-        .media-bottom-row .media-tile {
-            height: 106px;
-        }
-
-        /* ==========================================================================
-           7. TICKET / ENTRADA DE ESTADIO (CTA PRINCIPAL HACIA LAS SEDES)
-           ========================================================================== */
-        .ticket-cta {
+        .branch-list {
             display: flex;
-            align-items: stretch;
-            background: linear-gradient(135deg, var(--cheese-bright) 0%, var(--cheese-gold) 100%);
-            border: 2.5px solid var(--ink-carbon);
-            border-radius: 20px;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .branch-row-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 11px 13px;
+            background: #FFFFFF;
+            border: 1.5px solid rgba(31, 157, 58, 0.24);
+            border-left: 5px solid var(--turf-green);
+            border-radius: 16px;
             text-decoration: none;
             color: var(--ink-carbon);
-            box-shadow: 0 6px 0 var(--ink-carbon), 0 16px 28px -6px rgba(18, 22, 20, 0.25);
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.2s var(--spring), box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(18, 22, 20, 0.06);
+            transition: transform 0.2s var(--spring), border-color 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            min-width: 0;
         }
 
-        .ticket-cta:hover {
+        .branch-row-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 0 var(--ink-carbon), 0 20px 34px -6px rgba(18, 22, 20, 0.32);
+            border-color: var(--turf-green);
+            box-shadow: 0 10px 22px rgba(31, 157, 58, 0.16);
         }
 
-        .ticket-cta:active {
-            transform: translateY(3px);
-            box-shadow: 0 3px 0 var(--ink-carbon);
-        }
-
-        .ticket-main {
-            flex: 1;
-            padding: 15px 16px;
+        .branch-meta {
             display: flex;
             flex-direction: column;
             gap: 2px;
             min-width: 0;
+            flex: 1;
         }
 
-        .ticket-eyebrow {
+        .branch-hood {
             font-family: var(--font-mono);
-            font-size: 0.62rem;
+            font-size: 0.60rem;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--tomato-deep);
-        }
-
-        .ticket-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.1rem, 4.1vw, 1.28rem);
-            line-height: 1.12;
-            color: var(--ink-carbon);
-        }
-
-        .ticket-sub {
-            font-size: 0.77rem;
-            font-weight: 700;
-            color: #3A2E08;
-        }
-
-        .ticket-stub {
-            width: 82px;
-            min-width: 82px;
-            background: var(--ink-carbon);
-            color: #FFFFFF;
-            border-left: 2.5px dashed var(--cheese-gold);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            padding: 10px 8px;
-            text-align: center;
-        }
-
-        .ticket-stub-ball {
-            font-size: 1.35rem;
-            line-height: 1;
-        }
-
-        .ticket-stub-label {
-            font-family: var(--font-mono);
-            font-size: 0.58rem;
-            font-weight: 800;
-            color: var(--cheese-bright);
             text-transform: uppercase;
             letter-spacing: 0.06em;
+            color: var(--turf-deep);
+        }
+
+        .branch-street {
+            font-size: clamp(0.86rem, 3.4vw, 0.94rem);
+            font-weight: 800;
+            color: var(--ink-carbon);
+            overflow-wrap: break-word;
+        }
+
+        .branch-tel {
+            font-family: var(--font-mono);
+            font-size: 0.70rem;
+            font-weight: 700;
+            color: var(--ink-muted);
+        }
+
+        .branch-wpp-circle {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+            flex-shrink: 0;
+        }
+
+        .branch-wpp-circle svg {
+            width: 19px;
+            height: 19px;
+            fill: #FFFFFF;
+        }
+
+        .ig-follow-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 13px;
+            border-radius: 14px;
+            background: var(--dough-warm);
+            border: 1.5px solid rgba(18, 22, 20, 0.12);
+            color: var(--ink-carbon);
+            text-decoration: none;
+            font-size: clamp(0.70rem, 2.8vw, 0.77rem);
+            font-weight: 800;
+            transition: transform 0.2s var(--spring);
+            min-width: 0;
+        }
+
+        .ig-follow-strip:hover {
+            transform: translateY(-1px);
+            border-color: var(--turf-green);
         }
 
         /* ==========================================================================
-           8. PRECIOS PIZZA LIBRE (ESTILO ASIMÉTRICO DE DÍA)
+           7. PRECIOS PIZZA LIBRE (ESTILO ASIMÉTRICO DE DÍA)
            ========================================================================== */
         .prices-split {
             display: grid;
             grid-template-columns: 0.94fr 1.06fr;
-            gap: 11px;
+            gap: 10px;
             align-items: stretch;
+            width: 100%;
+            min-width: 0;
         }
 
         .price-pill-card {
             border-radius: 22px;
-            padding: 15px 14px;
+            padding: 14px 13px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -520,6 +490,7 @@
             text-decoration: none;
             box-shadow: var(--shadow-card);
             transition: transform 0.22s var(--spring);
+            min-width: 0;
         }
 
         .price-pill-card:hover {
@@ -542,10 +513,10 @@
 
         .price-day-tag {
             font-family: var(--font-mono);
-            font-size: 0.60rem;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             padding: 3px 8px;
             border-radius: 999px;
             align-self: flex-start;
@@ -563,15 +534,15 @@
 
         .price-card-name {
             font-family: var(--font-display);
-            font-size: 1rem;
+            font-size: clamp(0.92rem, 3.4vw, 1rem);
             line-height: 1.15;
             margin-top: 4px;
         }
 
         .price-card-note {
-            font-size: 0.74rem;
+            font-size: 0.73rem;
             font-weight: 600;
-            opacity: 0.85;
+            opacity: 0.86;
             margin-top: 2px;
             line-height: 1.3;
         }
@@ -582,8 +553,8 @@
             justify-content: space-between;
             gap: 4px;
             padding-top: 8px;
-            border-top: 1.5px dashed currentColor;
-            border-top-color: rgba(18, 22, 20, 0.16);
+            border-top: 1.5px dashed rgba(18, 22, 20, 0.16);
+            flex-wrap: wrap;
         }
 
         .weekend .price-amount-row {
@@ -592,7 +563,7 @@
 
         .price-number {
             font-family: var(--font-display);
-            font-size: clamp(1.22rem, 4.4vw, 1.42rem);
+            font-size: clamp(1.12rem, 4.2vw, 1.38rem);
             letter-spacing: -0.02em;
         }
 
@@ -606,8 +577,103 @@
 
         .price-go {
             font-family: var(--font-mono);
-            font-size: 0.66rem;
+            font-size: 0.62rem;
             font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           8. MOSAICO VISUAL PROTAGÓNICO: VIDEO + FOTOS
+           ========================================================================== */
+        .showcase-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #FFFFFF;
+            outline: 1.5px solid var(--border-turf);
+            border-radius: 24px;
+            padding: 13px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .media-bento {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            grid-template-rows: 130px 130px;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .media-tile {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #1B221D;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 6px 14px rgba(18, 22, 20, 0.14);
+            cursor: pointer;
+            min-width: 0;
+        }
+
+        .media-tile.video-hero {
+            grid-row: span 2;
+            cursor: default;
+        }
+
+        .media-tile video,
+        .media-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s var(--spring);
+        }
+
+        .media-tile:not(.video-hero):hover img {
+            transform: scale(1.05);
+        }
+
+        .tile-badge {
+            position: absolute;
+            left: 7px;
+            bottom: 7px;
+            max-width: calc(100% - 14px);
+            background: rgba(18, 22, 20, 0.82);
+            backdrop-filter: blur(6px);
+            color: #FFFFFF;
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            font-weight: 800;
+            padding: 3px 7px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tile-badge.live {
+            top: 7px;
+            bottom: auto;
+            background: var(--tomato-red);
+            color: #FFFFFF;
+        }
+
+        .media-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .media-bottom-row .media-tile {
+            height: 104px;
         }
 
         /* ==========================================================================
@@ -617,6 +683,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
+            min-width: 0;
         }
 
         .birthday-flag-card {
@@ -624,36 +692,42 @@
             border: 2px solid #FFFFFF;
             border-left: 6px solid var(--tomato-red);
             border-radius: 18px;
-            padding: 14px 16px;
+            padding: 13px 15px;
             display: flex;
             align-items: center;
-            gap: 13px;
+            gap: 12px;
             box-shadow: var(--shadow-card);
+            min-width: 0;
         }
 
         .birthday-emoji-badge {
-            width: 46px;
-            height: 46px;
-            min-width: 46px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
             border-radius: 14px;
             background: var(--tomato-red);
             color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             box-shadow: 0 6px 14px rgba(225, 37, 27, 0.3);
+        }
+
+        .birthday-copy {
+            min-width: 0;
+            flex: 1;
         }
 
         .birthday-copy h3 {
             font-family: var(--font-display);
-            font-size: clamp(0.95rem, 3.6vw, 1.08rem);
+            font-size: clamp(0.90rem, 3.5vw, 1.06rem);
             color: var(--tomato-deep);
             line-height: 1.15;
         }
 
         .birthday-copy p {
-            font-size: 0.77rem;
+            font-size: 0.76rem;
             font-weight: 600;
             color: var(--ink-body);
             margin-top: 3px;
@@ -664,6 +738,7 @@
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
+            min-width: 0;
         }
 
         .chamfer-card {
@@ -671,11 +746,12 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 2px solid #FFFFFF;
-            padding: 14px 13px;
+            padding: 13px 12px;
             box-shadow: var(--shadow-card);
             display: flex;
             flex-direction: column;
             gap: 5px;
+            min-width: 0;
         }
 
         .chamfer-card.left-cut {
@@ -690,7 +766,7 @@
 
         .chamfer-tag {
             font-family: var(--font-mono);
-            font-size: 0.60rem;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
             color: var(--turf-deep);
@@ -698,13 +774,13 @@
 
         .chamfer-card h3 {
             font-family: var(--font-display);
-            font-size: 0.94rem;
+            font-size: clamp(0.86rem, 3.2vw, 0.94rem);
             color: var(--ink-carbon);
             line-height: 1.15;
         }
 
         .chamfer-card p {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 600;
             color: var(--ink-muted);
             line-height: 1.34;
@@ -719,12 +795,14 @@
             border-radius: 22px;
             overflow: hidden;
             box-shadow: var(--shadow-card);
+            width: 100%;
+            min-width: 0;
         }
 
         .var-tv-topbar {
             background: var(--ink-carbon);
             color: #FFFFFF;
-            padding: 9px 15px;
+            padding: 9px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -733,7 +811,7 @@
 
         .var-tv-title {
             font-family: var(--font-display);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             letter-spacing: 0.03em;
         }
 
@@ -746,10 +824,11 @@
             padding: 3px 8px;
             border-radius: 999px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .var-tv-body {
-            padding: 15px 16px 17px;
+            padding: 14px 15px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -758,7 +837,7 @@
         }
 
         .var-tv-sub {
-            font-size: 0.78rem;
+            font-size: 0.77rem;
             font-weight: 600;
             color: var(--ink-body);
             line-height: 1.35;
@@ -769,9 +848,9 @@
             background: #111914;
             border: 2px solid #2D3B32;
             border-radius: 12px;
-            padding: 10px 14px;
+            padding: 10px 12px;
             font-family: var(--font-mono);
-            font-size: 0.80rem;
+            font-size: clamp(0.70rem, 2.8vw, 0.80rem);
             font-weight: 800;
             color: var(--cheese-bright);
             letter-spacing: 0.05em;
@@ -780,13 +859,13 @@
 
         .btn-var-check {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 14px;
             border-radius: 14px;
             border: 2px solid var(--ink-carbon);
             background: var(--tomato-red);
             color: #FFFFFF;
             font-family: var(--font-display);
-            font-size: 0.86rem;
+            font-size: clamp(0.80rem, 3.2vw, 0.86rem);
             letter-spacing: 0.03em;
             cursor: pointer;
             box-shadow: 0 4px 0 var(--tomato-deep);
@@ -817,121 +896,7 @@
         }
 
         /* ==========================================================================
-           11. ELEGÍ TU CANCHA: LAS 3 SEDES CON WHATSAPP DIRECTO REAL
-           ========================================================================== */
-        .branches-card {
-            background: var(--card-surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid #FFFFFF;
-            outline: 1.5px solid var(--border-turf);
-            border-radius: 24px;
-            padding: 16px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-        }
-
-        .branch-list {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
-
-        .branch-row-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 12px 14px;
-            background: #FFFFFF;
-            border: 1.5px solid rgba(31, 157, 58, 0.24);
-            border-left: 5px solid var(--turf-green);
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--ink-carbon);
-            box-shadow: 0 4px 12px rgba(18, 22, 20, 0.06);
-            transition: transform 0.2s var(--spring), border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .branch-row-btn:hover {
-            transform: translateY(-2px);
-            border-color: var(--turf-green);
-            box-shadow: 0 10px 22px rgba(31, 157, 58, 0.16);
-        }
-
-        .branch-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-            flex: 1;
-        }
-
-        .branch-hood {
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--turf-deep);
-        }
-
-        .branch-street {
-            font-size: 0.94rem;
-            font-weight: 800;
-            color: var(--ink-carbon);
-        }
-
-        .branch-tel {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--ink-muted);
-        }
-
-        .branch-wpp-circle {
-            width: 38px;
-            height: 38px;
-            min-width: 38px;
-            border-radius: 50%;
-            background: #25D366;
-            color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
-        }
-
-        .branch-wpp-circle svg {
-            width: 19px;
-            height: 19px;
-            fill: #FFFFFF;
-        }
-
-        .ig-follow-strip {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 11px 14px;
-            border-radius: 14px;
-            background: var(--dough-warm);
-            border: 1.5px solid rgba(18, 22, 20, 0.12);
-            color: var(--ink-carbon);
-            text-decoration: none;
-            font-size: 0.78rem;
-            font-weight: 800;
-            transition: transform 0.2s var(--spring);
-        }
-
-        .ig-follow-strip:hover {
-            transform: translateY(-1px);
-            border-color: var(--turf-green);
-        }
-
-        /* ==========================================================================
-           12. LIGHTBOX FULLSCREEN
+           11. LIGHTBOX FULLSCREEN
            ========================================================================== */
         .modal-overlay {
             position: fixed;
@@ -1057,16 +1022,17 @@
         }
 
         /* ==========================================================================
-           13. FOOTER
+           12. FOOTER
            ========================================================================== */
         .hub-footer {
             margin-top: 6px;
-            padding-top: 16px;
+            padding-top: 14px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 7px;
+            width: 100%;
         }
 
         .footer-badge {
@@ -1086,19 +1052,49 @@
 
         .footer-legal {
             font-family: var(--font-mono);
-            font-size: 0.66rem;
+            font-size: 0.64rem;
             color: var(--ink-carbon);
-            background: rgba(255, 253, 246, 0.86);
+            background: rgba(255, 253, 246, 0.88);
             padding: 6px 12px;
             border-radius: 12px;
             line-height: 1.45;
             font-weight: 700;
+            max-width: 100%;
         }
 
-        @media (max-width: 360px) {
+        /* ==========================================================================
+           13. BLINDAJE RESPONSIVE EXTRA PARA INSTAGRAM & WHATSAPP IN-APP BROWSER
+           ========================================================================== */
+        @media (max-width: 390px) {
+            .hub-shell {
+                padding: 11px 10px 18px;
+                gap: 12px;
+            }
+            .hero-header {
+                gap: 7px;
+            }
+            .var-medallion {
+                width: 108px;
+                height: 108px;
+                padding: 14px;
+            }
+            .grass-slogan-banner {
+                padding: 10px 12px;
+                border-radius: 16px;
+            }
+            .branches-card {
+                padding: 12px 11px;
+                border-radius: 20px;
+            }
+            .branch-row-btn {
+                padding: 10px 11px;
+            }
+        }
+
+        @media (max-width: 355px) {
             .media-bento {
                 grid-template-columns: 1fr;
-                grid-template-rows: 220px 125px 125px;
+                grid-template-rows: 210px 120px 120px;
             }
             .media-tile.video-hero { grid-row: span 1; }
             .prices-split { grid-template-columns: 1fr; }
@@ -1108,7 +1104,7 @@
 </head>
 <body class="preload">
 
-    <!-- ESTADIO 3D DE DÍA CON CAMPO ENORME Y PIZZAS ALENTANDO EN LAS GRADAS -->
+    <!-- ESTADIO 3D DE DÍA CON TRIBUNA CURVA, TORRES DE LUZ, CAMPO ENORME Y PIZZAS ALENTANDO -->
     <div class="stadium-stage" aria-hidden="true">
         <canvas id="stadiumDay3D"></canvas>
         <div class="stadium-veil"></div>
@@ -1170,7 +1166,85 @@
             </div>
         </header>
 
-        <!-- 2. MOSAICO PROTAGÓNICO: VIDEO EN VIVO + FOTOS ARRIBA -->
+        <!-- 2. PRIORIDAD ARRIBA: LAS 3 SUCURSALES CON WHATSAPP DIRECTO -->
+        <section class="branches-card" id="sedes">
+            <div class="section-top-bar">
+                <h2 class="section-heading">Reservá por WhatsApp</h2>
+                <span class="section-tag-pill">3 Sucursales</span>
+            </div>
+
+            <div class="branch-list">
+                <!-- MONTE GRANDE -->
+                <a href="https://wa.me/5491131916972?text=%C2%A1Hola%20VAR%20Monte%20Grande!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Monte Grande</span>
+                        <span class="branch-street">Dorrego 227</span>
+                        <span class="branch-tel">WhatsApp · 11 3191-6972</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Monte Grande">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+
+                <!-- LANÚS -->
+                <a href="https://wa.me/5491122573848?text=%C2%A1Hola%20VAR%20Lan%C3%BAs!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Lanús</span>
+                        <span class="branch-street">Del Valle Iberlucea 2911</span>
+                        <span class="branch-tel">WhatsApp · 11 2257-3848</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Lanús">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+
+                <!-- ITUZAINGÓ -->
+                <a href="https://wa.me/5491173491939?text=%C2%A1Hola%20VAR%20Ituzaing%C3%B3!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Ituzaingó</span>
+                        <span class="branch-street">Eduardo Muñiz 110</span>
+                        <span class="branch-tel">WhatsApp · 11 7349-1939</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Ituzaingó">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+            </div>
+
+            <a href="https://www.instagram.com/var.pizzalibre/" target="_blank" rel="noopener noreferrer" class="ig-follow-strip" onclick="triggerHaptic()">
+                <span>Ver más videos y promos en @var.pizzalibre</span>
+                <span style="color:var(--turf-deep); white-space:nowrap;">Instagram ↗</span>
+            </a>
+        </section>
+
+        <!-- 3. PRECIOS PIZZA LIBRE (ASIMÉTRICOS Y CLAROS) -->
+        <section class="prices-split">
+            <a href="#sedes" class="price-pill-card weekday" onclick="triggerHaptic()">
+                <div>
+                    <span class="price-day-tag">Lun · Mar · Mié</span>
+                    <h3 class="price-card-name">Pizza Libre</h3>
+                    <p class="price-card-note">Comés todo lo que quieras entre semana</p>
+                </div>
+                <div class="price-amount-row">
+                    <span class="price-number">$12.000</span>
+                    <span class="price-go">Reservar ↑</span>
+                </div>
+            </a>
+
+            <a href="#sedes" class="price-pill-card weekend" onclick="triggerHaptic()">
+                <div>
+                    <span class="price-day-tag">Jue · Vie · Sáb · Dom</span>
+                    <h3 class="price-card-name">Pizza Libre Full</h3>
+                    <p class="price-card-note">Fines de semana, partidos y previa con amigos</p>
+                </div>
+                <div class="price-amount-row">
+                    <span class="price-number">$16.000</span>
+                    <span class="price-go">Reservar ↑</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- 4. MOSAICO PROTAGÓNICO: VIDEO EN VIVO + FOTOS -->
         <section class="showcase-card">
             <div class="section-top-bar">
                 <h2 class="section-heading">Así se vive en VAR</h2>
@@ -1237,46 +1311,6 @@
             </div>
         </section>
 
-        <!-- 3. TICKET DE PARTIDO: RESERVÁ EN TU SEDE -->
-        <a href="#sedes" class="ticket-cta" onclick="triggerHaptic()">
-            <div class="ticket-main">
-                <span class="ticket-eyebrow">★ Reservas &amp; Consultas Directas</span>
-                <h2 class="ticket-title">Elegí tu Estadio y Reservá</h2>
-                <span class="ticket-sub">Alentá a tu equipo y comé toda la pizza que quieras</span>
-            </div>
-            <div class="ticket-stub">
-                <span class="ticket-stub-ball">⚽</span>
-                <span class="ticket-stub-label">Entrar ↓</span>
-            </div>
-        </a>
-
-        <!-- 4. PRECIOS PIZZA LIBRE (ASIMÉTRICOS Y CLAROS) -->
-        <section class="prices-split">
-            <a href="#sedes" class="price-pill-card weekday" onclick="triggerHaptic()">
-                <div>
-                    <span class="price-day-tag">Lun · Mar · Mié</span>
-                    <h3 class="price-card-name">Pizza Libre</h3>
-                    <p class="price-card-note">Comés todo lo que quieras entre semana</p>
-                </div>
-                <div class="price-amount-row">
-                    <span class="price-number">$12.000</span>
-                    <span class="price-go">Reservar ↗</span>
-                </div>
-            </a>
-
-            <a href="#sedes" class="price-pill-card weekend" onclick="triggerHaptic()">
-                <div>
-                    <span class="price-day-tag">Jue · Vie · Sáb · Dom</span>
-                    <h3 class="price-card-name">Pizza Libre Full</h3>
-                    <p class="price-card-note">Fines de semana, partidos y previa con amigos</p>
-                </div>
-                <div class="price-amount-row">
-                    <span class="price-number">$16.000</span>
-                    <span class="price-go">Reservar ↗</span>
-                </div>
-            </a>
-        </section>
-
         <!-- 5. BENEFICIOS CON FORMAS VARIADAS -->
         <section class="perks-cluster">
             <div class="birthday-flag-card">
@@ -1317,58 +1351,7 @@
             </div>
         </article>
 
-        <!-- 7. ELEGÍ TU CANCHA: LAS 3 SUCURSALES CON WHATSAPP REAL -->
-        <section class="branches-card" id="sedes">
-            <div class="section-top-bar">
-                <h2 class="section-heading">Nuestras Canchas</h2>
-                <span class="section-tag-pill">3 Sucursales</span>
-            </div>
-
-            <div class="branch-list">
-                <!-- MONTE GRANDE -->
-                <a href="https://wa.me/5491131916972?text=%C2%A1Hola%20VAR%20Monte%20Grande!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
-                    <div class="branch-meta">
-                        <span class="branch-hood">Monte Grande</span>
-                        <span class="branch-street">Dorrego 227</span>
-                        <span class="branch-tel">WhatsApp · 11 3191-6972</span>
-                    </div>
-                    <div class="branch-wpp-circle" aria-label="WhatsApp Monte Grande">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-
-                <!-- LANÚS -->
-                <a href="https://wa.me/5491122573848?text=%C2%A1Hola%20VAR%20Lan%C3%BAs!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
-                    <div class="branch-meta">
-                        <span class="branch-hood">Lanús</span>
-                        <span class="branch-street">Del Valle Iberlucea 2911</span>
-                        <span class="branch-tel">WhatsApp · 11 2257-3848</span>
-                    </div>
-                    <div class="branch-wpp-circle" aria-label="WhatsApp Lanús">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-
-                <!-- ITUZAINGÓ -->
-                <a href="https://wa.me/5491173491939?text=%C2%A1Hola%20VAR%20Ituzaing%C3%B3!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
-                    <div class="branch-meta">
-                        <span class="branch-hood">Ituzaingó</span>
-                        <span class="branch-street">Eduardo Muñiz 110</span>
-                        <span class="branch-tel">WhatsApp · 11 7349-1939</span>
-                    </div>
-                    <div class="branch-wpp-circle" aria-label="WhatsApp Ituzaingó">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-            </div>
-
-            <a href="https://www.instagram.com/var.pizzalibre/" target="_blank" rel="noopener noreferrer" class="ig-follow-strip" onclick="triggerHaptic()">
-                <span>Ver más videos y promos en @var.pizzalibre</span>
-                <span style="color:var(--turf-deep);">Instagram ↗</span>
-            </a>
-        </section>
-
-        <!-- 8. FOOTER -->
+        <!-- 7. FOOTER -->
         <footer class="hub-footer">
             <div class="footer-badge">
                 <span>VAR PIZZA LIBRE®</span>
@@ -1401,7 +1384,7 @@
 
     <!-- ==========================================================================
          MOTORES JAVASCRIPT:
-         1. ESTADIO 3D DE DÍA + CAMPO ENORME + HINCHAS-PIZZA EN GRADAS ALENTANDO
+         1. ESTADIO 3D DE DÍA (TRIBUNA CURVA, TORRES DE LUZ, CAMPO ENORME Y PIZZAS)
          2. REVISIÓN DEL VAR
          3. OBSERVER DE VIDEO & LIGHTBOX
          ========================================================================== -->
@@ -1413,7 +1396,7 @@
         }
 
         /* =========================================================
-           1. ESTADIO 3D DE DÍA CON PIZZAS ALENTANDO EN LAS GRADAS
+           1. ESTADIO 3D DE DÍA CON ARQUITECTURA COMPLETA Y PIZZAS HINCHAS
            ========================================================= */
         const StadiumDay3D = (() => {
             const canvas = document.getElementById('stadiumDay3D');
@@ -1427,7 +1410,7 @@
             const Z_MIN = 3.6;
             const Z_MAX = 115;
 
-            const FAN_COLORS = ['#1F9D3A', '#E1251B', '#72C8F7', '#FFB800'];
+            const FAN_COLORS = ['#1F9D3A', '#E1251B', '#5BBDF5', '#FFB800'];
             let pizzaFanSprites = [];
 
             function buildPizzaFanSprites() {
@@ -1437,13 +1420,11 @@
                     c.height = 92;
                     const g = c.getContext('2d');
 
-                    // Sombra en la grada
-                    g.fillStyle = 'rgba(18, 22, 20, 0.25)';
+                    g.fillStyle = 'rgba(18, 22, 20, 0.24)';
                     g.beginPath();
                     g.ellipse(38, 82, 18, 5, 0, 0, Math.PI * 2);
                     g.fill();
 
-                    // Bracitos alentando arriba
                     g.strokeStyle = '#E5943B';
                     g.lineWidth = 4.5;
                     g.lineCap = 'round';
@@ -1454,7 +1435,6 @@
                     g.lineTo(67, 24);
                     g.stroke();
 
-                    // Banderín del equipo en la mano derecha
                     g.strokeStyle = '#FFFFFF';
                     g.lineWidth = 2;
                     g.beginPath();
@@ -1469,7 +1449,6 @@
                     g.closePath();
                     g.fill();
 
-                    // Borde de masa crocante arriba
                     g.fillStyle = '#D9822B';
                     g.beginPath();
                     g.moveTo(38, 79);
@@ -1478,7 +1457,6 @@
                     g.closePath();
                     g.fill();
 
-                    // Salsa roja
                     g.fillStyle = '#E1251B';
                     g.beginPath();
                     g.moveTo(38, 75);
@@ -1487,7 +1465,6 @@
                     g.closePath();
                     g.fill();
 
-                    // Muzzarella dorada
                     g.fillStyle = '#FFD43B';
                     g.beginPath();
                     g.moveTo(38, 76);
@@ -1496,16 +1473,13 @@
                     g.closePath();
                     g.fill();
 
-                    // Pepperoni / aceituna
                     g.fillStyle = idx % 2 === 0 ? '#E1251B' : '#1F9D3A';
                     g.beginPath(); g.arc(31, 46, 4.2, 0, Math.PI * 2); g.fill();
                     g.beginPath(); g.arc(44, 53, 3.8, 0, Math.PI * 2); g.fill();
 
-                    // Bufanda de hincha en el cuello
                     g.fillStyle = scarfCol;
                     g.fillRect(24, 56, 28, 6);
 
-                    // Ojitos felices mirando el partido
                     g.fillStyle = '#121614';
                     g.beginPath(); g.arc(33, 37, 2.5, 0, Math.PI * 2); g.fill();
                     g.beginPath(); g.arc(43, 37, 2.5, 0, Math.PI * 2); g.fill();
@@ -1519,26 +1493,23 @@
                 });
             }
 
-            // Hinchas-pizza sentados en gradas izquierda, derecha y cabecera fondo
+            // Hinchas-pizza sentados en gradas laterales (anclados fuera del césped ancho)
             const STAND_FANS = [];
             (function seedFans() {
-                // Gradas laterales (3 escalones de altura en ambos lados)
                 for (let row = 0; row < 12; row++) {
-                    const z = 9 + row * 8.4;
+                    const z = 10 + row * 8.4;
                     for (let tier = 0; tier < 3; tier++) {
                         STAND_FANS.push({
-                            side: -1,
-                            wx: -(5.3 + tier * 1.15),
-                            wy: 0.55 + tier * 0.85,
+                            wx: -(6.55 + tier * 1.35),
+                            wy: 0.65 + tier * 0.95,
                             z: z + (tier % 2) * 1.8,
                             spriteIdx: (row + tier) % 4,
                             phase: row * 0.8 + tier * 1.3,
                             bounceAmp: 0.14 + ((row + tier) % 3) * 0.04
                         });
                         STAND_FANS.push({
-                            side: 1,
-                            wx: 5.3 + tier * 1.15,
-                            wy: 0.55 + tier * 0.85,
+                            wx: 6.55 + tier * 1.35,
+                            wy: 0.65 + tier * 0.95,
                             z: z + ((tier + 1) % 2) * 1.8,
                             spriteIdx: (row + tier + 2) % 4,
                             phase: row * 0.9 + tier * 1.1 + 1.5,
@@ -1546,22 +1517,176 @@
                         });
                     }
                 }
-                // Tribuna cabecera del fondo detrás del arco
-                for (let i = -5; i <= 5; i++) {
-                    for (let tier = 0; tier < 2; tier++) {
-                        STAND_FANS.push({
-                            side: 0,
-                            wx: i * 1.15 + tier * 0.35,
-                            wy: 1.5 + tier * 0.95,
-                            z: 102 + tier * 4.5,
-                            spriteIdx: (Math.abs(i) + tier) % 4,
-                            phase: i * 0.7 + tier,
-                            bounceAmp: 0.18
-                        });
-                    }
-                }
                 STAND_FANS.sort((a, b) => b.z - a.z);
             })();
+
+            // Multitud en la popular cabecera del fondo (cubre de izquierda a derecha)
+            const BACK_CROWD = Array.from({ length: 76 }, (_, i) => ({
+                nx: (i + 0.5) / 76,
+                tier: i % 4,
+                colIdx: i % 4,
+                phase: i * 0.55
+            }));
+
+            function drawFloodlightTower(tx, baseY, towerH, scaleDir) {
+                const topY = baseY - towerH;
+                // Mástil metálico en V sutil
+                ctx.strokeStyle = '#5D6C65';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(tx - 6, baseY);
+                ctx.lineTo(tx - 2, topY + 14);
+                ctx.moveTo(tx + 6, baseY);
+                ctx.lineTo(tx + 2, topY + 14);
+                ctx.stroke();
+
+                // Crucetas
+                ctx.lineWidth = 1.6;
+                for (let s = 0.25; s < 0.9; s += 0.25) {
+                    const yS = baseY - towerH * s;
+                    ctx.beginPath();
+                    ctx.moveTo(tx - 5, yS);
+                    ctx.lineTo(tx + 5, yS);
+                    ctx.stroke();
+                }
+
+                // Cabezal de reflectores LED del estadio
+                const headW = 36;
+                const headH = 18;
+                ctx.fillStyle = '#18221D';
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 1.8;
+                ctx.beginPath();
+                ctx.roundRect(tx - headW * 0.5 + scaleDir * 4, topY, headW, headH, 4);
+                ctx.fill();
+                ctx.stroke();
+
+                // Bombillas blancas luminosas
+                ctx.fillStyle = '#FFF9D6';
+                for (let r = 0; r < 2; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        ctx.beginPath();
+                        ctx.arc(
+                            tx - headW * 0.5 + scaleDir * 4 + 6 + c * 8,
+                            topY + 5.5 + r * 7,
+                            2.1,
+                            0,
+                            Math.PI * 2
+                        );
+                        ctx.fill();
+                    }
+                }
+            }
+
+            function drawBackStadiumBowl(horizonY, cxOffset) {
+                const bowlH = Math.max(64, H * 0.145);
+                const roofTopY = horizonY - bowlH;
+
+                // 4 Torres de iluminación elevándose sobre el cielo celeste
+                const towerBaseY = roofTopY + 16;
+                const towerH = Math.max(46, H * 0.095);
+                drawFloodlightTower(W * 0.11 + cxOffset * 0.2, towerBaseY, towerH, 1);
+                drawFloodlightTower(W * 0.27 + cxOffset * 0.25, towerBaseY + 2, towerH * 0.88, 1);
+                drawFloodlightTower(W * 0.73 + cxOffset * 0.25, towerBaseY + 2, towerH * 0.88, -1);
+                drawFloodlightTower(W * 0.89 + cxOffset * 0.2, towerBaseY, towerH, -1);
+
+                // Techo parabólico del estadio (curva suave hacia el centro)
+                ctx.fillStyle = '#1A241E';
+                ctx.beginPath();
+                ctx.moveTo(0, roofTopY + 18);
+                ctx.quadraticCurveTo(W * 0.5 + cxOffset * 0.3, roofTopY - 8, W, roofTopY + 18);
+                ctx.lineTo(W, roofTopY + 34);
+                ctx.quadraticCurveTo(W * 0.5 + cxOffset * 0.3, roofTopY + 8, 0, roofTopY + 34);
+                ctx.closePath();
+                ctx.fill();
+
+                // Borde blanco brillante del techo
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(0, roofTopY + 18);
+                ctx.quadraticCurveTo(W * 0.5 + cxOffset * 0.3, roofTopY - 8, W, roofTopY + 18);
+                ctx.stroke();
+
+                // Estructura de tribuna popular del fondo (escalones de hormigón + butacas)
+                const standStartY = roofTopY + 28;
+                const standGrad = ctx.createLinearGradient(0, standStartY, 0, horizonY);
+                standGrad.addColorStop(0, '#C7D3CC');
+                standGrad.addColorStop(0.55, '#DCE5DF');
+                standGrad.addColorStop(1, '#AABAB1');
+                ctx.fillStyle = standGrad;
+                ctx.fillRect(0, standStartY, W, horizonY - standStartY + 2);
+
+                // Columnas metálicas sosteniendo el techo
+                ctx.strokeStyle = 'rgba(24, 34, 28, 0.45)';
+                ctx.lineWidth = 2.4;
+                for (let col = 0.08; col <= 0.94; col += 0.14) {
+                    const xCol = W * col + cxOffset * 0.25;
+                    ctx.beginPath();
+                    ctx.moveTo(xCol, roofTopY + 22);
+                    ctx.lineTo(xCol, horizonY - 12);
+                    ctx.stroke();
+                }
+
+                // Escalones horizontales de la tribuna popular
+                const tierH = (horizonY - 14 - standStartY) / 4;
+                for (let t = 0; t < 4; t++) {
+                    const yT = standStartY + t * tierH;
+                    ctx.fillStyle = t % 2 === 0 ? 'rgba(31, 157, 58, 0.22)' : 'rgba(18, 22, 20, 0.08)';
+                    ctx.fillRect(0, yT, W, tierH * 0.45);
+                }
+
+                // Hinchas mini-pizzas saltando en la popular del fondo
+                for (let i = 0; i < BACK_CROWD.length; i++) {
+                    const c = BACK_CROWD[i];
+                    const fx = c.nx * W + cxOffset * 0.28;
+                    const fy = standStartY + 8 + c.tier * tierH - Math.abs(Math.sin(tClock * 4.8 + c.phase)) * 3.5;
+
+                    // Triangulito de pizza hincha
+                    ctx.fillStyle = '#FFD43B';
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy + 5);
+                    ctx.lineTo(fx - 4.5, fy - 4.5);
+                    ctx.lineTo(fx + 4.5, fy - 4.5);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Borde rojo/verde de bufanda
+                    ctx.fillStyle = FAN_COLORS[c.colIdx];
+                    ctx.fillRect(fx - 4, fy - 6.5, 8, 2.2);
+                }
+
+                // Dos marcadores LED laterales del estadio (visibles a los costados de la columna central)
+                if (W > 640) {
+                    const sbW = Math.min(92, W * 0.09);
+                    const sbH = 30;
+                    for (const sxPos of [W * 0.18, W * 0.82 - sbW]) {
+                        ctx.fillStyle = '#111814';
+                        ctx.strokeStyle = '#FFFFFF';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.roundRect(sxPos, standStartY - 6, sbW, sbH, 5);
+                        ctx.fill();
+                        ctx.stroke();
+
+                        ctx.fillStyle = '#FFD43B';
+                        ctx.font = 'bold 11px "JetBrains Mono", monospace';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('VAR  3 - 0', sxPos + sbW * 0.5, standStartY + 13);
+                    }
+                }
+
+                // Cartelería / trapos de hinchada en la baranda del fondo sobre el césped
+                const bannerY = horizonY - 14;
+                const segW = W / 8;
+                const bannerCols = ['#1F9D3A', '#E1251B', '#FFB800', '#121614', '#1F9D3A', '#5BBDF5', '#E1251B', '#1F9D3A'];
+                for (let b = 0; b < 8; b++) {
+                    ctx.fillStyle = bannerCols[b];
+                    ctx.fillRect(b * segW, bannerY, segW + 1, 14);
+                }
+                ctx.fillStyle = 'rgba(255,255,255,0.65)';
+                ctx.fillRect(0, bannerY, W, 2);
+            }
 
             function resizeDisplay() {
                 W = window.innerWidth;
@@ -1577,61 +1702,49 @@
                 headX += (targetHeadX - headX) * Math.min(1, dt * 3.5);
                 headY += (targetHeadY - headY) * Math.min(1, dt * 3.5);
 
-                const horizonY = H * 0.31 + headY * 14;
-                const focal = Math.max(W, H) * 0.82;
-                const camH = 4.6;
-                const cx = W * 0.5 + headX * 26;
+                const horizonY = H * 0.33 + headY * 14;
+                const focal = Math.max(W, H) * 0.80;
+                const camH = 5.0;
+                const cx = W * 0.5 + headX * 24;
 
                 const projX = (wx, z) => cx + wx * (focal / z);
                 const projY = (wh, z) => horizonY + (camH - wh) * (focal / z);
 
                 // 1. CIELO CELESTE LUMINOSO DE DÍA
                 const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY + 8);
-                skyGrad.addColorStop(0, '#5BBDF5');
-                skyGrad.addColorStop(0.55, '#A9E1FF');
-                skyGrad.addColorStop(1, '#E6F7FF');
+                skyGrad.addColorStop(0, '#4FB6F2');
+                skyGrad.addColorStop(0.55, '#9EDDFF');
+                skyGrad.addColorStop(1, '#E4F6FF');
                 ctx.fillStyle = skyGrad;
                 ctx.fillRect(0, 0, W, horizonY + 10);
 
                 // Sol cálido argentino
-                const sunX = W * 0.80 - headX * 12;
-                const sunY = Math.max(28, horizonY * 0.34);
-                const sunGrad = ctx.createRadialGradient(sunX, sunY, 6, sunX, sunY, Math.min(W, H) * 0.18);
+                const sunX = W * 0.82 - headX * 10;
+                const sunY = Math.max(24, horizonY * 0.24);
+                const sunGrad = ctx.createRadialGradient(sunX, sunY, 5, sunX, sunY, Math.min(W, H) * 0.16);
                 sunGrad.addColorStop(0, 'rgba(255, 248, 198, 0.98)');
-                sunGrad.addColorStop(0.32, 'rgba(255, 214, 75, 0.38)');
+                sunGrad.addColorStop(0.32, 'rgba(255, 214, 75, 0.35)');
                 sunGrad.addColorStop(1, 'rgba(255, 248, 198, 0)');
                 ctx.fillStyle = sunGrad;
                 ctx.beginPath();
-                ctx.arc(sunX, sunY, Math.min(W, H) * 0.18, 0, Math.PI * 2);
+                ctx.arc(sunX, sunY, Math.min(W, H) * 0.16, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Nubes blancas esponjosas
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.86)';
                 for (let i = 0; i < 4; i++) {
-                    const cw = W * (0.20 + (i % 2) * 0.08);
+                    const cw = W * (0.18 + (i % 2) * 0.08);
                     const cxC = ((i * W * 0.34 + tClock * (5 + i * 1.2)) % (W + cw * 2)) - cw;
-                    const cyC = horizonY * (0.26 + (i % 3) * 0.18);
+                    const cyC = horizonY * (0.20 + (i % 3) * 0.13);
                     ctx.beginPath();
-                    ctx.ellipse(cxC, cyC, cw * 0.44, 12 + (i % 2) * 4, 0, 0, Math.PI * 2);
-                    ctx.ellipse(cxC - cw * 0.2, cyC + 4, cw * 0.28, 9, 0, 0, Math.PI * 2);
-                    ctx.ellipse(cxC + cw * 0.2, cyC + 4, cw * 0.3, 9, 0, 0, Math.PI * 2);
+                    ctx.ellipse(cxC, cyC, cw * 0.44, 11 + (i % 2) * 4, 0, 0, Math.PI * 2);
+                    ctx.ellipse(cxC - cw * 0.2, cyC + 4, cw * 0.28, 8, 0, 0, Math.PI * 2);
+                    ctx.ellipse(cxC + cw * 0.2, cyC + 4, cw * 0.3, 8, 0, 0, Math.PI * 2);
                     ctx.fill();
                 }
 
-                // 2. ESTRUCTURA DE TRIBUNA CABECERA AL FONDO (SOBRE EL HORIZONTE)
-                const standTopY = horizonY - H * 0.09;
-                const backStandGrad = ctx.createLinearGradient(0, standTopY, 0, horizonY + 4);
-                backStandGrad.addColorStop(0, '#D4E0DA');
-                backStandGrad.addColorStop(0.45, '#BCCBC3');
-                backStandGrad.addColorStop(1, '#8FA398');
-                ctx.fillStyle = backStandGrad;
-                ctx.fillRect(0, standTopY, W, horizonY - standTopY + 4);
-
-                // Techo del estadio y franja verde VAR en la tribuna de fondo
-                ctx.fillStyle = '#18241C';
-                ctx.fillRect(0, standTopY - 8, W, 9);
-                ctx.fillStyle = '#1F9D3A';
-                ctx.fillRect(0, horizonY - 12, W, 12);
+                // 2. TRIBUNA CURVA COMPLETA + TORRES + MARCADORES + HINCHAS EN EL HORIZONTE
+                drawBackStadiumBowl(horizonY, headX * 24);
 
                 // 3. CAMPO DE JUEGO ENORME EN PERSPECTIVA 3D (FRANJAS DE CÉSPED)
                 const turfBase = ctx.createLinearGradient(0, horizonY, 0, H);
@@ -1640,23 +1753,21 @@
                 ctx.fillStyle = turfBase;
                 ctx.fillRect(0, horizonY, W, H - horizonY);
 
-                // Franjas alternadas transversales de corte profesional
                 const stripeStep = 8.5;
                 for (let z = Z_MAX; z >= Z_MIN; z -= stripeStep * 2) {
                     const zFar = Math.min(Z_MAX, z);
                     const zNear = Math.max(Z_MIN, z - stripeStep);
                     const yFar = projY(0, zFar);
                     const yNear = projY(0, zNear);
-                    ctx.fillStyle = 'rgba(18, 108, 36, 0.26)';
+                    ctx.fillStyle = 'rgba(18, 108, 36, 0.25)';
                     ctx.fillRect(0, yFar, W, Math.max(1, yNear - yFar));
                 }
 
                 // 4. LÍNEAS BLANCAS REGLAMENTARIAS DEL CAMPO ENORME
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
-                ctx.lineWidth = 2.2;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.88)';
+                ctx.lineWidth = 2.3;
 
-                // Líneas laterales (touchlines)
-                const fieldHalfW = 4.6;
+                const fieldHalfW = 5.8;
                 ctx.beginPath();
                 ctx.moveTo(projX(-fieldHalfW, Z_MAX), projY(0, Z_MAX));
                 ctx.lineTo(projX(-fieldHalfW, Z_MIN), projY(0, Z_MIN));
@@ -1664,45 +1775,65 @@
                 ctx.lineTo(projX(fieldHalfW, Z_MIN), projY(0, Z_MIN));
                 ctx.stroke();
 
-                // Línea de meta al fondo
                 const goalLineZ = 94;
                 ctx.beginPath();
                 ctx.moveTo(projX(-fieldHalfW, goalLineZ), projY(0, goalLineZ));
                 ctx.lineTo(projX(fieldHalfW, goalLineZ), projY(0, goalLineZ));
                 ctx.stroke();
 
+                // Banderines de córner
+                for (const cSide of [-1, 1]) {
+                    const fx = projX(cSide * fieldHalfW, goalLineZ);
+                    const fy = projY(0, goalLineZ);
+                    ctx.strokeStyle = '#FFFFFF';
+                    ctx.lineWidth = 1.6;
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy);
+                    ctx.lineTo(fx, fy - 11);
+                    ctx.stroke();
+                    ctx.fillStyle = '#E1251B';
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy - 11);
+                    ctx.lineTo(fx + cSide * 6, fy - 8.5);
+                    ctx.lineTo(fx, fy - 6);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
                 // Área grande al fondo
-                const penZ = 76;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.88)';
+                ctx.lineWidth = 2.2;
+                const penZ = 74;
                 ctx.beginPath();
-                ctx.moveTo(projX(-2.8, goalLineZ), projY(0, goalLineZ));
-                ctx.lineTo(projX(-2.8, penZ), projY(0, penZ));
-                ctx.lineTo(projX(2.8, penZ), projY(0, penZ));
-                ctx.lineTo(projX(2.8, goalLineZ), projY(0, goalLineZ));
+                ctx.moveTo(projX(-3.2, goalLineZ), projY(0, goalLineZ));
+                ctx.lineTo(projX(-3.2, penZ), projY(0, penZ));
+                ctx.lineTo(projX(3.2, penZ), projY(0, penZ));
+                ctx.lineTo(projX(3.2, goalLineZ), projY(0, goalLineZ));
                 ctx.stroke();
 
-                // Línea de mitad de cancha y círculo central enorme en 3D
-                const midZ = 22;
+                // Mitad de cancha y círculo central en perspectiva 3D
+                const midZ = 21;
                 ctx.beginPath();
                 ctx.moveTo(projX(-fieldHalfW, midZ), projY(0, midZ));
                 ctx.lineTo(projX(fieldHalfW, midZ), projY(0, midZ));
                 ctx.stroke();
 
                 ctx.beginPath();
-                const circleR = 2.1;
+                const circleR = 2.4;
                 for (let a = 0; a <= 36; a++) {
                     const ang = (a / 36) * Math.PI * 2;
-                    const px = projX(Math.cos(ang) * circleR, midZ + Math.sin(ang) * 7.5);
-                    const py = projY(0, midZ + Math.sin(ang) * 7.5);
+                    const px = projX(Math.cos(ang) * circleR, midZ + Math.sin(ang) * 7.8);
+                    const py = projY(0, midZ + Math.sin(ang) * 7.8);
                     if (a === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
                 }
                 ctx.closePath();
                 ctx.stroke();
 
                 // Arco blanco de fútbol al fondo
-                const goalW = 1.65;
-                const goalH = 1.55;
+                const goalW = 1.85;
+                const goalH = 1.75;
                 ctx.strokeStyle = '#FFFFFF';
-                ctx.lineWidth = 2.6;
+                ctx.lineWidth = 2.8;
                 ctx.beginPath();
                 ctx.moveTo(projX(-goalW, goalLineZ), projY(0, goalLineZ));
                 ctx.lineTo(projX(-goalW, goalLineZ), projY(goalH, goalLineZ));
@@ -1710,8 +1841,7 @@
                 ctx.lineTo(projX(goalW, goalLineZ), projY(0, goalLineZ));
                 ctx.stroke();
 
-                // Red suave del arco
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.24)';
                 ctx.fillRect(
                     projX(-goalW, goalLineZ),
                     projY(goalH, goalLineZ),
@@ -1719,16 +1849,16 @@
                     projY(0, goalLineZ) - projY(goalH, goalLineZ)
                 );
 
-                // 5. GRADAS LATERALES EN PERSPECTIVA 3D
+                // 5. GRADAS LATERALES ESCALONADAS CON BUTACAS DE ESTADIO
                 for (const side of [-1, 1]) {
                     for (let tier = 2; tier >= 0; tier--) {
-                        const xIn  = side * (4.9 + tier * 1.15);
-                        const xOut = side * (6.1 + tier * 1.25);
-                        const yLow = tier * 0.85;
-                        const yTop = yLow + 0.82;
+                        const xIn  = side * (6.15 + tier * 1.35);
+                        const xOut = side * (7.50 + tier * 1.45);
+                        const yLow = tier * 0.95;
+                        const yTop = yLow + 0.92;
 
-                        // Escalón frontal de la tribuna
-                        ctx.fillStyle = tier % 2 === 0 ? '#E3EAE5' : '#CFD9D2';
+                        // Grada hormigón claro
+                        ctx.fillStyle = tier % 2 === 0 ? '#DDE6E0' : '#C9D6CE';
                         ctx.beginPath();
                         ctx.moveTo(projX(xIn, Z_MAX), projY(yLow, Z_MAX));
                         ctx.lineTo(projX(xOut, Z_MAX), projY(yTop, Z_MAX));
@@ -1737,21 +1867,31 @@
                         ctx.closePath();
                         ctx.fill();
 
-                        // Cartel lateral verde/rojo de borde de cancha en el primer nivel
+                        // Franja de butacas color club en el escalón
+                        ctx.fillStyle = tier === 1 ? 'rgba(31, 157, 58, 0.30)' : (tier === 2 ? 'rgba(225, 37, 27, 0.22)' : 'rgba(18, 22, 20, 0.10)');
+                        ctx.beginPath();
+                        ctx.moveTo(projX(xIn + side * 0.25, Z_MAX), projY(yLow + 0.18, Z_MAX));
+                        ctx.lineTo(projX(xOut - side * 0.2, Z_MAX), projY(yTop - 0.18, Z_MAX));
+                        ctx.lineTo(projX(xOut - side * 0.2, Z_MIN), projY(yTop - 0.18, Z_MIN));
+                        ctx.lineTo(projX(xIn + side * 0.25, Z_MIN), projY(yLow + 0.18, Z_MIN));
+                        ctx.closePath();
+                        ctx.fill();
+
+                        // Cartel lateral de publicidad en el borde del césped
                         if (tier === 0) {
                             ctx.fillStyle = side === -1 ? '#1F9D3A' : '#E1251B';
                             ctx.beginPath();
-                            ctx.moveTo(projX(side * 4.85, Z_MAX), projY(0, Z_MAX));
-                            ctx.lineTo(projX(side * 4.85, Z_MAX), projY(0.5, Z_MAX));
-                            ctx.lineTo(projX(side * 4.85, Z_MIN), projY(0.5, Z_MIN));
-                            ctx.lineTo(projX(side * 4.85, Z_MIN), projY(0, Z_MIN));
+                            ctx.moveTo(projX(side * 6.08, Z_MAX), projY(0, Z_MAX));
+                            ctx.lineTo(projX(side * 6.08, Z_MAX), projY(0.55, Z_MAX));
+                            ctx.lineTo(projX(side * 6.08, Z_MIN), projY(0.55, Z_MIN));
+                            ctx.lineTo(projX(side * 6.08, Z_MIN), projY(0, Z_MIN));
                             ctx.closePath();
                             ctx.fill();
                         }
                     }
                 }
 
-                // 6. PIZZAS SENTADAS EN LAS GRADAS ALENTANDO EN VIVO
+                // 6. PIZZAS SENTADAS EN LAS GRADAS LATERALES ALENTANDO EN VIVO
                 for (let i = 0; i < STAND_FANS.length; i++) {
                     const fan = STAND_FANS[i];
                     const sc = focal / fan.z;
@@ -1765,7 +1905,7 @@
                     const sizeW = Math.max(8, 1.05 * sc);
                     const sizeH = sizeW * (sprite.height / sprite.width);
 
-                    const alpha = Math.max(0.28, Math.min(1, 1 - (fan.z - 40) / 110));
+                    const alpha = Math.max(0.32, Math.min(1, 1 - (fan.z - 42) / 110));
                     ctx.globalAlpha = alpha;
                     ctx.save();
                     ctx.translate(sx, sy);
