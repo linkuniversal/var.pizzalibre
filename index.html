@@ -2,39 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>VAR PIZZA LIBRE® | Amigos, Fútbol & Pizza · Monte Grande, Lanús e Ituzaingó</title>
     <meta name="description" content="Pizza libre en VAR. Acá comés todo lo que quieras. Abrimos todos los días. Sucursales en Monte Grande, Lanús e Ituzaingó. ¡Si festejás tu cumple, el cumpleañero no paga!">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#72C8F7">
 
-    <!-- TIPOGRAFÍAS DE ÉLITE: BUNGEE + PLUS JAKARTA SANS + JETBRAINS MONO -->
+    <link rel="preload" as="image" href="./pizzaprimerplano.webp">
+
+    <!-- TIPOGRAFÍAS DEPORTIVAS & EDITORIALES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           1. ADN CROMÁTICO & ESTÉTICA ESTADIO / VAR NOCTURNO
+           1. ADN CROMÁTICO VIVO: CANCHA DE DÍA + MASA HORNEADA + SALSA + MUZZARELLA
            ========================================================================== */
         :root {
-            --var-black: #030704;
-            --var-card-bg: rgba(12, 18, 14, 0.88);
-            --var-pitch-green: #00FF41;
-            --var-pitch-dark: #003810;
-            --var-red: #FF002B;
-            --var-yellow: #FFEA00;
-            --var-white: #FFFFFF;
-            --var-gray: #99AAB5;
+            --sky-top: #72C8F7;
+            --dough-cream: #FFFDF6;
+            --dough-warm: #FAF3E0;
+            --card-surface: rgba(255, 253, 248, 0.94);
 
-            --card-border: rgba(0, 255, 65, 0.22);
-            --card-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 65, 0.08);
-            --card-shadow-hover: 0 25px 55px -10px rgba(0, 255, 65, 0.25), 0 0 30px rgba(255, 0, 43, 0.2);
+            --turf-green: #1F9D3A;
+            --turf-deep: #136B25;
+            --turf-soft: rgba(31, 157, 58, 0.14);
 
-            --font-pop: 'Bungee', cursive, sans-serif;
-            --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --tomato-red: #E1251B;
+            --tomato-deep: #A6150E;
+            --cheese-gold: #FFB800;
+            --cheese-bright: #FFD43B;
+
+            --ink-carbon: #121614;
+            --ink-body: #2A312D;
+            --ink-muted: #5A645E;
+
+            --border-turf: rgba(31, 157, 58, 0.28);
+            --border-warm: rgba(18, 22, 20, 0.12);
+            --shadow-card: 0 14px 30px -8px rgba(18, 34, 22, 0.16), 0 3px 10px rgba(18, 22, 20, 0.06);
+            --shadow-pop: 0 18px 38px -8px rgba(19, 107, 37, 0.28);
+
+            --font-display: 'Bungee', Impact, sans-serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-
-            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --spring: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         body.preload * {
@@ -50,7 +61,7 @@
         }
 
         html {
-            background-color: var(--var-black);
+            background-color: #BCE6FF;
             scroll-behavior: smooth;
             max-width: 100%;
             overflow-x: clip;
@@ -59,7 +70,7 @@
         body {
             font-family: var(--font-sans);
             background: transparent;
-            color: var(--var-white);
+            color: var(--ink-body);
             min-height: 100vh;
             min-height: 100dvh;
             width: 100%;
@@ -74,7 +85,7 @@
         }
 
         /* ==========================================================================
-           2. FONDO 3D ESTADIO NOCTURNO (CANVAS 60 FPS)
+           2. ESTADIO 3D DE DÍA + CAMPO ENORME + HINCHAS-PIZZA EN LAS GRADAS
            ========================================================================== */
         .stadium-stage {
             position: fixed;
@@ -82,10 +93,10 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 15%, #0B2412 0%, #030704 60%, #000000 100%);
+            background: linear-gradient(180deg, #74C8F8 0%, #CBEBFF 34%, #25A43F 36%, #166D28 100%);
         }
 
-        #stadium3dCanvas {
+        #stadiumDay3D {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -97,760 +108,837 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at 50% 30%, rgba(3, 7, 4, 0.2) 0%, rgba(3, 7, 4, 0.65) 70%, rgba(0, 0, 0, 0.92) 100%),
-                linear-gradient(180deg, rgba(0, 255, 65, 0.03) 0%, rgba(3, 7, 4, 0.5) 45%, rgba(0, 0, 0, 0.95) 100%);
+                radial-gradient(circle at 50% 14%, rgba(255, 253, 246, 0.04) 0%, rgba(255, 253, 246, 0.24) 55%, rgba(255, 253, 246, 0.44) 100%),
+                linear-gradient(180deg, rgba(255, 253, 246, 0.04) 0%, rgba(255, 253, 246, 0.22) 48%, rgba(255, 253, 246, 0.42) 100%);
         }
 
         /* ==========================================================================
-           3. MARQUESINA DE ESTADIO
+           3. MARQUESINA SUPERIOR DE ESTADIO
            ========================================================================== */
-        .top-marquee-strip {
+        .top-ticker {
             width: 100%;
-            background: var(--var-pitch-green);
-            color: #000000;
+            background: linear-gradient(90deg, var(--turf-deep) 0%, var(--turf-green) 55%, var(--tomato-red) 100%);
+            color: #FFFFFF;
             font-family: var(--font-mono);
-            font-size: clamp(0.66rem, 2.4vw, 0.74rem);
-            font-weight: 900;
-            letter-spacing: 0.12em;
+            font-size: clamp(0.64rem, 2.3vw, 0.71rem);
+            font-weight: 800;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            padding: 9px 0;
+            padding: 8px 0;
             overflow: hidden;
             position: relative;
             z-index: 10;
             display: flex;
-            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.4);
-            border-bottom: 3px solid #008018;
+            box-shadow: 0 4px 14px rgba(18, 34, 22, 0.22);
         }
 
-        .marquee-track {
+        .ticker-track {
             display: flex;
             width: max-content;
-            animation: varMarquee 24s linear infinite;
+            animation: varTicker 26s linear infinite;
             will-change: transform;
         }
 
-        .marquee-track span {
+        .ticker-track span {
             white-space: nowrap;
             padding-right: 36px;
         }
 
-        @keyframes varMarquee {
+        @keyframes varTicker {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
         /* ==========================================================================
-           4. CONTENEDOR MAESTRO (BLINDADO PARA WPP / IG / PC)
+           4. CONTENEDOR MAESTRO
            ========================================================================== */
         .hub-shell {
             width: 100%;
-            max-width: 492px;
-            padding: 16px clamp(12px, 3.8vw, 18px) 28px;
+            max-width: 500px;
+            padding: 16px clamp(12px, 3.8vw, 18px) 20px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             z-index: 5;
             position: relative;
         }
 
         /* ==========================================================================
-           5. CABECERA CON LOGO SVG OFICIAL NATIVO
+           5. CABECERA HERO: MEDALLÓN OFICIAL VAR. + CARTEL DE PASTO IG
            ========================================================================== */
-        .brand-hero {
+        .hero-header {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 12px;
-            padding-top: 6px;
+            gap: 10px;
         }
 
-        .var-logo-svg-box {
-            width: 100%;
-            max-width: clamp(170px, 48vw, 210px);
+        .ig-pill-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 253, 248, 0.94);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--border-turf);
+            border-radius: 999px;
+            padding: 5px 13px;
+            font-family: var(--font-mono);
+            font-size: 0.64rem;
+            font-weight: 800;
+            color: var(--ink-carbon);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(18, 34, 22, 0.12);
+            transition: transform 0.2s var(--spring);
+        }
+
+        .ig-pill-top:hover {
+            transform: translateY(-2px);
+            border-color: var(--turf-green);
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--tomato-red);
+            box-shadow: 0 0 0 3px rgba(225, 37, 27, 0.24);
+            animation: pulseDot 1.6s infinite ease-in-out;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.22); opacity: 0.72; }
+        }
+
+        /* MEDALLÓN CIRCULAR NEGRO OFICIAL VAR. CON EL SVG CORREGIDO */
+        .var-medallion {
+            width: clamp(124px, 33vw, 148px);
+            height: clamp(124px, 33vw, 148px);
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #242926 0%, #0D100E 70%, #050706 100%);
+            border: 4px solid #FFFFFF;
+            outline: 3px solid var(--turf-green);
+            box-shadow: 0 18px 38px -8px rgba(18, 22, 20, 0.45), 0 0 0 7px rgba(255, 253, 246, 0.52);
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 0 25px rgba(0, 255, 65, 0.35)) drop-shadow(0 10px 15px rgba(0, 0, 0, 0.8));
-            animation: varLogoFloat 4.8s ease-in-out infinite alternate;
+            padding: 18px;
+            position: relative;
+            cursor: pointer;
+            animation: coinFloat 5.2s ease-in-out infinite;
         }
 
-        @keyframes varLogoFloat {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-5px) scale(1.03); }
+        @keyframes coinFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(1.2deg); }
         }
 
-        .var-logo-svg-box svg {
+        .var-medallion svg {
             width: 100%;
             height: auto;
             display: block;
+            overflow: visible;
+            filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
         }
 
-        .var-live-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 255, 65, 0.1);
-            border: 1px solid var(--var-pitch-green);
-            color: var(--var-pitch-green);
+        .var-medallion-badge {
+            position: absolute;
+            bottom: -4px;
+            right: -2px;
+            background: var(--cheese-gold);
+            color: var(--ink-carbon);
+            border: 2.5px solid #FFFFFF;
+            border-radius: 999px;
             font-family: var(--font-mono);
-            font-size: 0.64rem;
+            font-size: 0.62rem;
             font-weight: 900;
+            padding: 3px 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        .hero-brand-line {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-carbon);
+            background: rgba(255, 253, 246, 0.86);
             padding: 4px 12px;
             border-radius: 999px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            border: 1px solid rgba(18, 22, 20, 0.1);
         }
 
-        .var-live-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--var-red);
-            border-radius: 50%;
-            animation: liveBlink 1s infinite alternate;
-        }
-
-        @keyframes liveBlink {
-            0% { opacity: 0.2; }
-            100% { opacity: 1; box-shadow: 0 0 8px var(--var-red); }
-        }
-
-        .motto-banner-box {
-            background: var(--var-card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 2px solid var(--card-border);
-            border-radius: 22px;
-            padding: 15px 18px;
-            box-shadow: var(--card-shadow);
+        /* CARTEL ESTILO PASTO VERDE DE INSTAGRAM */
+        .grass-slogan-banner {
+            background: linear-gradient(135deg, #22AB3F 0%, #17832E 100%);
+            color: #FFFFFF;
+            border: 2.5px solid #FFFFFF;
+            border-radius: 18px;
+            padding: 13px 16px;
+            box-shadow: 0 12px 26px -6px rgba(19, 107, 37, 0.45);
             width: 100%;
-            text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .motto-banner-box::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0; width: 4px;
-            background: var(--var-pitch-green);
+        .grass-slogan-quote {
+            font-family: var(--font-display);
+            font-size: clamp(0.95rem, 3.6vw, 1.12rem);
+            line-height: 1.24;
+            letter-spacing: 0.015em;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
         }
 
-        .motto-lead {
-            font-family: var(--font-pop);
-            font-size: clamp(0.98rem, 3.8vw, 1.15rem);
-            color: var(--var-yellow);
-            line-height: 1.25;
-            letter-spacing: 0.02em;
-        }
-
-        .motto-sub {
-            font-size: 0.8rem;
+        .grass-slogan-sub {
+            font-size: 0.79rem;
             font-weight: 700;
-            color: var(--var-gray);
+            color: #FFF6CC;
+            margin-top: 6px;
             line-height: 1.35;
-            margin-top: 5px;
         }
 
         /* ==========================================================================
-           6. BOTÓN HERO: WHATSAPP GENERAL (PEDIDOS DIRECTOS)
+           6. MOSAICO VISUAL PROTAGÓNICO (VIDEO + FOTOS ARRIBA)
            ========================================================================== */
-        .btn-hero-order {
+        .showcase-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #FFFFFF;
+            outline: 1.5px solid var(--border-turf);
+            border-radius: 24px;
+            padding: 14px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
-            padding: 18px 20px;
-            background: linear-gradient(135deg, var(--var-pitch-green) 0%, #009E2B 100%);
-            border: 2.5px solid #FFFFFF;
-            border-radius: 22px;
-            text-decoration: none;
-            color: #030704;
-            box-shadow: 0 6px 0 #004D12, 0 16px 32px rgba(0, 255, 65, 0.35);
+            gap: 8px;
+            padding: 0 2px;
+        }
+
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: clamp(0.96rem, 3.5vw, 1.08rem);
+            color: var(--ink-carbon);
+            letter-spacing: 0.02em;
+        }
+
+        .section-tag-pill {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: var(--turf-soft);
+            color: var(--turf-deep);
+            border: 1px solid var(--border-turf);
+        }
+
+        /* Mosaico asimétrico 2 columnas: video alto izq + 2 fotos der */
+        .media-bento {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            grid-template-rows: 132px 132px;
+            gap: 9px;
+        }
+
+        .media-tile {
             position: relative;
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.22s var(--spring);
+            background: #1B221D;
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 6px 14px rgba(18, 22, 20, 0.14);
             cursor: pointer;
         }
 
-        .btn-hero-order:hover {
-            transform: translateY(-3px) scale(1.015);
-            box-shadow: 0 9px 0 #004D12, 0 20px 40px rgba(0, 255, 65, 0.48);
+        .media-tile.video-hero {
+            grid-row: span 2;
+            cursor: default;
         }
 
-        .btn-hero-order:active {
+        .media-tile video,
+        .media-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s var(--spring);
+        }
+
+        .media-tile:not(.video-hero):hover img {
+            transform: scale(1.05);
+        }
+
+        .tile-badge {
+            position: absolute;
+            left: 8px;
+            bottom: 8px;
+            background: rgba(18, 22, 20, 0.82);
+            backdrop-filter: blur(6px);
+            color: #FFFFFF;
+            font-family: var(--font-mono);
+            font-size: 0.60rem;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .tile-badge.live {
+            top: 8px;
+            bottom: auto;
+            background: var(--tomato-red);
+            color: #FFFFFF;
+        }
+
+        /* Tira inferior horizontal con las otras 2 fotos */
+        .media-bottom-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+        }
+
+        .media-bottom-row .media-tile {
+            height: 106px;
+        }
+
+        /* ==========================================================================
+           7. TICKET / ENTRADA DE ESTADIO (CTA PRINCIPAL HACIA LAS SEDES)
+           ========================================================================== */
+        .ticket-cta {
+            display: flex;
+            align-items: stretch;
+            background: linear-gradient(135deg, var(--cheese-bright) 0%, var(--cheese-gold) 100%);
+            border: 2.5px solid var(--ink-carbon);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--ink-carbon);
+            box-shadow: 0 6px 0 var(--ink-carbon), 0 16px 28px -6px rgba(18, 22, 20, 0.25);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s var(--spring), box-shadow 0.2s ease;
+        }
+
+        .ticket-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 var(--ink-carbon), 0 20px 34px -6px rgba(18, 22, 20, 0.32);
+        }
+
+        .ticket-cta:active {
             transform: translateY(3px);
-            box-shadow: 0 3px 0 #004D12;
+            box-shadow: 0 3px 0 var(--ink-carbon);
         }
 
-        .hero-order-meta {
+        .ticket-main {
+            flex: 1;
+            padding: 15px 16px;
             display: flex;
             flex-direction: column;
             gap: 2px;
-            flex: 1;
             min-width: 0;
-            z-index: 2;
         }
 
-        .hero-order-tag {
+        .ticket-eyebrow {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: #032E0D;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .hero-order-title {
-            font-family: var(--font-pop);
-            font-size: clamp(1.18rem, 4.4vw, 1.4rem);
-            line-height: 1.1;
-            letter-spacing: 0.02em;
-            color: #030704;
-        }
-
-        .hero-order-sub {
-            font-size: 0.8rem;
+            font-size: 0.62rem;
             font-weight: 800;
-            color: #05260C;
-            margin-top: 1px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--tomato-deep);
         }
 
-        .hero-ball-badge {
-            width: 46px;
-            height: 46px;
-            min-width: 46px;
-            border-radius: 50%;
-            background: #030704;
+        .ticket-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 4.1vw, 1.28rem);
+            line-height: 1.12;
+            color: var(--ink-carbon);
+        }
+
+        .ticket-sub {
+            font-size: 0.77rem;
+            font-weight: 700;
+            color: #3A2E08;
+        }
+
+        .ticket-stub {
+            width: 82px;
+            min-width: 82px;
+            background: var(--ink-carbon);
             color: #FFFFFF;
-            border: 2px solid #FFFFFF;
+            border-left: 2.5px dashed var(--cheese-gold);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: transform 0.28s var(--spring);
-            z-index: 2;
-        }
-
-        .btn-hero-order:hover .hero-ball-badge {
-            transform: scale(1.15) rotate(45deg);
-        }
-
-        /* ==========================================================================
-           7. MARCADOR ELECTRÓNICO / TABLERO DE PRECIOS PIZZA LIBRE
-           ========================================================================== */
-        .scoreboard-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            width: 100%;
-        }
-
-        .score-card {
-            background: var(--var-card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 2px solid var(--card-border);
-            border-radius: 20px;
-            padding: 16px 14px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: var(--card-shadow);
-            text-decoration: none;
-            color: var(--var-white);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.25s var(--spring);
-            min-height: 176px;
-        }
-
-        .score-card:hover {
-            transform: translateY(-3px) scale(1.02);
-            border-color: var(--var-pitch-green);
-            box-shadow: var(--card-shadow-hover);
-            background: #152217;
-        }
-
-        .score-card.prime {
-            background: linear-gradient(155deg, #121C14 0%, #0A2E12 100%);
-            border-color: var(--var-pitch-green);
-        }
-
-        .score-top-badge {
-            font-family: var(--font-mono);
-            font-size: 0.60rem;
-            font-weight: 900;
-            padding: 3px 8px;
-            border-radius: 999px;
-            background: rgba(0, 255, 65, 0.15);
-            color: var(--var-pitch-green);
-            border: 1px solid var(--var-pitch-green);
-            text-transform: uppercase;
-            align-self: flex-start;
-        }
-
-        .score-title {
-            font-family: var(--font-pop);
-            font-size: clamp(1.02rem, 3.6vw, 1.18rem);
-            color: #FFFFFF;
-            line-height: 1.2;
-            margin-top: 6px;
-        }
-
-        .score-desc {
-            font-size: 0.76rem;
-            font-weight: 700;
-            color: var(--var-gray);
-            line-height: 1.3;
-            margin-top: 2px;
-        }
-
-        .score-price-box {
-            margin-top: 10px;
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            background: #000000;
-            border: 1.5px solid rgba(0, 255, 65, 0.3);
-            border-radius: 12px;
-            padding: 6px 10px;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.9);
-        }
-
-        .score-price-val {
-            font-family: var(--font-mono);
-            font-size: clamp(1.1rem, 3.8vw, 1.25rem);
-            font-weight: 900;
-            color: var(--var-yellow);
-            letter-spacing: -0.02em;
-        }
-
-        .score-btn-arrow {
-            font-size: 0.9rem;
-            font-weight: 900;
-            color: var(--var-pitch-green);
-        }
-
-        /* ==========================================================================
-           8. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR"
-           ========================================================================== */
-        .var-review-card {
-            background: linear-gradient(145deg, #09120B 0%, #040A06 100%);
-            border: 2.5px solid var(--var-pitch-green);
-            border-radius: 24px;
-            padding: 18px 20px 20px;
-            color: #FFFFFF;
-            box-shadow: 0 10px 35px rgba(0, 255, 65, 0.22);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 3px;
+            padding: 10px 8px;
             text-align: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .var-review-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 5px;
-            background: var(--var-pitch-green);
-            box-shadow: 0 0 15px var(--var-pitch-green);
+        .ticket-stub-ball {
+            font-size: 1.35rem;
+            line-height: 1;
         }
 
-        .var-badge {
+        .ticket-stub-label {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 900;
-            color: #030704;
-            background: var(--var-pitch-green);
-            padding: 3px 12px;
-            border-radius: 999px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
-        }
-
-        .var-title {
-            font-family: var(--font-pop);
-            font-size: clamp(1.12rem, 4.2vw, 1.32rem);
-            color: #FFFFFF;
-            letter-spacing: 0.02em;
-            line-height: 1.15;
-        }
-
-        .var-desc {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #CCCCCC;
-            line-height: 1.35;
-            max-width: 92%;
-        }
-
-        .var-monitor-box {
-            background: #000000;
-            border: 2px dashed rgba(0, 255, 65, 0.45);
-            border-radius: 14px;
-            padding: 11px 20px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset 0 2px 12px rgba(0,0,0,0.9);
-        }
-
-        .var-monitor-text {
-            font-family: var(--font-mono);
-            font-size: 0.92rem;
-            font-weight: 900;
-            color: var(--var-yellow);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .btn-var-trigger {
-            width: 100%;
-            max-width: 340px;
-            padding: 13px 16px;
-            font-family: var(--font-pop);
-            font-size: 0.92rem;
-            font-weight: 900;
-            letter-spacing: 0.04em;
-            border-radius: 14px;
-            border: 2px solid #FFFFFF;
-            background: var(--var-red);
-            color: #FFFFFF;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #59000D, 0 10px 20px rgba(255,0,43,0.3);
-            transition: all 0.15s var(--spring);
-            outline: none;
-            text-transform: uppercase;
-        }
-
-        .btn-var-trigger:active {
-            transform: scale(0.96) translateY(2px);
-            box-shadow: 0 2px 0 #59000D;
-        }
-
-        .var-result-msg {
-            width: 100%;
-            background: rgba(0, 255, 65, 0.14);
-            border: 1px solid var(--var-pitch-green);
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 0.58rem;
             font-weight: 800;
-            color: var(--var-pitch-green);
-            display: none;
-            line-height: 1.4;
-        }
-
-        .var-result-msg.active {
-            display: block;
+            color: var(--cheese-bright);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
         /* ==========================================================================
-           9. TARJETAS ASIMÉTRICAS DE BENEFICIOS (CUMPLE, 29, BEBIDAS)
+           8. PRECIOS PIZZA LIBRE (ESTILO ASIMÉTRICO DE DÍA)
            ========================================================================== */
-        .perks-grid {
+        .prices-split {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            width: 100%;
+            grid-template-columns: 0.94fr 1.06fr;
+            gap: 11px;
+            align-items: stretch;
         }
 
-        .perk-card {
-            background: var(--var-card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 2px solid var(--card-border);
-            border-radius: 20px;
+        .price-pill-card {
+            border-radius: 22px;
             padding: 15px 14px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: var(--card-shadow);
+            gap: 10px;
             text-decoration: none;
-            color: var(--var-white);
-            transition: all 0.24s var(--spring);
-            min-height: 135px;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.22s var(--spring);
         }
 
-        .perk-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--var-yellow);
-            box-shadow: var(--card-shadow-hover);
+        .price-pill-card:hover {
+            transform: translateY(-3px);
         }
 
-        .perk-card.full {
-            grid-column: span 2;
-            min-height: auto;
-            flex-direction: row;
-            align-items: center;
-            border-left: 5px solid var(--var-yellow);
-            background: linear-gradient(135deg, rgba(18,18,18,0.95) 0%, rgba(30,26,4,0.92) 100%);
+        .price-pill-card.weekday {
+            background: var(--card-surface);
+            border: 2px solid #FFFFFF;
+            border-top: 5px solid var(--turf-green);
+            color: var(--ink-carbon);
         }
 
-        .perk-icon-tag {
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            font-weight: 900;
-            color: var(--var-yellow);
-            text-transform: uppercase;
-        }
-
-        .perk-title {
-            font-family: var(--font-pop);
-            font-size: clamp(0.98rem, 3.4vw, 1.12rem);
+        .price-pill-card.weekend {
+            background: linear-gradient(155deg, #21A33D 0%, #136B25 100%);
+            border: 2px solid #FFFFFF;
             color: #FFFFFF;
+            box-shadow: var(--shadow-pop);
+        }
+
+        .price-day-tag {
+            font-family: var(--font-mono);
+            font-size: 0.60rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            border-radius: 999px;
+            align-self: flex-start;
+        }
+
+        .weekday .price-day-tag {
+            background: var(--turf-soft);
+            color: var(--turf-deep);
+        }
+
+        .weekend .price-day-tag {
+            background: rgba(255, 255, 255, 0.22);
+            color: #FFFDF6;
+        }
+
+        .price-card-name {
+            font-family: var(--font-display);
+            font-size: 1rem;
             line-height: 1.15;
             margin-top: 4px;
         }
 
-        .perk-desc {
-            font-size: 0.76rem;
-            font-weight: 700;
-            color: #AAAAAA;
-            line-height: 1.35;
-            margin-top: 3px;
+        .price-card-note {
+            font-size: 0.74rem;
+            font-weight: 600;
+            opacity: 0.85;
+            margin-top: 2px;
+            line-height: 1.3;
         }
 
-        /* ==========================================================================
-           10. LA PIZARRA TÁCTICA: 3 SUCURSALES (MONTE GRANDE, LANÚS, ITUZAINGÓ)
-           ========================================================================== */
-        .branches-container-card {
-            background: var(--var-card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 2px solid var(--card-border);
-            border-radius: 24px;
-            padding: 18px 16px 20px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .branches-head-row {
+        .price-amount-row {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap: 4px;
+            padding-top: 8px;
+            border-top: 1.5px dashed currentColor;
+            border-top-color: rgba(18, 22, 20, 0.16);
         }
 
-        .branches-title {
-            font-family: var(--font-pop);
-            font-size: clamp(1.12rem, 4.2vw, 1.3rem);
-            color: #FFFFFF;
-            letter-spacing: 0.02em;
+        .weekend .price-amount-row {
+            border-top-color: rgba(255, 255, 255, 0.35);
         }
 
-        .branches-mono-sub {
+        .price-number {
+            font-family: var(--font-display);
+            font-size: clamp(1.22rem, 4.4vw, 1.42rem);
+            letter-spacing: -0.02em;
+        }
+
+        .weekday .price-number {
+            color: var(--turf-deep);
+        }
+
+        .weekend .price-number {
+            color: var(--cheese-bright);
+        }
+
+        .price-go {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
+            font-size: 0.66rem;
             font-weight: 800;
-            color: var(--var-pitch-green);
+        }
+
+        /* ==========================================================================
+           9. BENEFICIOS EN FORMAS VARIADAS (BANDERA + CHAFLANES)
+           ========================================================================== */
+        .perks-cluster {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .birthday-flag-card {
+            background: linear-gradient(135deg, #FFFDF8 0%, #FFF0EE 100%);
+            border: 2px solid #FFFFFF;
+            border-left: 6px solid var(--tomato-red);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .birthday-emoji-badge {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 14px;
+            background: var(--tomato-red);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: 0 6px 14px rgba(225, 37, 27, 0.3);
+        }
+
+        .birthday-copy h3 {
+            font-family: var(--font-display);
+            font-size: clamp(0.95rem, 3.6vw, 1.08rem);
+            color: var(--tomato-deep);
+            line-height: 1.15;
+        }
+
+        .birthday-copy p {
+            font-size: 0.77rem;
+            font-weight: 600;
+            color: var(--ink-body);
+            margin-top: 3px;
+            line-height: 1.35;
+        }
+
+        .chamfer-duet {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .chamfer-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #FFFFFF;
+            padding: 14px 13px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .chamfer-card.left-cut {
+            border-radius: 26px 10px 22px 10px;
+            border-bottom: 4px solid var(--cheese-gold);
+        }
+
+        .chamfer-card.right-cut {
+            border-radius: 10px 26px 10px 22px;
+            border-bottom: 4px solid var(--turf-green);
+        }
+
+        .chamfer-tag {
+            font-family: var(--font-mono);
+            font-size: 0.60rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--turf-deep);
+        }
+
+        .chamfer-card h3 {
+            font-family: var(--font-display);
+            font-size: 0.94rem;
+            color: var(--ink-carbon);
+            line-height: 1.15;
+        }
+
+        .chamfer-card p {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+            line-height: 1.34;
+        }
+
+        /* ==========================================================================
+           10. MONITOR DE TRANSMISIÓN VAR (MINIJUEGO LIMPIO)
+           ========================================================================== */
+        .var-tv-card {
+            background: var(--card-surface);
+            border: 2px solid var(--ink-carbon);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .var-tv-topbar {
+            background: var(--ink-carbon);
+            color: #FFFFFF;
+            padding: 9px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .var-tv-title {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            letter-spacing: 0.03em;
+        }
+
+        .var-tv-chip {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            font-weight: 800;
+            background: var(--turf-green);
+            color: #FFFFFF;
+            padding: 3px 8px;
+            border-radius: 999px;
             text-transform: uppercase;
         }
 
-        .branch-cards-stack {
+        .var-tv-body {
+            padding: 15px 16px 17px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .var-tv-sub {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--ink-body);
+            line-height: 1.35;
+        }
+
+        .var-screen-display {
+            width: 100%;
+            background: #111914;
+            border: 2px solid #2D3B32;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.80rem;
+            font-weight: 800;
+            color: var(--cheese-bright);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .btn-var-check {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 2px solid var(--ink-carbon);
+            background: var(--tomato-red);
+            color: #FFFFFF;
+            font-family: var(--font-display);
+            font-size: 0.86rem;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--tomato-deep);
+            transition: transform 0.15s var(--spring), box-shadow 0.15s ease;
+        }
+
+        .btn-var-check:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 var(--tomato-deep);
+        }
+
+        .var-verdict {
+            display: none;
+            width: 100%;
+            background: rgba(31, 157, 58, 0.12);
+            border: 1.5px solid var(--turf-green);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            font-weight: 800;
+            color: var(--turf-deep);
+            line-height: 1.4;
+        }
+
+        .var-verdict.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           11. ELEGÍ TU CANCHA: LAS 3 SEDES CON WHATSAPP DIRECTO REAL
+           ========================================================================== */
+        .branches-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #FFFFFF;
+            outline: 1.5px solid var(--border-turf);
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .branch-list {
             display: flex;
             flex-direction: column;
             gap: 9px;
         }
 
-        .branch-unit-card {
-            background: #141C16;
-            border: 1.5px solid rgba(0, 255, 65, 0.2);
-            border-radius: 16px;
-            padding: 12px 14px;
+        .branch-row-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+            padding: 12px 14px;
+            background: #FFFFFF;
+            border: 1.5px solid rgba(31, 157, 58, 0.24);
+            border-left: 5px solid var(--turf-green);
+            border-radius: 16px;
             text-decoration: none;
-            color: var(--var-white);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            transition: all 0.2s var(--spring);
+            color: var(--ink-carbon);
+            box-shadow: 0 4px 12px rgba(18, 22, 20, 0.06);
+            transition: transform 0.2s var(--spring), border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .branch-unit-card:hover {
-            transform: translateY(-2px) scale(1.01);
-            border-color: var(--var-pitch-green);
-            background: #1B2B1E;
-            box-shadow: 0 6px 18px rgba(0, 255, 65, 0.25);
+        .branch-row-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--turf-green);
+            box-shadow: 0 10px 22px rgba(31, 157, 58, 0.16);
         }
 
-        .branch-info-col {
+        .branch-meta {
             display: flex;
             flex-direction: column;
+            gap: 2px;
             min-width: 0;
             flex: 1;
-            gap: 2px;
         }
 
-        .branch-city-tag {
+        .branch-hood {
             font-family: var(--font-mono);
             font-size: 0.62rem;
-            font-weight: 900;
-            color: var(--var-yellow);
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
+            color: var(--turf-deep);
         }
 
-        .branch-address-val {
+        .branch-street {
             font-size: 0.94rem;
             font-weight: 800;
-            color: #FFFFFF;
-            line-height: 1.25;
+            color: var(--ink-carbon);
         }
 
-        .branch-phone-val {
+        .branch-tel {
             font-family: var(--font-mono);
             font-size: 0.72rem;
             font-weight: 700;
-            color: var(--var-pitch-green);
+            color: var(--ink-muted);
         }
 
-        .branch-btn-icon {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
+        .branch-wpp-circle {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
             border-radius: 50%;
             background: #25D366;
             color: #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.45);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
         }
 
-        .branch-btn-icon svg {
-            width: 18px;
-            height: 18px;
+        .branch-wpp-circle svg {
+            width: 19px;
+            height: 19px;
             fill: #FFFFFF;
         }
 
-        /* =========================================================
-           11. MONITOR VAR (VIDEO PRINCIPAL) + MOSAICO DE FOTOS
-           ========================================================= */
-        .reels-section-card {
-            background: var(--var-card-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 2px solid var(--card-border);
-            border-radius: 24px;
-            padding: 18px 14px 20px;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .reels-head-row {
+        .ig-follow-strip {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 4px;
-            gap: 8px;
-        }
-
-        .reels-title {
-            font-family: var(--font-pop);
-            font-size: clamp(1.12rem, 4.2vw, 1.3rem);
-            color: #FFFFFF;
-            letter-spacing: 0.02em;
-        }
-
-        .reels-nav-arrows {
-            display: flex;
-            gap: 6px;
-        }
-
-        .reel-arrow-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #181818;
-            border: 1.5px solid var(--var-pitch-green);
-            color: var(--var-pitch-green);
-            font-weight: 900;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.18s;
-        }
-
-        .reel-arrow-btn:hover {
-            transform: scale(1.08);
-            background: var(--var-pitch-green);
-            color: #000000;
-        }
-
-        .reels-scroll-strip {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 4px 2px 8px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .reels-scroll-strip::-webkit-scrollbar {
-            display: none;
-        }
-
-        .reel-box {
-            flex: 0 0 clamp(165px, 46vw, 195px);
-            height: 250px;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 255, 65, 0.25);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            scroll-snap-align: start;
-            position: relative;
-            background: #000000;
-        }
-
-        .reel-box video, .reel-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .reel-pill-label {
-            position: absolute;
-            left: 8px;
-            bottom: 8px;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(4px);
-            color: var(--var-yellow);
-            font-family: var(--font-mono);
-            font-size: 0.64rem;
+            padding: 11px 14px;
+            border-radius: 14px;
+            background: var(--dough-warm);
+            border: 1.5px solid rgba(18, 22, 20, 0.12);
+            color: var(--ink-carbon);
+            text-decoration: none;
+            font-size: 0.78rem;
             font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 215, 0, 0.35);
-            text-transform: uppercase;
+            transition: transform 0.2s var(--spring);
+        }
+
+        .ig-follow-strip:hover {
+            transform: translateY(-1px);
+            border-color: var(--turf-green);
         }
 
         /* ==========================================================================
-           12. LIGHTBOX DE FOTOS
+           12. LIGHTBOX FULLSCREEN
            ========================================================================== */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(12, 16, 14, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 99999;
             display: flex;
             align-items: center;
@@ -867,16 +955,16 @@
         }
 
         .lightbox-card {
-            background: #121212;
-            border: 2px solid var(--var-pitch-green);
+            background: var(--dough-cream);
+            border: 3px solid #FFFFFF;
             border-radius: 22px;
             max-width: 520px;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
             display: flex;
             flex-direction: column;
-            transform: scale(0.96);
+            transform: scale(0.95);
             transition: transform 0.24s var(--spring);
         }
 
@@ -885,9 +973,9 @@
         }
 
         .lightbox-topbar {
-            padding: 14px 18px;
-            background: #181818;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 13px 16px;
+            background: #FFFFFF;
+            border-bottom: 1.5px solid rgba(18, 22, 20, 0.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -896,18 +984,18 @@
         .lightbox-topbar span {
             font-family: var(--font-mono);
             font-size: 0.76rem;
-            font-weight: 900;
-            color: var(--var-pitch-green);
+            font-weight: 800;
+            color: var(--turf-deep);
         }
 
         .btn-lb-close {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: #333333;
-            color: #FFFFFF;
-            font-size: 15px;
+            border: 1px solid rgba(18, 22, 20, 0.16);
+            background: var(--dough-warm);
+            color: var(--ink-carbon);
+            font-size: 14px;
             font-weight: 900;
             cursor: pointer;
             display: flex;
@@ -919,7 +1007,7 @@
             width: 100%;
             height: 60dvh;
             max-height: 480px;
-            background: #000000;
+            background: #141916;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -941,41 +1029,39 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(18, 18, 18, 0.9);
-            border: 2px solid var(--var-pitch-green);
-            color: var(--var-pitch-green);
+            background: rgba(255, 253, 246, 0.94);
+            border: 2px solid var(--turf-green);
+            color: var(--turf-deep);
             font-size: 20px;
             font-weight: 900;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             z-index: 5;
         }
 
-        .lb-prev { left: 12px; }
-        .lb-next { right: 12px; }
+        .lb-prev { left: 10px; }
+        .lb-next { right: 10px; }
 
         .lightbox-caption {
             padding: 12px 16px;
             font-size: 0.86rem;
-            font-weight: 800;
-            color: #FFFFFF;
+            font-weight: 700;
+            color: var(--ink-carbon);
             text-align: center;
-            background: #181818;
+            background: var(--dough-cream);
         }
 
         /* ==========================================================================
            13. FOOTER
            ========================================================================== */
         .hub-footer {
-            margin-top: 10px;
-            padding-top: 20px;
-            border-top: 2px dashed rgba(255,255,255,0.12);
+            margin-top: 6px;
+            padding-top: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -986,326 +1072,318 @@
         .footer-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: #181818;
-            border: 1.5px solid var(--var-pitch-green);
+            gap: 7px;
+            background: var(--ink-carbon);
+            border: 2px solid #FFFFFF;
             padding: 6px 16px;
             border-radius: 999px;
             font-family: var(--font-mono);
-            font-size: 0.72rem;
-            font-weight: 900;
-            color: var(--var-pitch-green);
-            box-shadow: 0 3px 10px rgba(0, 200, 53, 0.2);
+            font-size: 0.70rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            box-shadow: 0 6px 16px rgba(18, 22, 20, 0.25);
         }
 
         .footer-legal {
             font-family: var(--font-mono);
-            font-size: 0.68rem;
-            color: #888888;
+            font-size: 0.66rem;
+            color: var(--ink-carbon);
+            background: rgba(255, 253, 246, 0.86);
+            padding: 6px 12px;
+            border-radius: 12px;
             line-height: 1.45;
             font-weight: 700;
         }
 
         @media (max-width: 360px) {
-            .scoreboard-grid { grid-template-columns: 1fr; }
-            .perks-grid { grid-template-columns: 1fr; }
-            .perk-card.full { grid-column: span 1; }
-            .reel-box { flex: 0 0 160px; height: 220px; }
+            .media-bento {
+                grid-template-columns: 1fr;
+                grid-template-rows: 220px 125px 125px;
+            }
+            .media-tile.video-hero { grid-row: span 1; }
+            .prices-split { grid-template-columns: 1fr; }
+            .chamfer-duet { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body class="preload">
 
-    <!-- ==========================================================================
-         FONDO 3D CANVAS "ESTADIO NOCTURNO & PIZZA" (60 FPS)
-         ========================================================================== -->
+    <!-- ESTADIO 3D DE DÍA CON CAMPO ENORME Y PIZZAS ALENTANDO EN LAS GRADAS -->
     <div class="stadium-stage" aria-hidden="true">
-        <canvas id="stadium3dCanvas"></canvas>
+        <canvas id="stadiumDay3D"></canvas>
         <div class="stadium-veil"></div>
     </div>
 
-    <!-- MARQUESINA ESTADIO -->
-    <div class="top-marquee-strip" aria-label="Información VAR">
-        <div class="marquee-track">
-            <span>⚽ PIZZA LIBRE ✦ AMIGOS, FÚTBOL Y PIZZA ✦ TODOS LOS 29: ÑOQUIS Y PIZZA LIBRE ✦ JARRAS DE CAMPARI Y FERNET ✦</span>
-            <span>⚽ PIZZA LIBRE ✦ AMIGOS, FÚTBOL Y PIZZA ✦ TODOS LOS 29: ÑOQUIS Y PIZZA LIBRE ✦ JARRAS DE CAMPARI Y FERNET ✦</span>
+    <!-- MARQUESINA DE ESTADIO -->
+    <div class="top-ticker" aria-label="Novedades VAR Pizza Libre">
+        <div class="ticker-track">
+            <span>⚽ PIZZA LIBRE TODOS LOS DÍAS ✦ LUN A MIÉ $12.000 ✦ JUE A DOM $16.000 ✦ SI FESTEJÁS TU CUMPLE NO PAGÁS ✦ TODOS LOS 29: ÑOQUIS + PIZZA LIBRE ✦</span>
+            <span>⚽ PIZZA LIBRE TODOS LOS DÍAS ✦ LUN A MIÉ $12.000 ✦ JUE A DOM $16.000 ✦ SI FESTEJÁS TU CUMPLE NO PAGÁS ✦ TODOS LOS 29: ÑOQUIS + PIZZA LIBRE ✦</span>
         </div>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL MOBILE-FIRST -->
     <main class="hub-shell">
 
-        <!-- 1. CABECERA CON LOGO SVG OFICIAL NATIVO -->
-        <header class="brand-hero">
-            <div class="var-live-indicator">
-                <span class="var-live-dot"></span>
-                <span>Pantalla Oficial · VAR</span>
-            </div>
+        <!-- 1. CABECERA LIMPIA: MEDALLÓN OFICIAL VAR. + CARTEL DE PASTO IG -->
+        <header class="hero-header">
+            <a href="https://www.instagram.com/var.pizzalibre/" target="_blank" rel="noopener noreferrer" class="ig-pill-top" onclick="triggerHaptic()">
+                <span class="live-dot"></span>
+                <span>@var.pizzalibre · 47,9K · Abrimos todos los días</span>
+            </a>
 
-            <!-- LOGO VECTORES OFICIALES SVG INCRUSTADOS -->
-            <div class="var-logo-svg-box" onclick="triggerHaptic()">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 612 792" style="enable-background:new 0 0 612 792;" xml:space="preserve">
-                <style type="text/css">
-                    .st0{fill:#FFFFFF;}
-                </style>
-                <g>
-                    <path class="st0" d="M-645.3-213c2,0,3.8,0,5.6,0c29.3,0,58.7-0.1,88,0.1c15.5,0.1,30.5,3.3,44.4,10.4
-                        c31.2,16.1,44.1,48.4,32.9,82.1c-6.4,19-18.3,33.4-36.2,42.7c-2.5,1.3-5,2.6-7.8,4c0.4,0.9,0.7,1.8,1.2,2.6
-                        c9.5,13.9,19.1,27.7,28.6,41.6c7.8,11.5,18.5,18,32.3,19.2c1.2,0.1,2.3,0.4,3.8,0.6c0,12.9,0,25.8,0,40.1
-                        c-16.2-0.8-32.2-1.1-48-2.5c-7.9-0.7-14.7-5.2-20.3-11c-12.4-12.8-22.4-27.2-31.2-42.6c-6.3-11-12.9-21.8-19.1-32.8
-                        c-2-3.6-4.5-4.9-8.4-4.5c-3.1,0.3-6.3,0.1-10.4,0.1c0,15.1,0,29.9,0,44.6c0,14.7,0,29.3,0,44.4c-18.5,0-36.7,0-55.3,0
-                        C-645.3-53.3-645.3-132.8-645.3-213z M-589.7-102.3c11.3,0,21.9,0.6,32.5-0.1c14.2-1,24.3-10.3,27.8-24
-                        c4.6-18.2-2.9-35.2-18.3-41.1c-13.7-5.2-27.8-2.8-42-3C-589.7-147.6-589.7-125.2-589.7-102.3z"/>
-                    <path class="st0" d="M-907.5,26.6c3.1-8.7,6-17,9.1-25.1c17.8-46,35.7-91.9,53.5-137.8c9.4-24.2,18.6-48.5,27.8-72.8
-                        c1.3-3.4,3-4.8,6.8-4.7c15.5,0.2,31,0.2,46.5,0c3.1,0,4.7,0.9,5.8,3.9c19.6,52.7,39.3,105.3,58.9,158c8.6,22.9,17,45.9,25.5,68.8
-                        c1.1,3,2.1,5.9,3.4,9.4c-1.6,0.2-2.8,0.5-4,0.5c-17.8,0-35.7,0-53.5,0.1c-3.3,0-4.5-1.2-5.6-4.2c-5.3-15.1-10.8-30-16.2-45.1
-                        c-1-2.9-2.3-4.2-5.6-4.2c-22.5,0.1-45,0.2-67.5-0.1c-4.3,0-6.1,1.5-7.4,5.4c-4.8,14.4-10.1,28.6-14.8,43c-1.4,4.2-3.4,5.6-7.8,5.5
-                        c-16.7-0.3-33.3-0.2-50-0.2C-903.9,26.9-905.3,26.7-907.5,26.6z M-788.6-158.1c-9.2,29.5-18.2,58.2-27.2,87.1c18,0,35.8,0,54,0
-                        C-770.7-100.1-779.5-128.7-788.6-158.1z"/>
-                    <path class="st0" d="M-1122.6-212.7c2-0.1,3.4-0.3,4.8-0.3c18.2,0,36.3,0.1,54.5-0.2c4-0.1,5.8,1,7,5c13.9,46.3,28,92.4,42,138.6
-                        c3.2,10.7,6.4,21.3,10.1,33.3c2-6.2,3.6-11.2,5.2-16.3c15.9-52.2,31.9-104.3,47.6-156.6c1.1-3.6,2.5-5,6.4-5
-                        c16.8,0.2,33.7,0.1,50.5,0.1c1.1,0,2.2,0.2,4,0.4c-2.3,6.6-4.5,12.8-6.7,19c-26.8,72.6-53.6,145.1-80.3,217.7
-                        c-1.1,3.1-2.6,4-5.8,3.9c-14.3-0.2-28.7-0.2-43,0c-3.9,0.1-5.5-1.3-6.8-4.8c-11.7-33.1-23.1-66.4-35.6-99.2
-                        c-16.4-42.7-33.7-85.1-50.7-127.6C-1120.5-207-1121.5-209.7-1122.6-212.7z"/>
-                </g>
+            <!-- MEDALLÓN NEGRO CON EL SVG OFICIAL CORREGIDO -->
+            <div class="var-medallion" onclick="triggerHaptic()">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     viewBox="-1136 -226 704 268" xml:space="preserve" role="img" aria-label="Logo oficial VAR">
+                    <style type="text/css">
+                        .st0{fill:#FFFFFF;}
+                    </style>
+                    <g>
+                        <path class="st0" d="M-645.3-213c2,0,3.8,0,5.6,0c29.3,0,58.7-0.1,88,0.1c15.5,0.1,30.5,3.3,44.4,10.4
+                            c31.2,16.1,44.1,48.4,32.9,82.1c-6.4,19-18.3,33.4-36.2,42.7c-2.5,1.3-5,2.6-7.8,4c0.4,0.9,0.7,1.8,1.2,2.6
+                            c9.5,13.9,19.1,27.7,28.6,41.6c7.8,11.5,18.5,18,32.3,19.2c1.2,0.1,2.3,0.4,3.8,0.6c0,12.9,0,25.8,0,40.1
+                            c-16.2-0.8-32.2-1.1-48-2.5c-7.9-0.7-14.7-5.2-20.3-11c-12.4-12.8-22.4-27.2-31.2-42.6c-6.3-11-12.9-21.8-19.1-32.8
+                            c-2-3.6-4.5-4.9-8.4-4.5c-3.1,0.3-6.3,0.1-10.4,0.1c0,15.1,0,29.9,0,44.6c0,14.7,0,29.3,0,44.4c-18.5,0-36.7,0-55.3,0
+                            C-645.3-53.3-645.3-132.8-645.3-213z M-589.7-102.3c11.3,0,21.9,0.6,32.5-0.1c14.2-1,24.3-10.3,27.8-24
+                            c4.6-18.2-2.9-35.2-18.3-41.1c-13.7-5.2-27.8-2.8-42-3C-589.7-147.6-589.7-125.2-589.7-102.3z"/>
+                        <path class="st0" d="M-907.5,26.6c3.1-8.7,6-17,9.1-25.1c17.8-46,35.7-91.9,53.5-137.8c9.4-24.2,18.6-48.5,27.8-72.8
+                            c1.3-3.4,3-4.8,6.8-4.7c15.5,0.2,31,0.2,46.5,0c3.1,0,4.7,0.9,5.8,3.9c19.6,52.7,39.3,105.3,58.9,158c8.6,22.9,17,45.9,25.5,68.8
+                            c1.1,3,2.1,5.9,3.4,9.4c-1.6,0.2-2.8,0.5-4,0.5c-17.8,0-35.7,0-53.5,0.1c-3.3,0-4.5-1.2-5.6-4.2c-5.3-15.1-10.8-30-16.2-45.1
+                            c-1-2.9-2.3-4.2-5.6-4.2c-22.5,0.1-45,0.2-67.5-0.1c-4.3,0-6.1,1.5-7.4,5.4c-4.8,14.4-10.1,28.6-14.8,43c-1.4,4.2-3.4,5.6-7.8,5.5
+                            c-16.7-0.3-33.3-0.2-50-0.2C-903.9,26.9-905.3,26.7-907.5,26.6z M-788.6-158.1c-9.2,29.5-18.2,58.2-27.2,87.1c18,0,35.8,0,54,0
+                            C-770.7-100.1-779.5-128.7-788.6-158.1z"/>
+                        <path class="st0" d="M-1122.6-212.7c2-0.1,3.4-0.3,4.8-0.3c18.2,0,36.3,0.1,54.5-0.2c4-0.1,5.8,1,7,5c13.9,46.3,28,92.4,42,138.6
+                            c3.2,10.7,6.4,21.3,10.1,33.3c2-6.2,3.6-11.2,5.2-16.3c15.9-52.2,31.9-104.3,47.6-156.6c1.1-3.6,2.5-5,6.4-5
+                            c16.8,0.2,33.7,0.1,50.5,0.1c1.1,0,2.2,0.2,4,0.4c-2.3,6.6-4.5,12.8-6.7,19c-26.8,72.6-53.6,145.1-80.3,217.7
+                            c-1.1,3.1-2.6,4-5.8,3.9c-14.3-0.2-28.7-0.2-43,0c-3.9,0.1-5.5-1.3-6.8-4.8c-11.7-33.1-23.1-66.4-35.6-99.2
+                            c-16.4-42.7-33.7-85.1-50.7-127.6C-1120.5-207-1121.5-209.7-1122.6-212.7z"/>
+                    </g>
                 </svg>
+                <span class="var-medallion-badge">PIZZA LIBRE</span>
             </div>
 
-            <div class="badges-capsules-row">
-                <span class="badge-chip green">⚽ Pizza Libre</span>
-                <span class="badge-chip">Abrimos Todos Los Días</span>
-            </div>
+            <span class="hero-brand-line">Monte Grande · Lanús · Ituzaingó</span>
 
-            <div class="motto-banner-box">
-                <div class="motto-lead">“No importa de qué cuadro seas, acá todos somos hinchas de la pizza”</div>
-                <div class="motto-sub">Acá comés todo lo que quieras · Que no te falte una porción ni te pierdas un gol.</div>
+            <div class="grass-slogan-banner">
+                <p class="grass-slogan-quote">“No importa de qué cuadro seas, acá todos somos hinchas de la pizza”</p>
+                <p class="grass-slogan-sub">Acá comés todo lo que quieras · Que no te falte una porción ni te pierdas un gol.</p>
             </div>
         </header>
 
-        <!-- 2. BOTÓN HERO: WHATSAPP GENERAL -->
-        <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="btn-hero-order" onclick="triggerHaptic()">
-            <div class="hero-order-meta">
-                <span class="hero-order-tag">★ Reservas &amp; Consultas</span>
-                <h2 class="hero-order-title">Comunícate Acá</h2>
-                <span class="hero-order-sub">¡Alentá a tu equipo y comé toda la pizza que quieras!</span>
-            </div>
-            <div class="hero-ball-badge">⚽</div>
-        </a>
-
-        <!-- 3. MARCADOR ELECTRÓNICO / TABLERO DE PRECIOS -->
-        <section class="scoreboard-grid">
-
-            <!-- LUN A MIÉ -->
-            <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="score-card" onclick="triggerHaptic()">
-                <div>
-                    <span class="score-top-badge">Lunes a Miércoles</span>
-                    <h3 class="score-title">Pizza Libre</h3>
-                    <p class="score-desc">Comés todo lo que quieras</p>
-                </div>
-                <div class="score-price-box">
-                    <span class="score-price-val">$12.000</span>
-                    <span class="score-btn-arrow">Reservar ↗</span>
-                </div>
-            </a>
-
-            <!-- JUE A DOM -->
-            <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="score-card prime" onclick="triggerHaptic()">
-                <div>
-                    <span class="score-top-badge">Jueves a Domingo</span>
-                    <h3 class="score-title">Pizza Libre</h3>
-                    <p class="score-desc">Fines de semana a full</p>
-                </div>
-                <div class="score-price-box">
-                    <span class="score-price-val">$16.000</span>
-                    <span class="score-btn-arrow">Reservar ↗</span>
-                </div>
-            </a>
-
-        </section>
-
-        <!-- 4. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR" -->
-        <article class="var-review-card">
-            <span class="var-badge">Simulador Oficial</span>
-            <h3 class="var-title">Revisión del VAR</h3>
-            <p class="var-desc">Pedí la revisión de la jugada en la pantalla central. ¿Fue golazo o posición adelantada?</p>
-
-            <div class="var-monitor-box">
-                <span class="var-monitor-text" id="varScreenText">[ SISTEMA VAR LISTO ]</span>
+        <!-- 2. MOSAICO PROTAGÓNICO: VIDEO EN VIVO + FOTOS ARRIBA -->
+        <section class="showcase-card">
+            <div class="section-top-bar">
+                <h2 class="section-heading">Así se vive en VAR</h2>
+                <span class="section-tag-pill">Toca para ampliar</span>
             </div>
 
-            <button type="button" class="btn-var-trigger" id="btnVarAction" onclick="triggerVarReview()">
-                Pedir Revisión VAR 🖥️
-            </button>
-
-            <div class="var-result-msg" id="varFeedbackMsg"></div>
-        </article>
-
-        <!-- 5. TARJETAS ASIMÉTRICAS DE BENEFICIOS (CUMPLE, 29, BEBIDAS) -->
-        <section class="perks-grid">
-
-            <div class="perk-card full">
-                <div style="flex:1; min-width:0;">
-                    <span class="perk-icon-tag">★ Beneficio Cumpleaños</span>
-                    <h3 class="perk-title">¡El cumpleañero no paga!</h3>
-                    <p class="perk-desc">Si venís a festejar tu cumple con amigos, tu porción corre por cuenta de VAR.</p>
-                </div>
-            </div>
-
-            <div class="perk-card">
-                <div>
-                    <span class="perk-icon-tag">📅 Tradición</span>
-                    <h3 class="perk-title">Todos los 29</h3>
-                    <p class="perk-desc">Tenemos ñoquis y pizza libre para arrancar el mes.</p>
-                </div>
-            </div>
-
-            <div class="perk-card">
-                <div>
-                    <span class="perk-icon-tag">🍻 Tercer Tiempo</span>
-                    <h3 class="perk-title">Jarras &amp; Tragos</h3>
-                    <p class="perk-desc">Disfrutá jarras de Campari y Fernet bien heladas.</p>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- 6. LA PIZARRA TÁCTICA: 3 SUCURSALES -->
-        <section class="branches-container-card">
-            <div class="branches-head-row">
-                <h3 class="branches-title">Estadios (Sucursales)</h3>
-                <span class="branches-mono-sub">3 sedes oficiales</span>
-            </div>
-
-            <div class="branch-cards-stack">
-
-                <!-- 1. MONTE GRANDE -->
-                <a href="https://wa.me/5491131916972?text=%C2%A1Hola%20VAR%20Monte%20Grande!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
-                    <div class="branch-info-col">
-                        <span class="branch-city-tag">Monte Grande</span>
-                        <span class="branch-address-val">Dorrego 227</span>
-                        <span class="branch-phone-val">📲 11 3191-6972</span>
-                    </div>
-                    <div class="branch-btn-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-
-                <!-- 2. LANÚS -->
-                <a href="https://wa.me/5491122573848?text=%C2%A1Hola%20VAR%20Lan%C3%ús!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
-                    <div class="branch-info-col">
-                        <span class="branch-city-tag">Lanús</span>
-                        <span class="branch-address-val">Del Valle Iberlucea 2911</span>
-                        <span class="branch-phone-val">📲 11 2257-3848</span>
-                    </div>
-                    <div class="branch-btn-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-
-                <!-- 3. ITUZAINGÓ -->
-                <a href="https://wa.me/5491173491939?text=%C2%A1Hola%20VAR%20Ituzaing%C3%B3!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
-                    <div class="branch-info-col">
-                        <span class="branch-city-tag">Ituzaingó</span>
-                        <span class="branch-address-val">Eduardo Muñiz 110</span>
-                        <span class="branch-phone-val">📲 11 7349-1939</span>
-                    </div>
-                    <div class="branch-btn-icon">
-                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- 7. MONITOR VAR (VIDEO PRINCIPAL) + MOSAICO DE FOTOS -->
-        <section class="reels-section-card">
-            <div class="reels-head-row">
-                <h3 class="reels-title">En Acción (VAR Cam)</h3>
-                <div class="reels-nav-arrows">
-                    <button type="button" class="reel-arrow-btn" onclick="scrollReels(-1)" aria-label="Anterior">‹</button>
-                    <button type="button" class="reel-arrow-btn" onclick="scrollReels(1)" aria-label="Siguiente">›</button>
-                </div>
-            </div>
-
-            <div class="reels-scroll-strip" id="reelsStrip">
-
-                <!-- VIDEO PRINCIPAL -->
-                <div class="reel-box">
+            <div class="media-bento">
+                <!-- Video protagonista alto -->
+                <div class="media-tile video-hero">
                     <video
                         src="./videopizza.mp4"
                         autoplay loop muted playsinline webkit-playsinline
                         disablepictureinpicture disableremoteplayback
                         preload="auto"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/videopizza.mp4';}"
                     ></video>
-                    <span class="reel-pill-label">VAR CAM · LIVE</span>
+                    <span class="tile-badge live">● VAR CAM</span>
+                    <span class="tile-badge">Servicio en vivo</span>
                 </div>
 
-                <!-- FOTO 1: COMENSALES -->
-                <div class="reel-box" onclick="openLightbox(0)" role="button" tabindex="0">
+                <!-- Foto 2 arriba derecha -->
+                <div class="media-tile" onclick="openLightbox(1)" role="button" tabindex="0">
+                    <img
+                        src="./pizzaprimerplano.webp"
+                        alt="Nuestras pizzas especiales a la piedra"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/pizzaprimerplano.webp';}"
+                    >
+                    <span class="tile-badge">Especiales</span>
+                </div>
+
+                <!-- Foto 1 abajo derecha -->
+                <div class="media-tile" onclick="openLightbox(0)" role="button" tabindex="0">
                     <img
                         src="./comensalesenlapizzeria.webp"
-                        alt="Comensales disfrutando en la pizzería"
+                        alt="Comensales disfrutando en VAR Pizza Libre"
                         loading="lazy"
                         onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/comensalesenlapizzeria.webp';}"
                     >
-                    <span class="reel-pill-label">Ambiente</span>
+                    <span class="tile-badge">La Tribuna</span>
                 </div>
+            </div>
 
-                <!-- FOTO 2: PIZZA PRIMER PLANO -->
-                <div class="reel-box" onclick="openLightbox(1)" role="button" tabindex="0">
-                    <img
-                        src="./pizzaprimerplano.webp"
-                        alt="Pizza primer plano"
-                        loading="lazy"
-                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/pizzaprimerplano.webp';}"
-                    >
-                    <span class="reel-pill-label">Especiales</span>
-                </div>
-
-                <!-- FOTO 3: SIRVIENDO PORCIÓN -->
-                <div class="reel-box" onclick="openLightbox(2)" role="button" tabindex="0">
+            <!-- Fila inferior con las otras 2 fotos -->
+            <div class="media-bottom-row">
+                <div class="media-tile" onclick="openLightbox(2)" role="button" tabindex="0">
                     <img
                         src="./sirviendounaporciondepizza.webp"
-                        alt="Sirviendo porción de pizza"
+                        alt="Sirviendo porción libre"
                         loading="lazy"
                         onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/sirviendounaporciondepizza.webp';}"
                     >
-                    <span class="reel-pill-label">Pizza Libre</span>
+                    <span class="tile-badge">Porción libre</span>
                 </div>
 
-                <!-- FOTO 4: TRAGO -->
-                <div class="reel-box" onclick="openLightbox(3)" role="button" tabindex="0">
+                <div class="media-tile" onclick="openLightbox(3)" role="button" tabindex="0">
                     <img
                         src="./sirviendountrago.webp"
-                        alt="Sirviendo trago o jarra"
+                        alt="Jarras de Campari y Fernet"
                         loading="lazy"
                         onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/sirviendountrago.webp';}"
                     >
-                    <span class="reel-pill-label">Tercer Tiempo</span>
+                    <span class="tile-badge">Campari &amp; Fernet</span>
                 </div>
-
             </div>
+        </section>
+
+        <!-- 3. TICKET DE PARTIDO: RESERVÁ EN TU SEDE -->
+        <a href="#sedes" class="ticket-cta" onclick="triggerHaptic()">
+            <div class="ticket-main">
+                <span class="ticket-eyebrow">★ Reservas &amp; Consultas Directas</span>
+                <h2 class="ticket-title">Elegí tu Estadio y Reservá</h2>
+                <span class="ticket-sub">Alentá a tu equipo y comé toda la pizza que quieras</span>
+            </div>
+            <div class="ticket-stub">
+                <span class="ticket-stub-ball">⚽</span>
+                <span class="ticket-stub-label">Entrar ↓</span>
+            </div>
+        </a>
+
+        <!-- 4. PRECIOS PIZZA LIBRE (ASIMÉTRICOS Y CLAROS) -->
+        <section class="prices-split">
+            <a href="#sedes" class="price-pill-card weekday" onclick="triggerHaptic()">
+                <div>
+                    <span class="price-day-tag">Lun · Mar · Mié</span>
+                    <h3 class="price-card-name">Pizza Libre</h3>
+                    <p class="price-card-note">Comés todo lo que quieras entre semana</p>
+                </div>
+                <div class="price-amount-row">
+                    <span class="price-number">$12.000</span>
+                    <span class="price-go">Reservar ↗</span>
+                </div>
+            </a>
+
+            <a href="#sedes" class="price-pill-card weekend" onclick="triggerHaptic()">
+                <div>
+                    <span class="price-day-tag">Jue · Vie · Sáb · Dom</span>
+                    <h3 class="price-card-name">Pizza Libre Full</h3>
+                    <p class="price-card-note">Fines de semana, partidos y previa con amigos</p>
+                </div>
+                <div class="price-amount-row">
+                    <span class="price-number">$16.000</span>
+                    <span class="price-go">Reservar ↗</span>
+                </div>
+            </a>
+        </section>
+
+        <!-- 5. BENEFICIOS CON FORMAS VARIADAS -->
+        <section class="perks-cluster">
+            <div class="birthday-flag-card">
+                <div class="birthday-emoji-badge">🎂</div>
+                <div class="birthday-copy">
+                    <h3>¡El cumpleañero no paga!</h3>
+                    <p>Si venís a festejar tu cumple con amigos, tu pizza libre corre por cuenta de VAR.</p>
+                </div>
+            </div>
+
+            <div class="chamfer-duet">
+                <div class="chamfer-card left-cut">
+                    <span class="chamfer-tag">📅 Tradición</span>
+                    <h3>Todos los 29</h3>
+                    <p>Ñoquis + pizza libre para arrancar el mes bien arriba.</p>
+                </div>
+                <div class="chamfer-card right-cut">
+                    <span class="chamfer-tag">🍻 Tercer Tiempo</span>
+                    <h3>Jarras &amp; Tragos</h3>
+                    <p>Jarras de Campari y Fernet bien heladas para la mesa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. MONITOR VAR DE TRANSMISIÓN TV -->
+        <article class="var-tv-card">
+            <div class="var-tv-topbar">
+                <span class="var-tv-title">Revisión del VAR</span>
+                <span class="var-tv-chip">● TV LIVE</span>
+            </div>
+            <div class="var-tv-body">
+                <p class="var-tv-sub">Pedí la revisión de la jugada en pantalla. ¿Fue golazo o posición adelantada?</p>
+                <div class="var-screen-display" id="varScreenText">[ SISTEMA VAR LISTO ]</div>
+                <button type="button" class="btn-var-check" id="btnVarAction" onclick="triggerVarReview()">
+                    Pedir Revisión VAR 🖥️
+                </button>
+                <div class="var-verdict" id="varFeedbackMsg"></div>
+            </div>
+        </article>
+
+        <!-- 7. ELEGÍ TU CANCHA: LAS 3 SUCURSALES CON WHATSAPP REAL -->
+        <section class="branches-card" id="sedes">
+            <div class="section-top-bar">
+                <h2 class="section-heading">Nuestras Canchas</h2>
+                <span class="section-tag-pill">3 Sucursales</span>
+            </div>
+
+            <div class="branch-list">
+                <!-- MONTE GRANDE -->
+                <a href="https://wa.me/5491131916972?text=%C2%A1Hola%20VAR%20Monte%20Grande!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Monte Grande</span>
+                        <span class="branch-street">Dorrego 227</span>
+                        <span class="branch-tel">WhatsApp · 11 3191-6972</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Monte Grande">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+
+                <!-- LANÚS -->
+                <a href="https://wa.me/5491122573848?text=%C2%A1Hola%20VAR%20Lan%C3%BAs!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Lanús</span>
+                        <span class="branch-street">Del Valle Iberlucea 2911</span>
+                        <span class="branch-tel">WhatsApp · 11 2257-3848</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Lanús">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+
+                <!-- ITUZAINGÓ -->
+                <a href="https://wa.me/5491173491939?text=%C2%A1Hola%20VAR%20Ituzaing%C3%B3!%20%F0%9F%8D%95%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-row-btn" onclick="triggerHaptic()">
+                    <div class="branch-meta">
+                        <span class="branch-hood">Ituzaingó</span>
+                        <span class="branch-street">Eduardo Muñiz 110</span>
+                        <span class="branch-tel">WhatsApp · 11 7349-1939</span>
+                    </div>
+                    <div class="branch-wpp-circle" aria-label="WhatsApp Ituzaingó">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
+            </div>
+
+            <a href="https://www.instagram.com/var.pizzalibre/" target="_blank" rel="noopener noreferrer" class="ig-follow-strip" onclick="triggerHaptic()">
+                <span>Ver más videos y promos en @var.pizzalibre</span>
+                <span style="color:var(--turf-deep);">Instagram ↗</span>
+            </a>
         </section>
 
         <!-- 8. FOOTER -->
         <footer class="hub-footer">
             <div class="footer-badge">
                 <span>VAR PIZZA LIBRE®</span>
-                <span style="color:var(--var-pitch-green);">✦</span>
+                <span style="color:var(--cheese-bright);">✦</span>
                 <span>FÚTBOL Y PIZZA</span>
             </div>
             <p class="footer-legal">
-                Monte Grande · Lanús · Ituzaingó<br>
-                “Alentá a tu equipo y comé toda la pizza que quieras” · © 2026 VAR
+                Monte Grande · Lanús · Ituzaingó · Abrimos todos los días<br>
+                “Alentá a tu equipo y comé toda la pizza que quieras”
             </p>
         </footer>
 
     </main>
 
-    <!-- ==========================================================================
-         LIGHTBOX FULLSCREEN
-         ========================================================================== -->
+    <!-- LIGHTBOX DE FOTOS -->
     <div class="modal-overlay" id="galleryLightbox" onclick="closeLightbox(event)">
         <div class="lightbox-card" onclick="event.stopPropagation()">
             <div class="lightbox-topbar">
@@ -1323,10 +1401,9 @@
 
     <!-- ==========================================================================
          MOTORES JAVASCRIPT:
-         1. MOTOR 3D CANVAS "ESTADIO NOCTURNO & PIZZA" (PELOTAS Y REBANADAS EN ÓRBITA)
-         2. MINI-JUEGO "REVISIÓN DEL VAR" (INTERACTIVO)
-         3. REPRODUCTOR DE VIDEOS SIN FREEZE CON INTERSECTION OBSERVER PASIVO
-         4. LIGHTBOX & HÁPTICA
+         1. ESTADIO 3D DE DÍA + CAMPO ENORME + HINCHAS-PIZZA EN GRADAS ALENTANDO
+         2. REVISIÓN DEL VAR
+         3. OBSERVER DE VIDEO & LIGHTBOX
          ========================================================================== -->
     <script>
         function triggerHaptic() {
@@ -1336,10 +1413,10 @@
         }
 
         /* =========================================================
-           1. MOTOR 3D CANVAS "ESTADIO NOCTURNO & PIZZA"
+           1. ESTADIO 3D DE DÍA CON PIZZAS ALENTANDO EN LAS GRADAS
            ========================================================= */
-        const StadiumWorld3D = (() => {
-            const canvas = document.getElementById('stadium3dCanvas');
+        const StadiumDay3D = (() => {
+            const canvas = document.getElementById('stadiumDay3D');
             const ctx = canvas.getContext('2d');
 
             let W = 0, H = 0, dpr = 1;
@@ -1347,66 +1424,144 @@
             let tClock = 0, lastTs = 0, accum = 0;
             let headX = 0, headY = 0, targetHeadX = 0, targetHeadY = 0;
 
-            const Z_MAX = 120;
-            const Z_MIN = 4.0;
+            const Z_MIN = 3.6;
+            const Z_MAX = 115;
 
-            let spriteSoccerBall = null;
-            let spritePizzaSlice = null;
+            const FAN_COLORS = ['#1F9D3A', '#E1251B', '#72C8F7', '#FFB800'];
+            let pizzaFanSprites = [];
 
-            function createOffscreen(w, h, drawFn) {
-                const c = document.createElement('canvas');
-                c.width = w; c.height = h;
-                const cctx = c.getContext('2d');
-                drawFn(cctx, w, h);
-                return c;
-            }
+            function buildPizzaFanSprites() {
+                pizzaFanSprites = FAN_COLORS.map((scarfCol, idx) => {
+                    const c = document.createElement('canvas');
+                    c.width = 76;
+                    c.height = 92;
+                    const g = c.getContext('2d');
 
-            function buildStadiumSprites() {
-                // Pelota de fútbol
-                spriteSoccerBall = createOffscreen(80, 80, (g, w, h) => {
-                    const cx = w * 0.5, cy = h * 0.5, r = 32;
-                    g.fillStyle = 'rgba(0, 255, 65, 0.22)';
-                    g.beginPath(); g.ellipse(cx, cy + 10, r, r * 0.5, 0, 0, Math.PI * 2); g.fill();
-                    g.fillStyle = '#FFFFFF';
-                    g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fill();
-                    g.strokeStyle = '#000000'; g.lineWidth = 3; g.stroke();
-                    g.fillStyle = '#000000';
+                    // Sombra en la grada
+                    g.fillStyle = 'rgba(18, 22, 20, 0.25)';
                     g.beginPath();
-                    for (let p = 0; p < 5; p++) {
-                        const ang = (p * Math.PI * 2) / 5 - Math.PI * 0.5;
-                        const px = cx + Math.cos(ang) * 11;
-                        const py = cy + Math.sin(ang) * 11;
-                        if (p === 0) g.moveTo(px, py); else g.lineTo(px, py);
-                    }
-                    g.closePath(); g.fill();
-                });
+                    g.ellipse(38, 82, 18, 5, 0, 0, Math.PI * 2);
+                    g.fill();
 
-                // Rebanada de pizza
-                spritePizzaSlice = createOffscreen(180, 220, (g, w, h) => {
-                    const cx = w * 0.5, cy = h * 0.5;
-                    g.translate(cx, cy);
-                    g.fillStyle = 'rgba(0,255,65,0.2)';
-                    g.beginPath(); g.moveTo(0, 80); g.lineTo(-68, -60); g.lineTo(68, -60); g.closePath(); g.fill();
+                    // Bracitos alentando arriba
+                    g.strokeStyle = '#E5943B';
+                    g.lineWidth = 4.5;
+                    g.lineCap = 'round';
+                    g.beginPath();
+                    g.moveTo(22, 46);
+                    g.lineTo(9, 26);
+                    g.moveTo(54, 46);
+                    g.lineTo(67, 24);
+                    g.stroke();
 
+                    // Banderín del equipo en la mano derecha
+                    g.strokeStyle = '#FFFFFF';
+                    g.lineWidth = 2;
+                    g.beginPath();
+                    g.moveTo(67, 26);
+                    g.lineTo(67, 7);
+                    g.stroke();
+                    g.fillStyle = scarfCol;
+                    g.beginPath();
+                    g.moveTo(67, 7);
+                    g.lineTo(75, 12);
+                    g.lineTo(67, 17);
+                    g.closePath();
+                    g.fill();
+
+                    // Borde de masa crocante arriba
                     g.fillStyle = '#D9822B';
-                    g.beginPath(); g.moveTo(0, 72); g.lineTo(-62, -54); g.quadraticCurveTo(0, -74, 62, -54); g.closePath(); g.fill();
-                    g.fillStyle = '#FE0109';
-                    g.beginPath(); g.moveTo(0, 66); g.lineTo(-54, -48); g.quadraticCurveTo(0, -64, 54, -48); g.closePath(); g.fill();
-                    g.fillStyle = '#FFEA00';
-                    g.beginPath(); g.moveTo(0, 70); g.lineTo(-50, -44); g.quadraticCurveTo(0, -58, 50, -44); g.closePath(); g.fill();
-                    g.fillStyle = '#80000A'; g.beginPath(); g.arc(-15, -10, 14, 0, Math.PI*2); g.fill();
-                    g.fillStyle = '#FE0109'; g.beginPath(); g.arc(-15, -11, 12, 0, Math.PI*2); g.fill();
+                    g.beginPath();
+                    g.moveTo(38, 79);
+                    g.lineTo(14, 24);
+                    g.quadraticCurveTo(38, 12, 62, 24);
+                    g.closePath();
+                    g.fill();
+
+                    // Salsa roja
+                    g.fillStyle = '#E1251B';
+                    g.beginPath();
+                    g.moveTo(38, 75);
+                    g.lineTo(18, 28);
+                    g.quadraticCurveTo(38, 19, 58, 28);
+                    g.closePath();
+                    g.fill();
+
+                    // Muzzarella dorada
+                    g.fillStyle = '#FFD43B';
+                    g.beginPath();
+                    g.moveTo(38, 76);
+                    g.lineTo(20, 30);
+                    g.quadraticCurveTo(38, 22, 56, 30);
+                    g.closePath();
+                    g.fill();
+
+                    // Pepperoni / aceituna
+                    g.fillStyle = idx % 2 === 0 ? '#E1251B' : '#1F9D3A';
+                    g.beginPath(); g.arc(31, 46, 4.2, 0, Math.PI * 2); g.fill();
+                    g.beginPath(); g.arc(44, 53, 3.8, 0, Math.PI * 2); g.fill();
+
+                    // Bufanda de hincha en el cuello
+                    g.fillStyle = scarfCol;
+                    g.fillRect(24, 56, 28, 6);
+
+                    // Ojitos felices mirando el partido
+                    g.fillStyle = '#121614';
+                    g.beginPath(); g.arc(33, 37, 2.5, 0, Math.PI * 2); g.fill();
+                    g.beginPath(); g.arc(43, 37, 2.5, 0, Math.PI * 2); g.fill();
+                    g.strokeStyle = '#121614';
+                    g.lineWidth = 2;
+                    g.beginPath();
+                    g.arc(38, 40, 4.2, 0.15, Math.PI - 0.15);
+                    g.stroke();
+
+                    return c;
                 });
             }
 
-            const ENTITIES = [
-                { type: 'ball', wx: -3.2, wy: 1.2, baseZ: 15, scale: 0.9, rotSpeed: 0.5 },
-                { type: 'ball', wx: 3.5, wy: 1.6, baseZ: 38, scale: 1.1, rotSpeed: -0.4 },
-                { type: 'ball', wx: -2.1, wy: 2.1, baseZ: 72, scale: 1.35, rotSpeed: 0.6 },
-                { type: 'slice', wx: 2.8, wy: 0.9, baseZ: 25, scale: 1.0, rotSpeed: 0.3 },
-                { type: 'slice', wx: -2.5, wy: 1.3, baseZ: 55, scale: 1.2, rotSpeed: -0.25 },
-                { type: 'slice', wx: 1.5, wy: 1.8, baseZ: 90, scale: 1.45, rotSpeed: 0.35 }
-            ];
+            // Hinchas-pizza sentados en gradas izquierda, derecha y cabecera fondo
+            const STAND_FANS = [];
+            (function seedFans() {
+                // Gradas laterales (3 escalones de altura en ambos lados)
+                for (let row = 0; row < 12; row++) {
+                    const z = 9 + row * 8.4;
+                    for (let tier = 0; tier < 3; tier++) {
+                        STAND_FANS.push({
+                            side: -1,
+                            wx: -(5.3 + tier * 1.15),
+                            wy: 0.55 + tier * 0.85,
+                            z: z + (tier % 2) * 1.8,
+                            spriteIdx: (row + tier) % 4,
+                            phase: row * 0.8 + tier * 1.3,
+                            bounceAmp: 0.14 + ((row + tier) % 3) * 0.04
+                        });
+                        STAND_FANS.push({
+                            side: 1,
+                            wx: 5.3 + tier * 1.15,
+                            wy: 0.55 + tier * 0.85,
+                            z: z + ((tier + 1) % 2) * 1.8,
+                            spriteIdx: (row + tier + 2) % 4,
+                            phase: row * 0.9 + tier * 1.1 + 1.5,
+                            bounceAmp: 0.14 + ((row + tier + 1) % 3) * 0.04
+                        });
+                    }
+                }
+                // Tribuna cabecera del fondo detrás del arco
+                for (let i = -5; i <= 5; i++) {
+                    for (let tier = 0; tier < 2; tier++) {
+                        STAND_FANS.push({
+                            side: 0,
+                            wx: i * 1.15 + tier * 0.35,
+                            wy: 1.5 + tier * 0.95,
+                            z: 102 + tier * 4.5,
+                            spriteIdx: (Math.abs(i) + tier) % 4,
+                            phase: i * 0.7 + tier,
+                            bounceAmp: 0.18
+                        });
+                    }
+                }
+                STAND_FANS.sort((a, b) => b.z - a.z);
+            })();
 
             function resizeDisplay() {
                 W = window.innerWidth;
@@ -1422,85 +1577,201 @@
                 headX += (targetHeadX - headX) * Math.min(1, dt * 3.5);
                 headY += (targetHeadY - headY) * Math.min(1, dt * 3.5);
 
-                const horizonY = H * 0.34 + headY * 12;
-                const focal = Math.max(W, H) * 0.85;
-                const camH = 3.0;
-                const cx = W * 0.5 + headX * 24;
-
-                // Cielo nocturno de estadio con gradiente vivo
-                const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY + 14);
-                skyGrad.addColorStop(0, '#000000');
-                skyGrad.addColorStop(0.5, '#051208');
-                skyGrad.addColorStop(1, '#0A2610');
-                ctx.fillStyle = skyGrad;
-                ctx.fillRect(0, 0, W, horizonY + 14);
-
-                // Focos de iluminación cenital de estadio
-                const floodGrad1 = ctx.createRadialGradient(W * 0.2, 0, 10, W * 0.2, 0, W * 0.8);
-                floodGrad1.addColorStop(0, 'rgba(0, 255, 65, 0.2)');
-                floodGrad1.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.fillStyle = floodGrad1;
-                ctx.fillRect(0, 0, W, horizonY);
-
-                // Césped en perspectiva 3D
-                const turfGrad = ctx.createLinearGradient(0, horizonY, 0, H);
-                turfGrad.addColorStop(0, '#0A2610');
-                turfGrad.addColorStop(0.25, '#041609');
-                turfGrad.addColorStop(1, '#010A04');
-                ctx.fillStyle = turfGrad;
-                ctx.fillRect(0, horizonY, W, H - horizonY);
+                const horizonY = H * 0.31 + headY * 14;
+                const focal = Math.max(W, H) * 0.82;
+                const camH = 4.6;
+                const cx = W * 0.5 + headX * 26;
 
                 const projX = (wx, z) => cx + wx * (focal / z);
                 const projY = (wh, z) => horizonY + (camH - wh) * (focal / z);
 
-                // Líneas de cal del campo en perspectiva 3D
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
-                ctx.lineWidth = 2;
-                for (let lx = -5; lx <= 5; lx += 2.5) {
+                // 1. CIELO CELESTE LUMINOSO DE DÍA
+                const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY + 8);
+                skyGrad.addColorStop(0, '#5BBDF5');
+                skyGrad.addColorStop(0.55, '#A9E1FF');
+                skyGrad.addColorStop(1, '#E6F7FF');
+                ctx.fillStyle = skyGrad;
+                ctx.fillRect(0, 0, W, horizonY + 10);
+
+                // Sol cálido argentino
+                const sunX = W * 0.80 - headX * 12;
+                const sunY = Math.max(28, horizonY * 0.34);
+                const sunGrad = ctx.createRadialGradient(sunX, sunY, 6, sunX, sunY, Math.min(W, H) * 0.18);
+                sunGrad.addColorStop(0, 'rgba(255, 248, 198, 0.98)');
+                sunGrad.addColorStop(0.32, 'rgba(255, 214, 75, 0.38)');
+                sunGrad.addColorStop(1, 'rgba(255, 248, 198, 0)');
+                ctx.fillStyle = sunGrad;
+                ctx.beginPath();
+                ctx.arc(sunX, sunY, Math.min(W, H) * 0.18, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Nubes blancas esponjosas
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                for (let i = 0; i < 4; i++) {
+                    const cw = W * (0.20 + (i % 2) * 0.08);
+                    const cxC = ((i * W * 0.34 + tClock * (5 + i * 1.2)) % (W + cw * 2)) - cw;
+                    const cyC = horizonY * (0.26 + (i % 3) * 0.18);
                     ctx.beginPath();
-                    ctx.moveTo(projX(lx, Z_MAX), projY(0, Z_MAX));
-                    ctx.lineTo(projX(lx * 0.3, Z_MIN), projY(0, Z_MIN));
-                    ctx.stroke();
+                    ctx.ellipse(cxC, cyC, cw * 0.44, 12 + (i % 2) * 4, 0, 0, Math.PI * 2);
+                    ctx.ellipse(cxC - cw * 0.2, cyC + 4, cw * 0.28, 9, 0, 0, Math.PI * 2);
+                    ctx.ellipse(cxC + cw * 0.2, cyC + 4, cw * 0.3, 9, 0, 0, Math.PI * 2);
+                    ctx.fill();
                 }
 
-                const speedZ = 6.0;
-                const zSpan = Z_MAX - Z_MIN;
+                // 2. ESTRUCTURA DE TRIBUNA CABECERA AL FONDO (SOBRE EL HORIZONTE)
+                const standTopY = horizonY - H * 0.09;
+                const backStandGrad = ctx.createLinearGradient(0, standTopY, 0, horizonY + 4);
+                backStandGrad.addColorStop(0, '#D4E0DA');
+                backStandGrad.addColorStop(0.45, '#BCCBC3');
+                backStandGrad.addColorStop(1, '#8FA398');
+                ctx.fillStyle = backStandGrad;
+                ctx.fillRect(0, standTopY, W, horizonY - standTopY + 4);
 
-                const queue = ENTITIES.map(e => {
-                    const curZ = Z_MIN + (((e.baseZ - tClock * speedZ) % zSpan) + zSpan) % zSpan;
-                    return { ...e, curZ };
-                }).sort((a, b) => b.curZ - a.curZ);
+                // Techo del estadio y franja verde VAR en la tribuna de fondo
+                ctx.fillStyle = '#18241C';
+                ctx.fillRect(0, standTopY - 8, W, 9);
+                ctx.fillStyle = '#1F9D3A';
+                ctx.fillRect(0, horizonY - 12, W, 12);
 
-                for (let i = 0; i < queue.length; i++) {
-                    const ent = queue[i];
-                    const z = ent.curZ;
-                    if (z < Z_MIN || z > Z_MAX) continue;
+                // 3. CAMPO DE JUEGO ENORME EN PERSPECTIVA 3D (FRANJAS DE CÉSPED)
+                const turfBase = ctx.createLinearGradient(0, horizonY, 0, H);
+                turfBase.addColorStop(0, '#27AD42');
+                turfBase.addColorStop(1, '#1A8530');
+                ctx.fillStyle = turfBase;
+                ctx.fillRect(0, horizonY, W, H - horizonY);
 
-                    const sc = focal / z;
-                    const alpha = Math.max(0, Math.min(1, 1 - (z - 24) / (Z_MAX - 24)));
-                    if (alpha <= 0.03) continue;
+                // Franjas alternadas transversales de corte profesional
+                const stripeStep = 8.5;
+                for (let z = Z_MAX; z >= Z_MIN; z -= stripeStep * 2) {
+                    const zFar = Math.min(Z_MAX, z);
+                    const zNear = Math.max(Z_MIN, z - stripeStep);
+                    const yFar = projY(0, zFar);
+                    const yNear = projY(0, zNear);
+                    ctx.fillStyle = 'rgba(18, 108, 36, 0.26)';
+                    ctx.fillRect(0, yFar, W, Math.max(1, yNear - yFar));
+                }
 
-                    ctx.globalAlpha = alpha;
+                // 4. LÍNEAS BLANCAS REGLAMENTARIAS DEL CAMPO ENORME
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.lineWidth = 2.2;
 
-                    const sx = projX(ent.wx, z);
-                    const sy = projY(ent.wy + Math.sin(tClock * 2 + ent.wx) * 0.15, z);
+                // Líneas laterales (touchlines)
+                const fieldHalfW = 4.6;
+                ctx.beginPath();
+                ctx.moveTo(projX(-fieldHalfW, Z_MAX), projY(0, Z_MAX));
+                ctx.lineTo(projX(-fieldHalfW, Z_MIN), projY(0, Z_MIN));
+                ctx.moveTo(projX(fieldHalfW, Z_MAX), projY(0, Z_MAX));
+                ctx.lineTo(projX(fieldHalfW, Z_MIN), projY(0, Z_MIN));
+                ctx.stroke();
 
-                    if (ent.type === 'ball' && spriteSoccerBall) {
-                        const size = (spriteSoccerBall.width * (ent.scale * sc)) / 100;
-                        ctx.save();
-                        ctx.translate(sx, sy);
-                        ctx.rotate(tClock * (ent.rotSpeed || 0.4));
-                        ctx.drawImage(spriteSoccerBall, -size * 0.5, -size * 0.5, size, size);
-                        ctx.restore();
-                    } else if (ent.type === 'slice' && spritePizzaSlice) {
-                        const sizeW = (spritePizzaSlice.width * (ent.scale * sc)) / 120;
-                        const sizeH = (spritePizzaSlice.height * (ent.scale * sc)) / 120;
-                        ctx.save();
-                        ctx.translate(sx, sy);
-                        ctx.rotate(Math.sin(tClock * 1.5) * 0.2);
-                        ctx.drawImage(spritePizzaSlice, -sizeW * 0.5, -sizeH * 0.5, sizeW, sizeH);
-                        ctx.restore();
+                // Línea de meta al fondo
+                const goalLineZ = 94;
+                ctx.beginPath();
+                ctx.moveTo(projX(-fieldHalfW, goalLineZ), projY(0, goalLineZ));
+                ctx.lineTo(projX(fieldHalfW, goalLineZ), projY(0, goalLineZ));
+                ctx.stroke();
+
+                // Área grande al fondo
+                const penZ = 76;
+                ctx.beginPath();
+                ctx.moveTo(projX(-2.8, goalLineZ), projY(0, goalLineZ));
+                ctx.lineTo(projX(-2.8, penZ), projY(0, penZ));
+                ctx.lineTo(projX(2.8, penZ), projY(0, penZ));
+                ctx.lineTo(projX(2.8, goalLineZ), projY(0, goalLineZ));
+                ctx.stroke();
+
+                // Línea de mitad de cancha y círculo central enorme en 3D
+                const midZ = 22;
+                ctx.beginPath();
+                ctx.moveTo(projX(-fieldHalfW, midZ), projY(0, midZ));
+                ctx.lineTo(projX(fieldHalfW, midZ), projY(0, midZ));
+                ctx.stroke();
+
+                ctx.beginPath();
+                const circleR = 2.1;
+                for (let a = 0; a <= 36; a++) {
+                    const ang = (a / 36) * Math.PI * 2;
+                    const px = projX(Math.cos(ang) * circleR, midZ + Math.sin(ang) * 7.5);
+                    const py = projY(0, midZ + Math.sin(ang) * 7.5);
+                    if (a === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                }
+                ctx.closePath();
+                ctx.stroke();
+
+                // Arco blanco de fútbol al fondo
+                const goalW = 1.65;
+                const goalH = 1.55;
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 2.6;
+                ctx.beginPath();
+                ctx.moveTo(projX(-goalW, goalLineZ), projY(0, goalLineZ));
+                ctx.lineTo(projX(-goalW, goalLineZ), projY(goalH, goalLineZ));
+                ctx.lineTo(projX(goalW, goalLineZ), projY(goalH, goalLineZ));
+                ctx.lineTo(projX(goalW, goalLineZ), projY(0, goalLineZ));
+                ctx.stroke();
+
+                // Red suave del arco
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+                ctx.fillRect(
+                    projX(-goalW, goalLineZ),
+                    projY(goalH, goalLineZ),
+                    projX(goalW, goalLineZ) - projX(-goalW, goalLineZ),
+                    projY(0, goalLineZ) - projY(goalH, goalLineZ)
+                );
+
+                // 5. GRADAS LATERALES EN PERSPECTIVA 3D
+                for (const side of [-1, 1]) {
+                    for (let tier = 2; tier >= 0; tier--) {
+                        const xIn  = side * (4.9 + tier * 1.15);
+                        const xOut = side * (6.1 + tier * 1.25);
+                        const yLow = tier * 0.85;
+                        const yTop = yLow + 0.82;
+
+                        // Escalón frontal de la tribuna
+                        ctx.fillStyle = tier % 2 === 0 ? '#E3EAE5' : '#CFD9D2';
+                        ctx.beginPath();
+                        ctx.moveTo(projX(xIn, Z_MAX), projY(yLow, Z_MAX));
+                        ctx.lineTo(projX(xOut, Z_MAX), projY(yTop, Z_MAX));
+                        ctx.lineTo(projX(xOut, Z_MIN), projY(yTop, Z_MIN));
+                        ctx.lineTo(projX(xIn, Z_MIN), projY(yLow, Z_MIN));
+                        ctx.closePath();
+                        ctx.fill();
+
+                        // Cartel lateral verde/rojo de borde de cancha en el primer nivel
+                        if (tier === 0) {
+                            ctx.fillStyle = side === -1 ? '#1F9D3A' : '#E1251B';
+                            ctx.beginPath();
+                            ctx.moveTo(projX(side * 4.85, Z_MAX), projY(0, Z_MAX));
+                            ctx.lineTo(projX(side * 4.85, Z_MAX), projY(0.5, Z_MAX));
+                            ctx.lineTo(projX(side * 4.85, Z_MIN), projY(0.5, Z_MIN));
+                            ctx.lineTo(projX(side * 4.85, Z_MIN), projY(0, Z_MIN));
+                            ctx.closePath();
+                            ctx.fill();
+                        }
                     }
+                }
+
+                // 6. PIZZAS SENTADAS EN LAS GRADAS ALENTANDO EN VIVO
+                for (let i = 0; i < STAND_FANS.length; i++) {
+                    const fan = STAND_FANS[i];
+                    const sc = focal / fan.z;
+                    const bounce = Math.abs(Math.sin(tClock * 4.2 + fan.phase)) * fan.bounceAmp;
+                    const sx = projX(fan.wx, fan.z);
+                    const sy = projY(fan.wy + bounce, fan.z);
+
+                    if (sx < -40 || sx > W + 40 || sy > H + 50) continue;
+
+                    const sprite = pizzaFanSprites[fan.spriteIdx];
+                    const sizeW = Math.max(8, 1.05 * sc);
+                    const sizeH = sizeW * (sprite.height / sprite.width);
+
+                    const alpha = Math.max(0.28, Math.min(1, 1 - (fan.z - 40) / 110));
+                    ctx.globalAlpha = alpha;
+                    ctx.save();
+                    ctx.translate(sx, sy);
+                    ctx.rotate(Math.sin(tClock * 5 + fan.phase) * 0.08);
+                    ctx.drawImage(sprite, -sizeW * 0.5, -sizeH * 0.9, sizeW, sizeH);
+                    ctx.restore();
                 }
 
                 ctx.globalAlpha = 1;
@@ -1512,7 +1783,7 @@
                 const dt = Math.min(0.05, Math.max(0.001, (now - lastTs) / 1000));
                 lastTs = now;
                 accum += dt;
-                if (accum >= 0.016) {
+                if (accum >= 0.030) {
                     renderFrame(accum);
                     accum = 0;
                 }
@@ -1520,7 +1791,7 @@
 
             return {
                 init() {
-                    buildStadiumSprites();
+                    buildPizzaFanSprites();
                     resizeDisplay();
                     renderFrame(0.016);
                     lastTs = performance.now();
@@ -1546,13 +1817,13 @@
         })();
 
         /* =========================================================
-           2. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR"
+           2. REVISIÓN DEL VAR
            ========================================================= */
         const varOutcomes = [
-            '⚽ ¡GOLAZO VALIDADO! Mostrá este mensaje en caja y tenés un 10% de descuento.',
-            '🛑 ¡OFFSIDE MILIMÉTRICO! Pero no pasa nada, pasá igual a comer.',
-            '🎉 ¡PENAL Y GOL! Ganaste una consumición para tu mesa.',
-            '✅ ¡JUGADA LIMPIA! ¡Venite a disfrutar el partido y la pizza libre!'
+            '⚽ ¡GOLAZO VALIDADO! Mostrá este mensaje en caja y celebralo con tu mesa.',
+            '🍕 ¡SALIÓ MUZZARELLA CALIENTE! Jugada limpia directa a tu mesa.',
+            '🎉 ¡PENAL Y GOL! Hoy se festeja en VAR Pizza Libre.',
+            '✅ ¡HABILITADO! Seguí comiendo toda la pizza que quieras.'
         ];
 
         function triggerVarReview() {
@@ -1562,24 +1833,24 @@
             const btn = document.getElementById('btnVarAction');
 
             btn.disabled = true;
-            box.textContent = '🖥️ REVISANDO JUGADA (CÁMARA LENTA)...';
+            box.textContent = '🖥️ REVISANDO JUGADA EN CÁMARA LENTA...';
             msg.classList.remove('active');
 
             setTimeout(() => {
                 const randomMsg = varOutcomes[Math.floor(Math.random() * varOutcomes.length)];
-                box.textContent = '¡DECISIÓN DEL VAR TOMADA!';
+                box.textContent = '¡DECISIÓN DEL VAR CONFIRMADA!';
                 msg.textContent = randomMsg;
                 msg.classList.add('active');
                 btn.disabled = false;
-                if (navigator.vibrate) navigator.vibrate([80, 40, 80]);
-            }, 1400);
+                if (navigator.vibrate) navigator.vibrate([70, 35, 70]);
+            }, 1250);
         }
 
         /* =========================================================
-           3. BLINDAJE DE VIDEOS ANTI-CONGELAMIENTO
+           3. VIDEO SIN CONGELAMIENTO (INTERSECTION OBSERVER)
            ========================================================= */
         function initVideoObserver() {
-            const vids = document.querySelectorAll('.reel-box video');
+            const vids = document.querySelectorAll('.media-tile video');
             if (!('IntersectionObserver' in window)) return;
 
             const observer = new IntersectionObserver((entries) => {
@@ -1592,22 +1863,17 @@
                         vid.pause();
                     }
                 });
-            }, { threshold: 0.35 });
+            }, { threshold: 0.30 });
 
             vids.forEach(v => observer.observe(v));
-        }
-
-        function scrollReels(dir) {
-            const strip = document.getElementById('reelsStrip');
-            if (strip) strip.scrollBy({ left: dir * 180, behavior: 'smooth' });
         }
 
         /* =========================================================
            4. LIGHTBOX DE FOTOS
            ========================================================= */
         const GALLERY_ITEMS = [
-            { file: 'comensalesenlapizzeria.webp', title: 'Ambiente en VAR Pizza Libre' },
-            { file: 'pizzaprimerplano.webp', title: 'Nuestras especialidades a la piedra' },
+            { file: 'comensalesenlapizzeria.webp', title: 'La tribuna disfrutando en VAR Pizza Libre' },
+            { file: 'pizzaprimerplano.webp', title: 'Nuestras pizzas especiales a la piedra' },
             { file: 'sirviendounaporciondepizza.webp', title: 'Porciones libres sin límite' },
             { file: 'sirviendountrago.webp', title: 'Tercer tiempo: Jarras de Campari y Fernet' }
         ];
@@ -1638,13 +1904,13 @@
             currentIdx = idx;
             updateLightboxView();
             lbModal.classList.add('active');
-            StadiumWorld3D.setPaused(true);
+            StadiumDay3D.setPaused(true);
         }
 
         function closeLightbox(e) {
             if (e && e.stopPropagation) e.stopPropagation();
             lbModal.classList.remove('active');
-            StadiumWorld3D.setPaused(false);
+            StadiumDay3D.setPaused(false);
         }
 
         function navLightbox(dir) {
@@ -1670,12 +1936,12 @@
 
         document.addEventListener('visibilitychange', () => {
             const hidden = document.hidden;
-            StadiumWorld3D.setPaused(hidden || lbModal.classList.contains('active'));
+            StadiumDay3D.setPaused(hidden || lbModal.classList.contains('active'));
         });
 
         window.addEventListener('DOMContentLoaded', () => {
             if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            StadiumWorld3D.init();
+            StadiumDay3D.init();
             initVideoObserver();
             requestAnimationFrame(() => document.body.classList.remove('preload'));
         });
