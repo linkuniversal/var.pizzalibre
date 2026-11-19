@@ -2,53 +2,42 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>La Vinoteca de Don Jorge · Puerto Iguazú | 3 Fronteras</title>
-    <meta name="description" content="La Vinoteca de Don Jorge, la casa más completa para el aficionado al vino en las 3 Fronteras. Tienda de vinos, cervezas y licores desde 2002 en Av. República Argentina 188, Puerto Iguazú.">
-    <meta name="theme-color" content="#FBF7E7">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>VAR PIZZA LIBRE® | Amigos, Fútbol & Pizza · Monte Grande, Lanús e Ituzaingó</title>
+    <meta name="description" content="Pizza libre en VAR. Acá comés todo lo que quieras. Abrimos todos los días. Sucursales en Monte Grande, Lanús e Ituzaingó. ¡Si festejás tu cumple, el cumpleañero no paga!">
+    <meta name="theme-color" content="#000000">
 
-    <!-- PRELOAD DEL LOGO MONEDA Y PORTADA -->
-    <link rel="preload" as="image" href="./LOGO-La%20Vinoteca%20de%20Don%20Jorge.webp">
-    <link rel="preload" as="image" href="./vinotecapuertadelocalycuadra.webp">
-
-    <!-- TIPOGRAFÍAS EDITORIALES DE BODEGA -->
+    <!-- TIPOGRAFÍAS DE ÉLITE: BUNGEE + PLUS JAKARTA SANS + JETBRAINS MONO -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
-           1. ADN CROMÁTICO OFICIAL: PERGAMINO + VID FRESCA + UVA VIVA
+           1. ADN CROMÁTICO VAR STADIUM & PIZZA
            ========================================================================== */
         :root {
-            --cream-base: #FBF7E7;
-            --ivory-surface: rgba(255, 253, 247, 0.92);
-            --ivory-solid: #FFFDF8;
-            --vine-wash: #EEF5DC;
+            --var-black: #050505;
+            --var-dark: #121212;
+            --var-pitch-green: #00C835;
+            --var-green-glow: #16C60C;
+            --var-red: #E60012;
+            --var-red-dark: #80000A;
+            --var-yellow: #FFD700;
+            --var-white: #FFFFFF;
+            --var-gray: #888888;
 
-            --vine-green: #578E03;
-            --vine-green-deep: #3E6702;
-            --vine-lime: #C3DC15;
-            --vine-soft-bg: rgba(195, 220, 21, 0.22);
+            --card-surface: rgba(18, 18, 18, 0.92);
+            --card-border: rgba(0, 200, 53, 0.28);
+            --card-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 200, 53, 0.08);
+            --card-shadow-hover: 0 22px 46px -8px rgba(0, 200, 53, 0.35), 0 8px 18px rgba(230, 0, 18, 0.25);
 
-            --grape-vivid: #921C96;
-            --grape-deep: #59025C;
-            --grape-soft-bg: rgba(146, 28, 150, 0.10);
-
-            --ink-obsidian: #0D0913;
-            --ink-body: #342B3A;
-            --ink-muted: #655B6E;
-
-            --border-vine: rgba(87, 142, 3, 0.26);
-            --border-grape: rgba(146, 28, 150, 0.26);
-            --shadow-card: 0 14px 34px -8px rgba(89, 2, 92, 0.11), 0 3px 10px rgba(13, 9, 19, 0.04);
-            --shadow-hover: 0 20px 42px -10px rgba(146, 28, 150, 0.22), 0 6px 16px rgba(87, 142, 3, 0.14);
-            --shadow-coin: 0 18px 42px -6px rgba(89, 2, 92, 0.26), 0 6px 16px rgba(13, 9, 19, 0.14);
-
-            --font-serif: 'Cormorant Garamond', Georgia, serif;
-            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-pop: 'Bungee', cursive, sans-serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-            --spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+            --spring-var: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body.preload * {
@@ -64,7 +53,7 @@
         }
 
         html {
-            background-color: var(--cream-base);
+            background-color: var(--var-black);
             scroll-behavior: smooth;
             max-width: 100%;
             overflow-x: clip;
@@ -72,8 +61,8 @@
 
         body {
             font-family: var(--font-sans);
-            background-color: var(--cream-base);
-            color: var(--ink-body);
+            background: transparent;
+            color: var(--var-white);
             min-height: 100vh;
             min-height: 100dvh;
             width: 100%;
@@ -88,18 +77,18 @@
         }
 
         /* ==========================================================================
-           2. FONDO 3D VECTORIAL DE VIÑEDOS HD + VELO LUMINOSO
+           2. FONDO 3D CANVAS "ESTADIO NOCTURNO & PIZZA" (60 FPS)
            ========================================================================== */
-        .vineyard-stage {
+        .stadium-stage {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
-            background: linear-gradient(180deg, #E8F2D6 0%, #FBF7E7 55%, #F6EFE0 100%);
+            background: radial-gradient(circle at 50% 20%, #0D1A10 0%, #050505 60%, #000000 100%);
         }
 
-        #vineyard3dCanvas {
+        #stadium3dCanvas {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -107,702 +96,551 @@
             display: block;
         }
 
-        .vineyard-veil {
+        .stadium-veil {
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 50% 10%, rgba(251, 247, 231, 0.05) 0%, rgba(251, 247, 231, 0.32) 55%, rgba(251, 247, 231, 0.62) 100%),
-                linear-gradient(180deg, rgba(251, 247, 231, 0.08) 0%, rgba(251, 247, 231, 0.38) 46%, rgba(251, 247, 231, 0.68) 100%);
-            transition: background 0.45s ease;
-        }
-
-        body[data-mood="sunset"] .vineyard-veil {
-            background:
-                radial-gradient(circle at 50% 12%, rgba(255, 240, 224, 0.08) 0%, rgba(251, 240, 232, 0.36) 55%, rgba(251, 247, 231, 0.66) 100%),
-                linear-gradient(180deg, rgba(255, 244, 232, 0.10) 0%, rgba(251, 247, 231, 0.42) 48%, rgba(251, 247, 231, 0.72) 100%);
+                radial-gradient(ellipse at 50% 35%, rgba(5, 5, 5, 0.15) 0%, rgba(5, 5, 5, 0.55) 65%, rgba(0, 0, 0, 0.88) 100%),
+                linear-gradient(180deg, rgba(0, 200, 53, 0.04) 0%, rgba(5, 5, 5, 0.65) 50%, rgba(0, 0, 0, 0.92) 100%);
         }
 
         /* ==========================================================================
-           3. MARQUESINA SUPERIOR CONTINUA
+           3. MARQUESINA TIPO ESTADIO / SCOREBUG
            ========================================================================== */
-        .top-marquee-bar {
+           .top-marquee-strip {
             width: 100%;
-            background: linear-gradient(90deg, var(--grape-deep) 0%, var(--grape-vivid) 55%, var(--vine-green) 100%);
-            color: var(--cream-base);
+            background: var(--var-pitch-green);
+            color: #000000;
             font-family: var(--font-mono);
-            font-size: clamp(0.62rem, 2.2vw, 0.68rem);
-            font-weight: 800;
-            letter-spacing: 0.11em;
+            font-size: clamp(0.66rem, 2.4vw, 0.74rem);
+            font-weight: 900;
+            letter-spacing: 0.10em;
             text-transform: uppercase;
             padding: 8px 0;
             overflow: hidden;
             position: relative;
             z-index: 10;
             display: flex;
-            box-shadow: 0 4px 14px rgba(89, 2, 92, 0.18);
+            box-shadow: 0 4px 14px rgba(0, 200, 53, 0.35);
+            border-bottom: 3px solid #005F18;
         }
 
         .marquee-track {
             display: flex;
             width: max-content;
-            animation: donJorgeMarquee 26s linear infinite;
+            animation: varMarquee 24s linear infinite;
             will-change: transform;
         }
 
         .marquee-track span {
             white-space: nowrap;
-            padding-right: 36px;
+            padding-right: 32px;
         }
 
-        @keyframes donJorgeMarquee {
+        @keyframes varMarquee {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
         /* ==========================================================================
-           4. CONTENEDOR MAESTRO BLINDADO
+           4. CONTENEDOR SHELL (BLINDADO PARA OVERVIEW IG / WPP / PC)
            ========================================================================== */
         .hub-shell {
             width: 100%;
-            max-width: 492px;
-            padding: 12px clamp(12px, 3.8vw, 20px) 16px;
+            max-width: 486px;
+            padding: 12px clamp(12px, 3.8vw, 18px) 24px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
             z-index: 5;
             position: relative;
         }
 
         /* ==========================================================================
-           5. BARRA DE UTILIDADES
+           5. CABECERA TIPO PANTALLA OFICIAL VAR
            ========================================================================== */
-        .utility-dock {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .pill-control {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--ivory-surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1.5px solid var(--border-vine);
-            border-radius: 999px;
-            padding: 6px 12px;
-            font-family: var(--font-mono);
-            font-size: 0.66rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--ink-obsidian);
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(13, 9, 19, 0.06);
-            transition: all 0.22s var(--spring);
-            user-select: none;
-        }
-
-        .pill-control:hover {
-            border-color: var(--grape-vivid);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(146, 28, 150, 0.14);
-        }
-
-        .pill-control:active {
-            transform: scale(0.96);
-        }
-
-        .music-cluster {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .toggle-track {
-            width: 30px;
-            height: 17px;
-            border-radius: 999px;
-            background: #E4DFD1;
-            border: 1px solid rgba(13, 9, 19, 0.15);
-            position: relative;
-            transition: all 0.22s ease;
-        }
-
-        .toggle-knob {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--ink-obsidian);
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.24s var(--spring), background-color 0.2s ease;
-        }
-
-        .pill-control.active {
-            border-color: var(--vine-green);
-            background: #FFFFFF;
-        }
-
-        .pill-control.active .toggle-track {
-            background: rgba(195, 220, 21, 0.45);
-            border-color: var(--vine-green);
-        }
-
-        .pill-control.active .toggle-knob {
-            transform: translateX(13px);
-            background: var(--vine-green);
-        }
-
-        .btn-skip-track {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--ivory-surface);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1.5px solid var(--border-grape);
-            color: var(--grape-vivid);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(13, 9, 19, 0.06);
-            transition: all 0.22s var(--spring);
-        }
-
-        .btn-skip-track:hover {
-            background: var(--grape-vivid);
-            color: #FFFFFF;
-            transform: scale(1.06);
-        }
-
-        .btn-skip-track:active {
-            transform: scale(0.92);
-        }
-
-        /* ==========================================================================
-           6. CABECERA MONUMENTO: MONEDA LIBRE ARRIBA SIN RECUADRO DETRÁS
-           ========================================================================== */
-        .hero-header {
+        .brand-hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 10px;
-            padding-top: 2px;
+            padding-top: 4px;
+            position: relative;
         }
 
-        .coin-stage {
-            perspective: 900px;
+        .var-screen-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 2px;
+            gap: 6px;
+            background: #111111;
+            border: 2px solid var(--var-pitch-green);
+            color: var(--var-pitch-green);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 900;
+            padding: 5px 14px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(0, 200, 53, 0.25);
         }
 
-        .coin-medallion {
-            width: clamp(128px, 34vw, 152px);
-            height: clamp(128px, 34vw, 152px);
+        .var-screen-badge .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--var-red);
             border-radius: 50%;
-            overflow: hidden;
+            animation: liveBlink 1.2s infinite alternate;
+        }
+
+        @keyframes liveBlink {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .var-logo-title {
+            font-family: var(--font-pop);
+            font-size: clamp(2.6rem, 9vw, 3.4rem);
+            letter-spacing: 0.04em;
+            color: #FFFFFF;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            line-height: 1;
+        }
+
+        .badges-capsules-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .badge-chip {
+            background: #1E1E1E;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            color: #E0E0E0;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        .badge-chip.green {
+            background: rgba(0, 200, 53, 0.12);
+            border-color: var(--var-pitch-green);
+            color: var(--var-pitch-green);
+        }
+
+        .motto-banner-box {
+            background: var(--card-surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            padding: 14px 18px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            text-align: center;
+        }
+
+        .motto-lead {
+            font-family: var(--font-pop);
+            font-size: clamp(1rem, 3.8vw, 1.18rem);
+            color: var(--var-yellow);
+            line-height: 1.25;
+            letter-spacing: 0.02em;
+        }
+
+        .motto-sub {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #CCCCCC;
+            line-height: 1.35;
+            margin-top: 4px;
+        }
+
+        /* ==========================================================================
+           6. BOTÓN HERO: WHATSAPP GENERAL (PEDIDOS DIRECTOS)
+           ========================================================================== */
+        .btn-hero-order {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 19px 20px;
+            background: linear-gradient(135deg, var(--var-pitch-green) 0%, #009626 100%);
+            border: 2px solid #FFFFFF;
+            border-radius: 24px;
+            text-decoration: none;
+            color: #000000;
+            box-shadow: 0 8px 0 #005A0F, 0 18px 36px rgba(0, 200, 53, 0.35);
             position: relative;
-            background: var(--cream-base);
-            border: 3px solid var(--cream-base);
-            outline: 2px solid rgba(87, 142, 3, 0.35);
-            box-shadow: var(--shadow-coin), 0 0 0 6px rgba(251, 247, 231, 0.55);
-            transform-style: preserve-3d;
-            animation: coinGentleSway 6.2s infinite ease-in-out;
+            overflow: hidden;
+            transition: all 0.22s var(--spring-var);
             cursor: pointer;
         }
 
-        @keyframes coinGentleSway {
-            0%   { transform: rotateY(0deg) rotateZ(0deg); }
-            25%  { transform: rotateY(18deg) rotateZ(0.8deg); }
-            50%  { transform: rotateY(0deg) rotateZ(0deg); }
-            75%  { transform: rotateY(-18deg) rotateZ(-0.8deg); }
-            100% { transform: rotateY(0deg) rotateZ(0deg); }
+        .btn-hero-order:hover {
+            transform: translateY(-3px) scale(1.015);
+            box-shadow: 0 11px 0 #005A0F, 0 22px 42px rgba(0, 200, 53, 0.48);
         }
 
-        .coin-medallion img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transform: scale(1.035);
-            clip-path: circle(48.6% at 50% 50%);
-            border-radius: 50%;
+        .btn-hero-order:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #005A0F;
         }
 
-        .coin-medallion::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: linear-gradient(125deg, rgba(255, 255, 255, 0.32) 0%, transparent 45%, rgba(195, 220, 21, 0.14) 100%);
-            pointer-events: none;
-        }
-
-        .brand-title {
-            font-family: var(--font-serif);
-            font-size: clamp(2.05rem, 8vw, 2.7rem);
-            font-weight: 700;
-            color: var(--ink-obsidian);
-            line-height: 0.98;
-            letter-spacing: -0.015em;
-            text-shadow: 0 2px 14px rgba(251, 247, 231, 0.95);
-        }
-
-        .brand-category-tag {
-            font-family: var(--font-mono);
-            font-size: clamp(0.68rem, 2.4vw, 0.76rem);
-            font-weight: 800;
-            color: var(--vine-green-deep);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            background: rgba(195, 220, 21, 0.28);
-            border: 1px solid rgba(87, 142, 3, 0.38);
-            padding: 4px 12px;
-            border-radius: 999px;
-        }
-
-        .brand-bio-card {
-            background: linear-gradient(135deg, rgba(255, 253, 248, 0.95) 0%, rgba(248, 238, 249, 0.92) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-grape);
-            border-radius: 18px;
-            padding: 13px 16px;
-            box-shadow: var(--shadow-card);
-            width: 100%;
-        }
-
-        .brand-bio-quote {
-            font-family: var(--font-serif);
-            font-size: clamp(1.12rem, 3.9vw, 1.24rem);
-            font-style: italic;
-            font-weight: 600;
-            color: var(--ink-obsidian);
-            line-height: 1.32;
-        }
-
-        .reputation-strip {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 7px;
-            width: 100%;
-        }
-
-        .rep-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: #FFFFFF;
-            border: 1px solid var(--border-vine);
-            border-radius: 999px;
-            padding: 5px 11px;
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: var(--ink-obsidian);
-            text-decoration: none;
-            box-shadow: 0 3px 10px rgba(13, 9, 19, 0.05);
-            transition: transform 0.22s var(--spring), border-color 0.2s ease;
-        }
-
-        .rep-badge:hover {
-            transform: translateY(-2px);
-            border-color: var(--grape-vivid);
-        }
-
-        .rep-star {
-            color: #E59819;
-        }
-
-        .quick-social-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 11px;
-            margin-top: 2px;
-        }
-
-        .circle-action-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: #FFFFFF;
-            border: 1.5px solid var(--border-vine);
-            color: var(--grape-deep);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 5px 14px rgba(89, 2, 92, 0.08);
-            transition: all 0.24s var(--spring);
-        }
-
-        .circle-action-btn:hover {
-            transform: translateY(-3px) scale(1.06);
-            background: var(--grape-vivid);
-            border-color: var(--grape-vivid);
-            color: #FFFFFF;
-        }
-
-        .circle-action-btn svg {
-            width: 19px;
-            height: 19px;
-        }
-
-        /* ==========================================================================
-           7. TARJETAS HERO PRINCIPALES
-           ========================================================================== */
-        .hero-cta-primary {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            padding: 18px 20px;
-            background: linear-gradient(135deg, var(--grape-vivid) 0%, var(--grape-deep) 100%);
-            border: 2px solid #FFFFFF;
-            border-radius: 22px;
-            text-decoration: none;
-            color: #FFFFFF;
-            box-shadow: 0 16px 34px -6px rgba(146, 28, 150, 0.42);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.26s var(--spring), box-shadow 0.26s ease;
-        }
-
-        .hero-cta-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -130%;
-            width: 65%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
-            transform: skewX(-24deg);
-            animation: wineSheen 5.8s infinite ease-in-out;
-        }
-
-        @keyframes wineSheen {
-            0%, 55% { left: -130%; }
-            85%, 100% { left: 185%; }
-        }
-
-        .hero-cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 42px -6px rgba(146, 28, 150, 0.54);
-        }
-
-        .hero-cta-info {
+        .hero-order-meta {
             display: flex;
             flex-direction: column;
-            gap: 3px;
-            min-width: 0;
-            flex: 1;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--vine-lime);
-        }
-
-        .hero-headline {
-            font-family: var(--font-serif);
-            font-size: clamp(1.32rem, 4.6vw, 1.54rem);
-            font-weight: 700;
-            line-height: 1.12;
-            color: #FFFFFF;
-            overflow-wrap: break-word;
-        }
-
-        .hero-sub {
-            font-size: 0.78rem;
-            color: rgba(251, 247, 231, 0.92);
-            font-weight: 500;
-            line-height: 1.35;
-        }
-
-        .hero-circle-arrow {
-            width: 46px;
-            height: 46px;
-            min-width: 46px;
-            border-radius: 50%;
-            background: var(--cream-base);
-            color: var(--grape-deep);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-            transition: transform 0.25s var(--spring);
-        }
-
-        .hero-cta-primary:hover .hero-circle-arrow {
-            transform: scale(1.08) rotate(45deg);
-            background: var(--vine-lime);
-            color: var(--ink-obsidian);
-        }
-
-        .phone-direct-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            padding: 15px 18px;
-            background: linear-gradient(135deg, rgba(255, 253, 248, 0.95) 0%, rgba(235, 245, 206, 0.92) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-vine);
-            border-left: 5px solid var(--vine-green);
-            border-radius: 18px;
-            text-decoration: none;
-            color: var(--ink-obsidian);
-            box-shadow: var(--shadow-card);
-            transition: all 0.25s var(--spring);
-        }
-
-        .phone-direct-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--vine-green);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .phone-icon-badge {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--vine-green) 0%, var(--vine-green-deep) 100%);
-            color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 14px rgba(87, 142, 3, 0.28);
-        }
-
-        .phone-icon-badge svg {
-            width: 21px;
-            height: 21px;
-        }
-
-        .card-text-col {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            flex: 1;
             gap: 2px;
+            flex: 1;
+            min-width: 0;
+            z-index: 2;
         }
 
-        .card-title-row {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            flex-wrap: wrap;
-        }
-
-        .card-main-label {
-            font-size: 0.96rem;
-            font-weight: 800;
-            color: var(--ink-obsidian);
-            line-height: 1.2;
-        }
-
-        .card-mono-tag {
+        .hero-order-tag {
             font-family: var(--font-mono);
-            font-size: 0.62rem;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 999px;
-            background: rgba(195, 220, 21, 0.34);
-            color: var(--vine-green-deep);
-            border: 1px solid rgba(87, 142, 3, 0.35);
+            font-size: 0.68rem;
+            font-weight: 900;
+            color: #053D12;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
         }
 
-        .card-sub-label {
-            font-size: 0.76rem;
-            color: var(--ink-muted);
-            font-weight: 600;
-            line-height: 1.35;
+        .hero-order-title {
+            font-family: var(--font-pop);
+            font-size: clamp(1.22rem, 4.6vw, 1.48rem);
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            color: #000000;
         }
 
-        .arrow-chip {
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
+        .hero-order-sub {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #0A2E12;
+            margin-top: 1px;
+        }
+
+        .hero-ball-bubble {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
             border-radius: 50%;
-            background: #FFFFFF;
-            border: 1px solid var(--border-vine);
-            color: var(--vine-green-deep);
+            background: #000000;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
-            font-size: 0.95rem;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.28s var(--spring-var);
+            z-index: 2;
+        }
+
+        .btn-hero-order:hover .hero-ball-bubble {
+            transform: scale(1.15) rotate(45deg);
         }
 
         /* ==========================================================================
-           8. GRILLA BENTO ARQUITECTÓNICA CON MATICES DE COLOR
+           7. TABLERO ELECTRÓNICO / MARCADOR DE PRECIOS (PIZZA LIBRE)
            ========================================================================== */
-        .bento-grid {
+        .scoreboard-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
             width: 100%;
         }
 
-        .bento-card {
-            background: var(--ivory-surface);
+        .score-card {
+            background: var(--card-surface);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-vine);
-            border-radius: 18px;
-            padding: 16px 15px;
+            border: 2px solid var(--card-border);
+            border-radius: 22px;
+            padding: 16px 14px 18px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 10px;
-            min-height: 138px;
-            min-width: 0;
+            box-shadow: var(--card-shadow);
             text-decoration: none;
-            color: var(--ink-obsidian);
-            box-shadow: var(--shadow-card);
-            cursor: pointer;
-            transition: all 0.26s var(--spring);
+            color: var(--var-white);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s var(--spring-var);
+            min-height: 182px;
+        }
+
+        .score-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            border-color: var(--var-pitch-green);
+            box-shadow: var(--card-shadow-hover);
+            background: #181818;
+        }
+
+        .score-card.special {
+            background: linear-gradient(160deg, #181818 0%, #0F2613 100%);
+            border-color: var(--var-pitch-green);
+        }
+
+        .score-top-badge {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 900;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: rgba(0, 200, 53, 0.18);
+            color: var(--var-pitch-green);
+            border: 1px solid var(--var-pitch-green);
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+
+        .score-title {
+            font-family: var(--font-pop);
+            font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+            color: #FFFFFF;
+            line-height: 1.2;
+            margin-top: 6px;
+        }
+
+        .score-desc {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #AAAAAA;
+            line-height: 1.35;
+            margin-top: 2px;
+        }
+
+        .score-price-row {
+            margin-top: 10px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            background: #000000;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 7px 11px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .score-price-val {
+            font-family: var(--font-mono);
+            font-size: clamp(1.15rem, 4vw, 1.32rem);
+            font-weight: 900;
+            color: var(--var-yellow);
+            letter-spacing: -0.02em;
+        }
+
+        .score-btn-arrow {
+            font-size: 0.95rem;
+            font-weight: 900;
+            color: var(--var-pitch-green);
+        }
+
+        /* ==========================================================================
+           8. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR"
+           ========================================================================== */
+        .var-review-card {
+            background: linear-gradient(145deg, #090E0B 0%, #111A13 100%);
+            border: 2px solid var(--var-pitch-green);
+            border-radius: 24px;
+            padding: 18px 20px 20px;
+            color: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(0, 200, 53, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .var-review-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--var-pitch-green);
+            box-shadow: 0 0 12px var(--var-pitch-green);
+        }
+
+        .var-badge {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 900;
+            color: #000000;
+            background: var(--var-pitch-green);
+            padding: 3px 12px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .var-title {
+            font-family: var(--font-pop);
+            font-size: clamp(1.12rem, 4.2vw, 1.32rem);
+            color: #FFFFFF;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .var-desc {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #CCCCCC;
+            line-height: 1.35;
+            max-width: 92%;
+        }
+
+        .var-monitor-box {
+            background: #000000;
+            border: 2px dashed rgba(0, 200, 53, 0.4);
+            border-radius: 14px;
+            padding: 12px 24px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
 
-        .bento-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--grape-vivid);
-            box-shadow: var(--shadow-hover);
+        .var-monitor-text {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 900;
+            color: var(--var-yellow);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
 
-        /* Matices cálidos en verde vid y púrpura uva */
-        .bento-card.arch-tl {
-            border-radius: 34px 16px 16px 16px;
-            border-top: 3.5px solid var(--vine-green);
-            background: linear-gradient(155deg, rgba(255, 253, 248, 0.96) 0%, rgba(235, 246, 204, 0.93) 100%);
+        .btn-var-trigger {
+            width: 100%;
+            max-width: 340px;
+            padding: 13px 16px;
+            font-family: var(--font-pop);
+            font-size: 0.92rem;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            border-radius: 14px;
+            border: 2px solid #FFFFFF;
+            background: var(--var-red);
+            color: #FFFFFF;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #400004;
+            transition: all 0.15s var(--spring-var);
+            outline: none;
+            text-transform: uppercase;
         }
 
-        .bento-card.arch-tr {
-            border-radius: 16px 34px 16px 16px;
-            border-top: 3.5px solid var(--grape-vivid);
-            background: linear-gradient(155deg, rgba(255, 253, 248, 0.96) 0%, rgba(246, 228, 247, 0.92) 100%);
+        .btn-var-trigger:active {
+            transform: scale(0.96) translateY(2px);
+            box-shadow: 0 1px 0 #400004;
         }
 
-        .bento-card.full-span {
+        .var-result-msg {
+            width: 100%;
+            background: rgba(0, 200, 53, 0.12);
+            border: 1px solid var(--var-pitch-green);
+            border-radius: 12px;
+            padding: 9px 12px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--var-pitch-green);
+            display: none;
+        }
+
+        .var-result-msg.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           9. TARJETAS ASIMÉTRICAS DE BENEFICIOS (CUMPLE, 29, BEBIDAS)
+           ========================================================================== */
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            width: 100%;
+        }
+
+        .perk-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            padding: 15px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+            text-decoration: none;
+            color: var(--var-white);
+            transition: all 0.24s var(--spring-var);
+            min-height: 135px;
+        }
+
+        .perk-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--var-yellow);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .perk-card.full {
             grid-column: span 2;
             min-height: auto;
             flex-direction: row;
             align-items: center;
-            padding: 16px 18px;
-            border-left: 5px solid var(--grape-vivid);
-            background: linear-gradient(125deg, #FFFFFF 0%, #F7ECF9 56%, #EDF5D5 100%);
+            border-left: 4px solid var(--var-yellow);
         }
 
-        .bento-card.arch-bl {
-            border-radius: 16px 16px 16px 34px;
-            border-bottom: 3.5px solid var(--grape-vivid);
-            background: linear-gradient(160deg, rgba(255, 253, 248, 0.96) 0%, rgba(247, 232, 248, 0.92) 100%);
-        }
-
-        .bento-card.arch-br {
-            border-radius: 16px 16px 34px 16px;
-            border-bottom: 3.5px solid var(--vine-green);
-            background: linear-gradient(160deg, rgba(255, 253, 248, 0.96) 0%, rgba(238, 247, 212, 0.93) 100%);
-        }
-
-        .bento-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-        }
-
-        .bento-index {
+        .perk-icon-tag {
             font-family: var(--font-mono);
             font-size: 0.62rem;
-            font-weight: 800;
-            color: var(--grape-vivid);
-            letter-spacing: 0.08em;
+            font-weight: 900;
+            color: var(--var-yellow);
             text-transform: uppercase;
         }
 
-        .bento-card.arch-tl .bento-index,
-        .bento-card.arch-br .bento-index {
-            color: var(--vine-green-deep);
-        }
-
-        .bento-arrow {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--vine-green);
-            transition: transform 0.22s ease;
-        }
-
-        .bento-card:hover .bento-arrow {
-            transform: translate(3px, -2px);
-            color: var(--grape-vivid);
-        }
-
-        .bento-title {
-            font-family: var(--font-serif);
-            font-size: clamp(1.16rem, 4vw, 1.28rem);
-            font-weight: 700;
-            color: var(--ink-obsidian);
-            line-height: 1.12;
-        }
-
-        .bento-sub {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 0.98rem;
-            font-weight: 600;
-            color: var(--grape-vivid);
-            margin-top: 2px;
-        }
-
-        .bento-desc {
-            font-size: 0.75rem;
-            color: var(--ink-muted);
-            line-height: 1.38;
+        .perk-title {
+            font-family: var(--font-pop);
+            font-size: clamp(0.98rem, 3.4vw, 1.12rem);
+            color: #FFFFFF;
+            line-height: 1.15;
             margin-top: 4px;
-            font-weight: 500;
+        }
+
+        .perk-desc {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: #AAAAAA;
+            line-height: 1.35;
+            margin-top: 3px;
         }
 
         /* ==========================================================================
-           9. CATEGORÍAS DEL SHOWROOM
+           10. LA PIZARRA TÁCTICA: 3 SUCURSALES (MONTE GRANDE, LANÚS, ITUZAINGÓ)
            ========================================================================== */
-        .highlights-card {
-            background: linear-gradient(145deg, rgba(255, 253, 248, 0.95) 0%, rgba(242, 248, 224, 0.92) 100%);
+        .branches-container-card {
+            background: var(--card-surface);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-vine);
-            border-radius: 20px;
-            padding: 15px 16px;
-            box-shadow: var(--shadow-card);
+            border: 2px solid var(--card-border);
+            border-radius: 24px;
+            padding: 18px 16px 20px;
+            box-shadow: var(--card-shadow);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .section-head-line {
+        .branches-head-row {
             display: flex;
             align-items: baseline;
             justify-content: space-between;
@@ -810,269 +648,116 @@
             flex-wrap: wrap;
         }
 
-        .section-serif-title {
-            font-family: var(--font-serif);
-            font-size: clamp(1.22rem, 4.2vw, 1.38rem);
-            font-weight: 700;
-            color: var(--ink-obsidian);
-            line-height: 1.15;
-        }
-
-        .section-mono-sub {
-            font-family: var(--font-mono);
-            font-size: 0.64rem;
-            font-weight: 800;
-            color: var(--vine-green-deep);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .chips-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-        }
-
-        .highlight-chip {
-            font-size: 0.74rem;
-            font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(195, 220, 21, 0.25);
-            color: var(--vine-green-deep);
-            border: 1px solid rgba(87, 142, 3, 0.34);
-            text-decoration: none;
-            transition: all 0.2s var(--spring);
-        }
-
-        .highlight-chip.grape {
-            background: rgba(146, 28, 150, 0.13);
-            color: var(--grape-deep);
-            border-color: rgba(146, 28, 150, 0.28);
-        }
-
-        .highlight-chip:hover {
-            transform: translateY(-2px);
-            background: var(--grape-vivid);
+        .branches-title {
+            font-family: var(--font-pop);
+            font-size: clamp(1.12rem, 4.2vw, 1.3rem);
             color: #FFFFFF;
-            border-color: var(--grape-vivid);
+            letter-spacing: 0.02em;
         }
 
-        /* ==========================================================================
-           10. GUÍA INTERACTIVA: "CADA PALADAR TIENE SU REGIÓN"
-           ========================================================================== */
-        .terroir-card {
-            background: linear-gradient(155deg, rgba(255, 253, 248, 0.96) 0%, rgba(248, 236, 249, 0.93) 100%);
+        .branches-mono-sub {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--var-pitch-green);
+            text-transform: uppercase;
+        }
+
+        .branch-cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .branch-unit-card {
+            background: #181818;
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--var-white);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s var(--spring-var);
+        }
+
+        .branch-unit-card:hover {
+            transform: translateY(-2px) scale(1.01);
+            border-color: var(--var-pitch-green);
+            background: #202020;
+            box-shadow: 0 6px 18px rgba(0, 200, 53, 0.2);
+        }
+
+        .branch-info-col {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            flex: 1;
+            gap: 2px;
+        }
+
+        .branch-city-tag {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 900;
+            color: var(--var-yellow);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .branch-address-val {
+            font-size: 0.94rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.25;
+        }
+
+        .branch-phone-val {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--var-pitch-green);
+        }
+
+        .branch-btn-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.45);
+        }
+
+        .branch-btn-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #FFFFFF;
+        }
+
+        /* =========================================================
+           11. MONITOR VAR (VIDEO PRINCIPAL) + MOSAICO DE FOTOS
+           ========================================================= */
+        .reels-section-card {
+            background: var(--card-surface);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-grape);
-            border-radius: 22px;
-            padding: 18px 16px;
-            box-shadow: var(--shadow-card);
+            border: 2px solid var(--card-border);
+            border-radius: 24px;
+            padding: 18px 14px 20px;
+            box-shadow: var(--card-shadow);
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .terroir-quote {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.04rem;
-            font-weight: 600;
-            color: var(--grape-deep);
-        }
-
-        .region-tabs {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 7px;
-        }
-
-        .region-tab-btn {
-            background: #FFFFFF;
-            border: 1.5px solid var(--border-vine);
-            border-radius: 12px;
-            padding: 9px 6px;
-            font-family: var(--font-sans);
-            font-size: 0.76rem;
-            font-weight: 800;
-            color: var(--ink-obsidian);
-            cursor: pointer;
-            transition: all 0.22s var(--spring);
-            text-align: center;
-        }
-
-        .region-tab-btn.active {
-            background: linear-gradient(135deg, var(--vine-green) 0%, var(--vine-green-deep) 100%);
-            border-color: var(--vine-green-deep);
-            color: #FFFFFF;
-            box-shadow: 0 6px 16px rgba(87, 142, 3, 0.28);
-        }
-
-        .region-panel {
-            background: #FFFFFF;
-            border: 1px solid rgba(146, 28, 150, 0.20);
-            border-left: 4px solid var(--grape-vivid);
-            border-radius: 14px;
-            padding: 13px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .region-panel-title {
-            font-family: var(--font-serif);
-            font-size: 1.24rem;
-            font-weight: 700;
-            color: var(--ink-obsidian);
-        }
-
-        .region-panel-desc {
-            font-size: 0.84rem;
-            font-weight: 600;
-            color: var(--ink-body);
-            line-height: 1.4;
-        }
-
-        .region-panel-meta {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--grape-vivid);
-            margin-top: 2px;
-            line-height: 1.4;
-        }
-
-        /* ==========================================================================
-           11. PORTADA PANORÁMICA INTERMEDIA (vinotecapuertadelocalycuadra.webp)
-           ========================================================================== */
-        .feature-cover-card {
-            width: 100%;
-            height: clamp(215px, 50vw, 275px);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            border: 2px solid #FFFFFF;
-            outline: 1.5px solid var(--border-grape);
-            box-shadow: 0 18px 40px -10px rgba(89, 2, 92, 0.25);
-            cursor: pointer;
-            background: #23192D;
-            transition: transform 0.28s var(--spring), box-shadow 0.28s ease;
-        }
-
-        .feature-cover-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 24px 48px -8px rgba(146, 28, 150, 0.34);
-        }
-
-        .feature-cover-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 45%;
-            display: block;
-            transition: transform 0.65s var(--spring);
-        }
-
-        .feature-cover-card:hover img {
-            transform: scale(1.045);
-        }
-
-        .feature-cover-scrim {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                180deg,
-                rgba(13, 9, 19, 0.14) 0%,
-                rgba(13, 9, 19, 0.04) 40%,
-                rgba(13, 9, 19, 0.78) 100%
-            );
-            pointer-events: none;
-        }
-
-        .feature-cover-top-pill {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(251, 247, 231, 0.94);
-            backdrop-filter: blur(8px);
-            color: var(--vine-green-deep);
-            border: 1px solid rgba(87, 142, 3, 0.35);
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 5px 11px;
-            border-radius: 999px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-cover-footer {
-            position: absolute;
-            left: 14px;
-            right: 14px;
-            bottom: 14px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .feature-cover-texts {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            min-width: 0;
-        }
-
-        .feature-cover-title {
-            font-family: var(--font-serif);
-            font-size: clamp(1.24rem, 4.2vw, 1.44rem);
-            font-weight: 700;
-            color: #FFFFFF;
-            line-height: 1.1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
-        }
-
-        .feature-cover-addr {
-            font-family: var(--font-mono);
-            font-size: 0.66rem;
-            font-weight: 700;
-            color: var(--vine-lime);
-            letter-spacing: 0.04em;
-        }
-
-        .feature-cover-zoom {
-            background: rgba(146, 28, 150, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            color: #FFFFFF;
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 6px 11px;
-            border-radius: 999px;
-            white-space: nowrap;
-        }
-
-        /* ==========================================================================
-           12. GALERÍA DEL SHOWROOM
-           ========================================================================== */
-        .gallery-card {
-            background: var(--ivory-surface);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-vine);
-            border-radius: 22px;
-            padding: 16px 14px 18px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .gallery-header {
+        .reels-head-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1080,35 +765,43 @@
             gap: 8px;
         }
 
-        .gallery-nav-btns {
+        .reels-title {
+            font-family: var(--font-pop);
+            font-size: clamp(1.12rem, 4.2vw, 1.3rem);
+            color: #FFFFFF;
+            letter-spacing: 0.02em;
+        }
+
+        .reels-nav-arrows {
             display: flex;
             gap: 6px;
         }
 
-        .strip-btn {
+        .reel-arrow-btn {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: var(--grape-soft-bg);
-            border: 1px solid var(--border-grape);
-            color: var(--grape-deep);
+            background: #1E1E1E;
+            border: 1.5px solid var(--var-pitch-green);
+            color: var(--var-pitch-green);
             font-weight: 900;
             font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.18s;
         }
 
-        .strip-btn:hover {
-            background: var(--grape-vivid);
-            color: #FFFFFF;
+        .reel-arrow-btn:hover {
+            transform: scale(1.08);
+            background: var(--var-pitch-green);
+            color: #000000;
         }
 
-        .photo-strip {
+        .reels-scroll-strip {
             display: flex;
-            gap: 11px;
+            gap: 12px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             padding: 4px 2px 8px;
@@ -1116,192 +809,52 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .photo-strip::-webkit-scrollbar {
+        .reels-scroll-strip::-webkit-scrollbar {
             display: none;
         }
 
-        .photo-tile {
-            flex: 0 0 172px;
-            height: 128px;
-            border-radius: 16px;
+        .reel-box {
+            flex: 0 0 clamp(165px, 46vw, 195px);
+            height: 250px;
+            border-radius: 18px;
             overflow: hidden;
-            border: 2px solid #FFFFFF;
-            box-shadow: 0 6px 16px rgba(13, 9, 19, 0.10);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             scroll-snap-align: start;
             position: relative;
-            cursor: pointer;
-            background: #F4EFE2;
-            transition: transform 0.25s var(--spring), box-shadow 0.25s ease;
+            background: #000000;
         }
 
-        .photo-tile:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(146, 28, 150, 0.18);
-        }
-
-        .photo-tile img {
+        .reel-box video, .reel-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        .photo-tile span {
+        .reel-pill-label {
             position: absolute;
-            left: 7px;
-            right: 7px;
-            bottom: 7px;
-            background: rgba(13, 9, 19, 0.78);
+            left: 8px;
+            bottom: 8px;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(4px);
-            color: #FBF7E7;
-            font-size: 0.64rem;
-            font-weight: 700;
-            padding: 4px 8px;
+            color: var(--var-yellow);
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 3px 8px;
             border-radius: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* ==========================================================================
-           13. HORARIOS DE ATENCIÓN EN VIVO
-           ========================================================================== */
-        .hours-card {
-            background: linear-gradient(160deg, rgba(255, 253, 248, 0.95) 0%, rgba(241, 248, 220, 0.92) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-vine);
-            border-radius: 20px;
-            padding: 16px 18px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .hours-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .live-status-pill {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 999px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
             text-transform: uppercase;
-            border: 1px solid var(--border-vine);
-            background: #FFFFFF;
-            color: var(--ink-obsidian);
-        }
-
-        .hours-list {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            padding-top: 8px;
-            border-top: 1px dashed rgba(87, 142, 3, 0.28);
-        }
-
-        .hours-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            font-size: 0.84rem;
-            color: var(--ink-body);
-            flex-wrap: wrap;
-        }
-
-        .hours-row.active-slot {
-            color: var(--grape-deep);
-            font-weight: 800;
-        }
-
-        .hours-time {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--vine-green-deep);
-            font-weight: 700;
-        }
-
-        .hours-note {
-            font-family: var(--font-mono);
-            font-size: 0.66rem;
-            color: var(--ink-muted);
         }
 
         /* ==========================================================================
-           14. MAPA PUERTO IGUAZÚ
+           12. LIGHTBOX DE FOTOS
            ========================================================================== */
-        .map-card {
-            background: linear-gradient(160deg, rgba(255, 253, 248, 0.96) 0%, rgba(248, 236, 249, 0.90) 100%);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1.5px solid var(--border-grape);
-            border-radius: 22px;
-            padding: 16px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .map-address {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--ink-muted);
-            font-weight: 600;
-            line-height: 1.35;
-        }
-
-        .map-frame-wrap {
-            width: 100%;
-            height: 220px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-vine);
-            background: var(--vine-wash);
-        }
-
-        .map-frame-wrap iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
-        }
-
-        .map-cta-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(90deg, var(--vine-wash) 0%, #E7F2C7 100%);
-            border: 1px solid rgba(87, 142, 3, 0.28);
-            padding: 11px 15px;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            font-weight: 800;
-            color: var(--vine-green-deep);
-            text-decoration: none;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .map-cta-bar:hover {
-            transform: translateY(-1px);
-            background: #DFEEC0;
-        }
-
-        /* ==========================================================================
-           15. MODALES: HISTORIA & LIGHTBOX
-           ========================================================================== */
-        .modal-backdrop {
+        .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(13, 9, 19, 0.72);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 99999;
@@ -1311,163 +864,82 @@
             padding: 16px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.25s ease;
+            transition: all 0.24s ease;
         }
 
-        .modal-backdrop.active {
+        .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .story-modal-card {
-            background: var(--cream-base);
-            border: 2px solid var(--grape-vivid);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 470px;
-            max-height: 86dvh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(13, 9, 19, 0.45);
-            transform: scale(0.95);
-            transition: transform 0.25s var(--spring);
-        }
-
-        .modal-backdrop.active .story-modal-card {
-            transform: scale(1);
-        }
-
-        .modal-head {
-            padding: 15px 18px;
-            background: #FFFFFF;
-            border-bottom: 1.5px solid var(--border-grape);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .modal-head h3 {
-            font-family: var(--font-serif);
-            font-size: 1.32rem;
-            font-weight: 700;
-            color: var(--ink-obsidian);
-        }
-
-        .btn-modal-close {
-            width: 34px;
-            height: 34px;
-            min-width: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--border-grape);
-            background: var(--grape-soft-bg);
-            color: var(--grape-deep);
-            font-weight: 800;
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-modal-close:hover {
-            background: var(--grape-vivid);
-            color: #FFFFFF;
-        }
-
-        .story-scroll {
-            padding: 18px 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .story-kicker {
-            font-family: var(--font-mono);
-            font-size: 0.66rem;
-            font-weight: 800;
-            color: var(--vine-green-deep);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .story-paragraph {
-            font-size: 0.88rem;
-            line-height: 1.55;
-            color: var(--ink-body);
-        }
-
-        .story-quote-box {
-            background: #FFFFFF;
-            border: 1px solid var(--border-grape);
-            border-left: 4px solid var(--grape-vivid);
-            border-radius: 14px;
-            padding: 13px 15px;
-        }
-
-        .story-quote-text {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 1.12rem;
-            font-weight: 600;
-            color: var(--ink-obsidian);
-            line-height: 1.35;
-        }
-
-        .story-quote-author {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            font-weight: 800;
-            color: var(--grape-vivid);
-            text-transform: uppercase;
-            margin-top: 6px;
-            display: block;
-        }
-
-        .story-stat-pill {
-            background: var(--vine-wash);
-            border: 1px solid var(--border-vine);
-            border-radius: 14px;
-            padding: 12px 14px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            color: var(--vine-green-deep);
-            line-height: 1.4;
-        }
-
         .lightbox-card {
-            background: #FFFFFF;
+            background: #121212;
+            border: 2px solid var(--var-pitch-green);
             border-radius: 22px;
             max-width: 520px;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
+            transform: scale(0.96);
+            transition: transform 0.24s var(--spring-var);
         }
 
-        .lightbox-img-stage {
+        .modal-overlay.active .lightbox-card {
+            transform: scale(1);
+        }
+
+        .lightbox-topbar {
+            padding: 14px 18px;
+            background: #1E1E1E;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lightbox-topbar span {
+            font-family: var(--font-mono);
+            font-size: 0.76rem;
+            font-weight: 900;
+            color: var(--var-pitch-green);
+        }
+
+        .btn-lb-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: #333333;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-stage {
             width: 100%;
-            height: 62dvh;
-            max-height: 500px;
-            background: #140F1C;
+            height: 60dvh;
+            max-height: 480px;
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 12px;
+            padding: 10px;
         }
 
-        .lightbox-img-stage img {
+        .lightbox-stage img {
             max-width: 100%;
             max-height: 100%;
             width: auto;
             height: auto;
             object-fit: contain;
-            border-radius: 14px;
+            border-radius: 12px;
             display: block;
         }
 
@@ -1478,486 +950,361 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(251, 247, 231, 0.94);
-            border: 2px solid var(--grape-vivid);
-            color: var(--grape-deep);
+            background: rgba(18, 18, 18, 0.9);
+            border: 2px solid var(--var-pitch-green);
+            color: var(--var-pitch-green);
             font-size: 20px;
             font-weight: 900;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             z-index: 5;
-        }
-
-        .lb-arrow:hover {
-            background: var(--grape-vivid);
-            color: #FFFFFF;
         }
 
         .lb-prev { left: 12px; }
         .lb-next { right: 12px; }
 
-        .lb-caption {
+        .lightbox-caption {
             padding: 12px 16px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--ink-obsidian);
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: #FFFFFF;
             text-align: center;
-            background: var(--cream-base);
+            background: #181818;
         }
 
         /* ==========================================================================
-           16. FOOTER & RESPONSIVE
+           13. FOOTER
            ========================================================================== */
         .hub-footer {
-            margin-top: 8px;
-            padding-top: 18px;
-            border-top: 1.5px solid var(--border-vine);
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 2px dashed rgba(255,255,255,0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 6px;
+            gap: 7px;
         }
 
-        .footer-brand-badge {
+        .footer-badge {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: #FFFFFF;
-            border: 1.5px solid var(--border-grape);
+            gap: 6px;
+            background: #181818;
+            border: 1.5px solid var(--var-pitch-green);
             padding: 6px 16px;
             border-radius: 999px;
             font-family: var(--font-mono);
-            font-size: 0.70rem;
-            font-weight: 800;
-            color: var(--ink-obsidian);
-            box-shadow: 0 4px 12px rgba(89, 2, 92, 0.08);
+            font-size: 0.72rem;
+            font-weight: 900;
+            color: var(--var-pitch-green);
+            box-shadow: 0 3px 10px rgba(0, 200, 53, 0.2);
         }
 
         .footer-legal {
             font-family: var(--font-mono);
-            font-size: 0.66rem;
-            color: var(--ink-muted);
+            font-size: 0.68rem;
+            color: #888888;
             line-height: 1.45;
+            font-weight: 700;
         }
 
         @media (max-width: 360px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-card.full-span { grid-column: span 1; }
-            .bento-card { min-height: auto; }
-            .region-tabs { grid-template-columns: 1fr; }
-            .photo-tile { flex: 0 0 152px; height: 114px; }
-        }
-
-        @media (min-width: 768px) {
-            .hub-shell { max-width: 520px; gap: 16px; }
+            .scoreboard-grid { grid-template-columns: 1fr; }
+            .perks-grid { grid-template-columns: 1fr; }
+            .perk-card.full { grid-column: span 1; }
+            .reel-box { flex: 0 0 160px; height: 220px; }
         }
     </style>
 </head>
-<body class="preload" data-mood="day">
+<body class="preload">
 
-    <!-- FONDO 3D VECTORIAL DE VIÑEDOS HD CON CICLO SOLAR ORBITAL DINÁMICO -->
-    <div class="vineyard-stage" aria-hidden="true">
-        <canvas id="vineyard3dCanvas"></canvas>
-        <div class="vineyard-veil"></div>
+    <!-- ==========================================================================
+         FONDO 3D CANVAS "ESTADIO NOCTURNO & PIZZA" (60 FPS)
+         ========================================================================== -->
+    <div class="stadium-stage" aria-hidden="true">
+        <canvas id="stadium3dCanvas"></canvas>
+        <div class="stadium-veil"></div>
     </div>
 
-    <!-- MARQUESINA CONTINUA CON DATOS REALES -->
-    <div class="top-marquee-bar" aria-label="Información destacada">
+    <!-- MARQUESINA ESTADIO -->
+    <div class="top-marquee-strip" aria-label="Información VAR">
         <div class="marquee-track">
-            <span>DESDE 2002 EN PUERTO IGUAZÚ ✦ PRIMERA VINOTECA ESPECIALIZADA ✦ PRECIOS ESPECIALES POR CAJA CERRADA ✦ SHOWROOM CLIMATIZADO ✦</span>
-            <span>DESDE 2002 EN PUERTO IGUAZÚ ✦ PRIMERA VINOTECA ESPECIALIZADA ✦ PRECIOS ESPECIALES POR CAJA CERRADA ✦ SHOWROOM CLIMATIZADO ✦</span>
+            <span>⚽ PIZZA LIBRE ✦ AMIGOS, FÚTBOL Y PIZZA ✦ TODOS LOS 29: ÑOQUIS Y PIZZA LIBRE ✦ JARRAS DE CAMPARI Y FERNET ✦</span>
+            <span>⚽ PIZZA LIBRE ✦ AMIGOS, FÚTBOL Y PIZZA ✦ TODOS LOS 29: ÑOQUIS Y PIZZA LIBRE ✦ JARRAS DE CAMPARI Y FERNET ✦</span>
         </div>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- CONTENEDOR PRINCIPAL MOBILE-FIRST -->
     <main class="hub-shell">
 
-        <!-- 1. BARRA SUPERIOR: ATMÓSFERA + MÚSICA DESDE /music -->
-        <nav class="utility-dock" aria-label="Controles de ambiente y música">
-            <button type="button" class="pill-control" id="moodToggleBtn" onclick="toggleVineyardMood()" title="Cambiar luz del viñedo">
-                <span id="moodIcon">🍇</span>
-                <span id="moodLabel">Día</span>
-            </button>
-
-            <div class="music-cluster">
-                <div class="pill-control" id="musicSwitch" onclick="toggleMusic()" role="button" tabindex="0" aria-label="Reproducir música">
-                    <span id="musicLabel">🔈 Música</span>
-                    <div class="toggle-track"><div class="toggle-knob"></div></div>
-                </div>
-                <button type="button" class="btn-skip-track" onclick="skipMusic()" title="Siguiente pista aleatoria" aria-label="Siguiente pista aleatoria">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M5.5 18V6l8.5 6-8.5 6zM16 6h2v12h-2z"/>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-
-        <!-- 2. CABECERA MONUMENTO: MONEDA LIBRE ARRIBA SIN RECUADRO DETRÁS -->
-        <header class="hero-header">
-            <div class="coin-stage">
-                <div class="coin-medallion" onclick="triggerHaptic()">
-                    <img
-                        src="./LOGO-La%20Vinoteca%20de%20Don%20Jorge.webp"
-                        alt="La Vinoteca de Don Jorge"
-                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/LOGO-La%20Vinoteca%20de%20Don%20Jorge.webp';}"
-                    >
-                </div>
+        <!-- 1. CABECERA TIPO PANTALLA OFICIAL VAR -->
+        <header class="brand-hero">
+            <div class="var-screen-badge">
+                <span class="live-dot"></span>
+                <span>PANTALLA OFICIAL · VAR</span>
             </div>
 
-            <h1 class="brand-title">La Vinoteca de Don Jorge</h1>
-            <span class="brand-category-tag">Tienda de vinos, cervezas y licores</span>
+            <h1 class="var-logo-title">VAR</h1>
 
-            <div class="brand-bio-card">
-                <p class="brand-bio-quote">
-                    “La Vinoteca de Don Jorge, la casa más completa para el aficionado al vino en las 3 Fronteras.”
-                </p>
+            <div class="badges-capsules-row">
+                <span class="badge-chip green">⚽ Pizza Libre</span>
+                <span class="badge-chip">Abrimos Todos Los Días</span>
             </div>
 
-            <!-- MÉTRICAS REALES -->
-            <div class="reputation-strip">
-                <a href="https://maps.google.com/?q=La+Vinoteca+de+Don+Jorge,+Av.+Rep%C3%BAblica+Argentina+188,+Puerto+Iguaz%C3%BA" target="_blank" rel="noopener noreferrer" class="rep-badge">
-                    <span class="rep-star">★</span>
-                    <span>4.5 Google · 1.446 opiniones</span>
-                </a>
-                <a href="https://www.tripadvisor.com.ar/Attraction_Review-g312806-d6602991-Reviews-La_Vinoteca_de_Don_Jorge-Puerto_Iguazu_Province_of_Misiones_Litoral.html" target="_blank" rel="noopener noreferrer" class="rep-badge">
-                    <span class="rep-star">★</span>
-                    <span>4.2 Tripadvisor · N.º 1 en Iguazú</span>
-                </a>
-            </div>
-
-            <!-- ACCIONES RÁPIDAS CIRCULARES -->
-            <div class="quick-social-row">
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="circle-action-btn" aria-label="Instagram" onclick="triggerHaptic()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                    </svg>
-                </a>
-                <a href="tel:+543757424283" class="circle-action-btn" aria-label="Llamar al +54 3757-424283" onclick="triggerHaptic()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
-                </a>
-                <a href="https://www.vinotecadonjorge.com.ar" target="_blank" rel="noopener noreferrer" class="circle-action-btn" aria-label="Sitio Web Oficial" onclick="triggerHaptic()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                    </svg>
-                </a>
-                <a href="https://maps.google.com/?q=La+Vinoteca+de+Don+Jorge,+Av.+Rep%C3%BAblica+Argentina+188,+Puerto+Iguaz%C3%BA" target="_blank" rel="noopener noreferrer" class="circle-action-btn" aria-label="Ubicación en Google Maps" onclick="triggerHaptic()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                    </svg>
-                </a>
+            <div class="motto-banner-box">
+                <div class="motto-lead">“No importa de qué cuadro seas, acá todos somos hinchas de la pizza”</div>
+                <div class="motto-sub">Acá comés todo lo que quieras · Que no te falte una porción ni te pierdas un gol.</div>
             </div>
         </header>
 
-        <!-- 3. CTA HERO PRINCIPAL + TELÉFONO DIRECTO -->
-        <a href="https://www.vinotecadonjorge.com.ar" target="_blank" rel="noopener noreferrer" class="hero-cta-primary" onclick="triggerHaptic()">
-            <div class="hero-cta-info">
-                <span class="hero-eyebrow">Sitio Web Oficial</span>
-                <h2 class="hero-headline">vinotecadonjorge.com.ar</h2>
-                <span class="hero-sub">Vinos, cervezas, licores y delicatessen · Puerto Iguazú</span>
+        <!-- 2. BOTÓN HERO: WHATSAPP GENERAL -->
+        <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="btn-hero-order" onclick="triggerHaptic()">
+            <div class="hero-order-meta">
+                <span class="hero-order-tag">★ Reservas &amp; Consultas</span>
+                <h2 class="hero-order-title">Comunícate Acá</h2>
+                <span class="hero-order-sub">¡Alentá a tu equipo y comé toda la pizza que quieras!</span>
             </div>
-            <div class="hero-circle-arrow">↗</div>
+            <div class="hero-ball-bubble">⚽</div>
         </a>
 
-        <a href="tel:+543757424283" class="phone-direct-card" onclick="triggerHaptic()">
-            <div class="phone-icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-            </div>
-            <div class="card-text-col">
-                <div class="card-title-row">
-                    <span class="card-main-label">+54 3757-424283</span>
-                    <span class="card-mono-tag">Teléfono</span>
-                </div>
-                <span class="card-sub-label">Atendemos con horario extendido · Av. Rep. Argentina 188</span>
-            </div>
-            <span class="arrow-chip">↗</span>
-        </a>
+        <!-- 3. TABLERO ELECTRÓNICO / MARCADOR DE PRECIOS -->
+        <section class="scoreboard-grid">
 
-        <!-- 4. GRILLA BENTO: SHOWROOM, HISTORIA Y CANALES -->
-        <section class="bento-grid">
-
-            <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="bento-card arch-tl" onclick="triggerHaptic()">
-                <div class="bento-top">
-                    <span class="bento-index">01 / SHOWROOM</span>
-                    <span class="bento-arrow">↗</span>
-                </div>
+            <!-- LUN A MIÉ -->
+            <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="score-card" onclick="triggerHaptic()">
                 <div>
-                    <h3 class="bento-title">Caja Cerrada</h3>
-                    <span class="bento-sub">Precios especiales</span>
-                    <p class="bento-desc">Espacio climatizado con exclusividades en vino, licor, cerveza y delicatessen.</p>
+                    <span class="score-top-badge">Lunes a Miércoles</span>
+                    <h3 class="score-title">Pizza Libre</h3>
+                    <p class="score-desc">Comés todo lo que quieras</p>
+                </div>
+                <div class="score-price-row">
+                    <span class="score-price-val">$12.000</span>
+                    <span class="score-btn-arrow">Reservar ↗</span>
                 </div>
             </a>
 
-            <div class="bento-card arch-tr" onclick="openStoryModal(); triggerHaptic();" role="button" tabindex="0">
-                <div class="bento-top">
-                    <span class="bento-index">02 / DESDE 2002</span>
-                    <span class="bento-arrow">↗</span>
-                </div>
+            <!-- JUE A DOM -->
+            <a href="https://wa.me/message/54911..." target="_blank" rel="noopener noreferrer" class="score-card special" onclick="triggerHaptic()">
                 <div>
-                    <h3 class="bento-title">Nuestra Historia</h3>
-                    <span class="bento-sub">De Mendoza a la Frontera</span>
-                    <p class="bento-desc">Primera vinoteca especializada de Puerto Iguazú.</p>
+                    <span class="score-top-badge" style="background:rgba(0,200,53,0.25); color:#00FF38;">Jueves a Domingo</span>
+                    <h3 class="score-title">Pizza Libre</h3>
+                    <p class="score-desc">Fines de semana a full</p>
                 </div>
+                <div class="score-price-row">
+                    <span class="score-price-val">$16.000</span>
+                    <span class="score-btn-arrow">Reservar ↗</span>
+                </div>
+            </a>
+
+        </section>
+
+        <!-- 4. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR" -->
+        <article class="var-review-card">
+            <span class="var-badge">Simulador Oficial</span>
+            <h3 class="var-title">Revisión del VAR</h3>
+            <p class="var-desc">Pedí la revisión de la jugada en la pantalla central. ¿Fue golazo o posición adelantada?</p>
+
+            <div class="var-monitor-box" id="varScreenBox">
+                <span class="var-monitor-text" id="varScreenText">[ SISTEMA VAR LISTO ]</span>
             </div>
 
-            <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="bento-card full-span" onclick="triggerHaptic()">
+            <button type="button" class="btn-var-trigger" id="btnVarAction" onclick="triggerVarReview()">
+                Pedir Revisión VAR 🖥️
+            </button>
+
+            <div class="var-result-msg" id="varFeedbackMsg"></div>
+        </article>
+
+        <!-- 5. TARJETAS ASIMÉTRICAS DE BENEFICIOS (CUMPLE, 29, BEBIDAS) -->
+        <section class="perks-grid">
+
+            <div class="perk-card full">
                 <div style="flex:1; min-width:0;">
-                    <div class="bento-top" style="margin-bottom:2px;">
-                        <span class="bento-index">INSTAGRAM OFICIAL · 27,4 MIL SEGUIDORES</span>
+                    <span class="perk-icon-tag">★ Beneficio Cumpleaños</span>
+                    <h3 class="perk-title">¡El cumpleañero no paga!</h3>
+                    <p class="perk-desc">Si venís a festejar tu cumple con amigos, tu porción corre por cuenta de VAR.</p>
+                </div>
+            </div>
+
+            <div class="perk-card">
+                <div>
+                    <span class="perk-icon-tag">📅 Tradición</span>
+                    <h3 class="perk-title">Todos los 29</h3>
+                    <p class="perk-desc">Tenemos ñoquis y pizza libre para arrancar el mes.</p>
+                </div>
+            </div>
+
+            <div class="perk-card">
+                <div>
+                    <span class="perk-icon-tag">🍻 Tercer Tiempo</span>
+                    <h3 class="perk-title">Jarras &amp; Tragos</h3>
+                    <p class="perk-desc">Disfrutá jarras de Campari y Fernet bien heladas.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 6. LA PIZARRA TÁCTICA: 3 SUCURSALES (MONTE GRANDE, LANÚS, ITUZAINGÓ) -->
+        <section class="branches-container-card">
+            <div class="branches-head-row">
+                <h3 class="branches-title">Estadios (Sucursales)</h3>
+                <span class="branches-mono-sub">3 sedes oficiales</span>
+            </div>
+
+            <div class="branch-cards-stack">
+
+                <!-- 1. MONTE GRANDE -->
+                <a href="https://wa.me/5491131916972?text=%C2%A1Hola%20VAR%20Monte%20Grande!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
+                    <div class="branch-info-col">
+                        <span class="branch-city-tag">Monte Grande</span>
+                        <span class="branch-address-val">Dorrego 227</span>
+                        <span class="branch-phone-val">📲 11 3191-6972</span>
                     </div>
-                    <h3 class="bento-title">@lavinotecadedonjorge</h3>
-                    <p class="bento-desc">5.385 publicaciones · Degustaciones, capacitaciones y etiquetas</p>
-                </div>
-                <span class="bento-arrow" style="font-size:1.25rem;">↗</span>
-            </a>
+                    <div class="branch-btn-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
 
-            <a href="https://www.tripadvisor.com.ar/Attraction_Review-g312806-d6602991-Reviews-La_Vinoteca_de_Don_Jorge-Puerto_Iguazu_Province_of_Misiones_Litoral.html" target="_blank" rel="noopener noreferrer" class="bento-card arch-bl" onclick="triggerHaptic()">
-                <div class="bento-top">
-                    <span class="bento-index">03 / RESEÑAS</span>
-                    <span class="bento-arrow">↗</span>
-                </div>
-                <div>
-                    <h3 class="bento-title">Tripadvisor</h3>
-                    <span class="bento-sub">N.º 1 en Iguazú</span>
-                    <p class="bento-desc">231 opiniones y 51 fotos en Comida y bebida.</p>
-                </div>
-            </a>
+                <!-- 2. LANÚS -->
+                <a href="https://wa.me/5491122573848?text=%C2%A1Hola%20VAR%20Lan%C3%ús!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
+                    <div class="branch-info-col">
+                        <span class="branch-city-tag">Lanús</span>
+                        <span class="branch-address-val">Del Valle Iberlucea 2911</span>
+                        <span class="branch-phone-val">📲 11 2257-3848</span>
+                    </div>
+                    <div class="branch-btn-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
 
-            <a href="https://maps.google.com/?q=La+Vinoteca+de+Don+Jorge,+Av.+Rep%C3%BAblica+Argentina+188,+Puerto+Iguaz%C3%BA" target="_blank" rel="noopener noreferrer" class="bento-card arch-br" onclick="triggerHaptic()">
-                <div class="bento-top">
-                    <span class="bento-index">04 / GPS</span>
-                    <span class="bento-arrow">↗</span>
-                </div>
-                <div>
-                    <h3 class="bento-title">Cómo Llegar</h3>
-                    <span class="bento-sub">Puerto Iguazú</span>
-                    <p class="bento-desc">Av. República Argentina 188, N3370 Misiones.</p>
-                </div>
-            </a>
+                <!-- 3. ITUZAINGÓ -->
+                <a href="https://wa.me/5491173491939?text=%C2%A1Hola%20VAR%20Ituzaing%C3%B3!%20%F0%9F%8C%AF%20Quiero%20hacer%20una%20reserva." target="_blank" rel="noopener noreferrer" class="branch-unit-card" onclick="triggerHaptic()">
+                    <div class="branch-info-col">
+                        <span class="branch-city-tag">Ituzaingó</span>
+                        <span class="branch-address-val">Eduardo Muñiz 110</span>
+                        <span class="branch-phone-val">📲 11 7349-1939</span>
+                    </div>
+                    <div class="branch-btn-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </div>
+                </a>
 
-        </section>
-
-        <!-- 5. CATEGORÍAS REALES DEL SHOWROOM -->
-        <section class="highlights-card">
-            <div class="section-head-line">
-                <h3 class="section-serif-title">Propuestas del Showroom</h3>
-                <span class="section-mono-sub">En Av. Rep. Argentina 188</span>
-            </div>
-            <div class="chips-wrap">
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip">Por unidad</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip grape">Kits</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip">Licores</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip grape">Promociones</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip">Espumantes</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip grape">Degustaciones</a>
-                <a href="https://www.instagram.com/lavinotecadedonjorge/" target="_blank" rel="noopener noreferrer" class="highlight-chip">Delicatessen</a>
             </div>
         </section>
 
-        <!-- 6. GUÍA INTERACTIVA: "CADA PALADAR TIENE SU REGIÓN" -->
-        <section class="terroir-card">
-            <div>
-                <div class="section-head-line">
-                    <h3 class="section-serif-title">Cada paladar tiene su región</h3>
-                    <span class="section-mono-sub">Curaduría</span>
+        <!-- 7. MONITOR VAR (VIDEO PRINCIPAL) + MOSAICO DE FOTOS -->
+        <section class="reels-section-card">
+            <div class="reels-head-row">
+                <h3 class="reels-title">En Acción (VAR Cam)</h3>
+                <div class="reels-nav-arrows">
+                    <button type="button" class="reel-arrow-btn" onclick="scrollReels(-1)" aria-label="Anterior">‹</button>
+                    <button type="button" class="reel-arrow-btn" onclick="scrollReels(1)" aria-label="Siguiente">›</button>
                 </div>
-                <p class="terroir-quote">“Primero tenés que conocer tu paladar” — Laureano Giovanini</p>
             </div>
 
-            <div class="region-tabs" role="tablist" aria-label="Regiones vitivinícolas">
-                <button type="button" class="region-tab-btn active" data-region="patagonia" onclick="selectRegion('patagonia')">Patagonia</button>
-                <button type="button" class="region-tab-btn" data-region="mendoza" onclick="selectRegion('mendoza')">Mendoza</button>
-                <button type="button" class="region-tab-btn" data-region="salta" onclick="selectRegion('salta')">Salta</button>
-            </div>
+            <div class="reels-scroll-strip" id="reelsStrip">
 
-            <div class="region-panel" id="regionPanel">
-                <span class="region-panel-title" id="regTitle">Patagonia</span>
-                <p class="region-panel-desc" id="regDesc">Para quienes prefieren vinos más suaves.</p>
-                <span class="region-panel-meta" id="regMeta">En nuestra casa: Bodega Ribera del Cuarzo · Valle Azul, Río Negro (Araucana Azul).</span>
+                <!-- VIDEO PRINCIPAL -->
+                <div class="reel-box">
+                    <video
+                        src="./videopizza.mp4"
+                        autoplay loop muted playsinline webkit-playsinline
+                        disablepictureinpicture disableremoteplayback
+                        preload="auto"
+                    ></video>
+                    <span class="reel-pill-label">VAR CAM · LIVE</span>
+                </div>
+
+                <!-- FOTO 1: COMENSALES -->
+                <div class="reel-box" onclick="openLightbox(0)" role="button" tabindex="0">
+                    <img
+                        src="./comensalesenlapizzeria.webp"
+                        alt="Comensales disfrutando en la pizzería"
+                        loading="lazy"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/comensalesenlapizzeria.webp';}"
+                    >
+                    <span class="reel-pill-label">Ambiente</span>
+                </div>
+
+                <!-- FOTO 2: PIZZA PRIMER PLANO -->
+                <div class="reel-box" onclick="openLightbox(1)" role="button" tabindex="0">
+                    <img
+                        src="./pizzaprimerplano.webp"
+                        alt="Pizza primer plano"
+                        loading="lazy"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/pizzaprimerplano.webp';}"
+                    >
+                    <span class="reel-pill-label">Especiales</span>
+                </div>
+
+                <!-- FOTO 3: SIRVIENDO PORCIÓN -->
+                <div class="reel-box" onclick="openLightbox(2)" role="button" tabindex="0">
+                    <img
+                        src="./sirviendounaporciondepizza.webp"
+                        alt="Sirviendo porción de pizza"
+                        loading="lazy"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/sirviendounaporciondepizza.webp';}"
+                    >
+                    <span class="reel-pill-label">Pizza Libre</span>
+                </div>
+
+                <!-- FOTO 4: TRAGO -->
+                <div class="reel-box" onclick="openLightbox(3)" role="button" tabindex="0">
+                    <img
+                        src="./sirviendountrago.webp"
+                        alt="Sirviendo trago o jarra"
+                        loading="lazy"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/sirviendountrago.webp';}"
+                    >
+                    <span class="reel-pill-label">Tercer Tiempo</span>
+                </div>
+
             </div>
         </section>
 
-        <!-- 7. PORTADA GRANDE INTERMEDIA: FRENTE DEL LOCAL (vinotecapuertadelocalycuadra.webp) -->
-        <article class="feature-cover-card" onclick="openLightbox(0)" role="button" tabindex="0" aria-label="Ver frente de La Vinoteca de Don Jorge en grande">
-            <img
-                src="./vinotecapuertadelocalycuadra.webp"
-                alt="Frente de La Vinoteca de Don Jorge en Av. República Argentina 188, Puerto Iguazú"
-                onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinotecapuertadelocalycuadra.webp';}"
-            >
-            <div class="feature-cover-scrim"></div>
-            <span class="feature-cover-top-pill">Puerto Iguazú · 3 Fronteras</span>
-            <div class="feature-cover-footer">
-                <div class="feature-cover-texts">
-                    <h3 class="feature-cover-title">La Vinoteca de Don Jorge</h3>
-                    <span class="feature-cover-addr">Av. República Argentina 188 · Desde 2002</span>
-                </div>
-                <span class="feature-cover-zoom">Ver foto ↗</span>
-            </div>
-        </article>
-
-        <!-- 8. GALERÍA DEL SHOWROOM & CAVA -->
-        <section class="gallery-card">
-            <div class="gallery-header">
-                <div>
-                    <h3 class="section-serif-title">Nuestro Showroom &amp; Cava</h3>
-                    <span class="section-mono-sub">Interior, cava y etiquetas · Toca para ampliar</span>
-                </div>
-                <div class="gallery-nav-btns">
-                    <button type="button" class="strip-btn" onclick="scrollGallery(-1)" aria-label="Anterior">‹</button>
-                    <button type="button" class="strip-btn" onclick="scrollGallery(1)" aria-label="Siguiente">›</button>
-                </div>
-            </div>
-
-            <div class="photo-strip" id="photoStrip">
-                <div class="photo-tile" onclick="openLightbox(1)">
-                    <img src="./vinotecapordentro.webp" alt="Interior del showroom climatizado" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinotecapordentro.webp';}">
-                    <span>Showroom climatizado</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(2)">
-                    <img src="./vinotecapordentro2.webp" alt="Salón de La Vinoteca de Don Jorge" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinotecapordentro2.webp';}">
-                    <span>Salón Don Jorge</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(3)">
-                    <img src="./vinotecapordentro3.webp" alt="Cava de ladrillo visto y botellas" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinotecapordentro3.webp';}">
-                    <span>La Cava</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(4)">
-                    <img src="./estanteriasvinos2.webp" alt="Estanterías organizadas por etiqueta" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/estanteriasvinos2.webp';}">
-                    <span>Estanterías</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(5)">
-                    <img src="./vinosestanterias.webp" alt="Selección de vinos argentinos" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinosestanterias.webp';}">
-                    <span>Selección de Bodegas</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(6)">
-                    <img src="./vinosprimerplano.webp" alt="Etiquetas de vinos argentinos" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinosprimerplano.webp';}">
-                    <span>Etiquetas</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(7)">
-                    <img src="./chandonplanomedio.webp" alt="Espumantes y bodegas" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/chandonplanomedio.webp';}">
-                    <span>Espumantes</span>
-                </div>
-                <div class="photo-tile" onclick="openLightbox(8)">
-                    <img src="./vinoyjamon.webp" alt="Vinos y delicatessen" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/vinoyjamon.webp';}">
-                    <span>Vinos y Delicatessen</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. HORARIOS DE ATENCIÓN EN VIVO -->
-        <article class="hours-card">
-            <div class="hours-head">
-                <h3 class="section-serif-title">Horario de Atención</h3>
-                <span class="live-status-pill" id="liveStatusPill">Verificando...</span>
-            </div>
-            <div class="hours-list">
-                <div class="hours-row" id="slot-mon-sat">
-                    <span>Lunes a sábado</span>
-                    <span class="hours-time">08:30 a 22:00h</span>
-                </div>
-                <div class="hours-row" id="slot-sun">
-                    <span>Domingo</span>
-                    <span class="hours-time">09:00 a 13:00h · 16:00 a 20:00h</span>
-                </div>
-                <span class="hours-note">*Hora de Argentina · En días feriados el horario puede variar.</span>
-            </div>
-        </article>
-
-        <!-- 10. MAPA UBICACIÓN EN PUERTO IGUAZÚ -->
-        <section class="map-card">
-            <div class="section-head-line">
-                <h3 class="section-serif-title">Puerto Iguazú · 3 Fronteras</h3>
-                <span class="section-mono-sub">N3370 Misiones</span>
-            </div>
-            <p class="map-address">Av. República Argentina 188 · Puerto Iguazú, Misiones, Argentina</p>
-            <div class="map-frame-wrap">
-                <iframe
-                    title="Mapa de La Vinoteca de Don Jorge"
-                    src="https://maps.google.com/maps?q=La+Vinoteca+de+Don+Jorge,+Av.+Rep%C3%BAblica+Argentina+188,+Puerto+Iguaz%C3%BA&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                    loading="lazy"
-                    allowfullscreen=""
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-            <a href="https://maps.google.com/?q=La+Vinoteca+de+Don+Jorge,+Av.+Rep%C3%BAblica+Argentina+188,+Puerto+Iguaz%C3%BA" target="_blank" rel="noopener noreferrer" class="map-cta-bar" onclick="triggerHaptic()">
-                <span>Abrir ubicación en Google Maps</span>
-                <span>Cómo llegar ↗</span>
-            </a>
-        </section>
-
-        <!-- 11. FOOTER -->
+        <!-- 8. FOOTER -->
         <footer class="hub-footer">
-            <div class="footer-brand-badge">
-                <span>LA VINOTECA DE DON JORGE</span>
-                <span style="color: var(--vine-green);">✦</span>
-                <span>DESDE 2002</span>
+            <div class="footer-badge">
+                <span>VAR PIZZA LIBRE®</span>
+                <span style="color:var(--var-pitch-green);">✦</span>
+                <span>FÚTBOL Y PIZZA</span>
             </div>
             <p class="footer-legal">
-                Av. República Argentina 188 · N3370 Puerto Iguazú, Misiones<br>
-                Tel. +54 3757-424283 · @lavinotecadedonjorge
+                Monte Grande · Lanús · Ituzaingó<br>
+                “Alentá a tu equipo y comé toda la pizza que quieras” · © 2026 VAR
             </p>
         </footer>
 
     </main>
 
-    <!-- MODAL EDITORIAL: NUESTRA HISTORIA (DESDE 2002) -->
-    <div class="modal-backdrop" id="storyModal" onclick="closeStoryModal(event)">
-        <div class="story-modal-card" onclick="event.stopPropagation()">
-            <div class="modal-head">
-                <h3>De Mendoza a la Frontera · Desde 2002</h3>
-                <button type="button" class="btn-modal-close" onclick="closeStoryModal(event)" aria-label="Cerrar">✕</button>
-            </div>
-            <div class="story-scroll">
-                <span class="story-kicker">El origen · 2002 · Reportaje 100 Fronteiras</span>
-                <p class="story-paragraph">
-                    En 2002, cuando el vino en Puerto Iguazú todavía se encontraba en ferias sin estructura, <strong>Jorge</strong> (<em>in memoriam</em>) y <strong>María Luisa Salazar</strong> fueron hasta Mendoza para conocer de cerca aquel universo y abrieron la <strong>primera vinoteca especializada de la ciudad</strong>. Poco después, su hijo <strong>Laureano Giovanini</strong> se sumó a la operación.
-                </p>
-
-                <div class="story-quote-box">
-                    <p class="story-quote-text">
-                        “Fue un mundo enorme que se abrió para nosotros. Sigo diciendo que fuimos la primera, y la mejor, vinoteca de Puerto Iguazú. El espacio climatizado, las botellas bien organizadas y la atención atenta cambiaron el estándar de la ciudad.”
-                    </p>
-                    <span class="story-quote-author">— María Luisa Salazar · Cofundadora</span>
-                </div>
-
-                <div class="story-stat-pill">
-                    De pionera en 2002 a nombre consolidado en la frontera: hoy, el 98% de los clientes de La Vinoteca de Don Jorge son brasileños, y muchos salen sabiendo más sobre su propio paladar que cuando entraron.
-                </div>
-
-                <p class="story-paragraph">
-                    “El Malbec sigue protagonista, pero la elección del vino comienza por el gusto de quien bebe.” — <strong>Laureano Giovanini</strong>.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- LIGHTBOX FULLSCREEN -->
-    <div class="modal-backdrop" id="galleryLightbox" onclick="closeLightbox(event)">
+    <!-- ==========================================================================
+         LIGHTBOX FULLSCREEN
+         ========================================================================== -->
+    <div class="modal-overlay" id="galleryLightbox" onclick="closeLightbox(event)">
         <div class="lightbox-card" onclick="event.stopPropagation()">
-            <div class="modal-head">
-                <span style="font-family:var(--font-mono); font-size:0.78rem; font-weight:800; color:var(--grape-vivid);" id="lbCounter">1 / 9</span>
-                <button type="button" class="btn-modal-close" onclick="closeLightbox(event)" aria-label="Cerrar">✕</button>
+            <div class="lightbox-topbar">
+                <span id="lbCounter">1 / 4</span>
+                <button type="button" class="btn-lb-close" onclick="closeLightbox(event)" aria-label="Cerrar">✕</button>
             </div>
-            <div class="lightbox-img-stage" id="lbTouchArea">
-                <button type="button" class="lb-arrow lb-prev" onclick="navLightbox(-1)" aria-label="Foto anterior">‹</button>
-                <img id="lbMainImg" src="" alt="La Vinoteca de Don Jorge">
-                <button type="button" class="lb-arrow lb-next" onclick="navLightbox(1)" aria-label="Foto siguiente">›</button>
+            <div class="lightbox-stage" id="lbTouchArea">
+                <button type="button" class="lb-arrow lb-prev" onclick="navLightbox(-1)" aria-label="Anterior">‹</button>
+                <img id="lbMainImg" src="" alt="VAR Pizza Libre">
+                <button type="button" class="lb-arrow lb-next" onclick="navLightbox(1)" aria-label="Siguiente">›</button>
             </div>
-            <div class="lb-caption" id="lbCaption">Av. República Argentina 188</div>
+            <div class="lightbox-caption" id="lbCaption">VAR Pizza Libre</div>
         </div>
     </div>
 
     <!-- ==========================================================================
          MOTORES JAVASCRIPT:
-         1. MOTOR 3D VECTORIAL HD DE VIÑEDOS CON CICLO SOLAR DINÁMICO ORBITAL
-         2. MÚSICA DESDE /music DE GITHUB
-         3. GUÍA, LIGHTBOX, MODAL HISTORIA Y ESTADO EN VIVO
+         1. MOTOR 3D CANVAS "ESTADIO NOCTURNO & PIZZA" (PELOTAS Y REBANADAS EN ÓRBITA)
+         2. MINI-JUEGO "REVISIÓN DEL VAR" (INTERACTIVO)
+         3. REPRODUCTOR DE VIDEOS SIN FREEZE CON INTERSECTION OBSERVER PASIVO
+         4. LIGHTBOX & HÁPTICA
          ========================================================================== -->
     <script>
         function triggerHaptic() {
@@ -1967,10 +1314,10 @@
         }
 
         /* =========================================================
-           1. MOTOR 3D VECTORIAL HD DE VIÑEDOS (ÓRBITA SOLAR ORGÁNICA)
+           1. MOTOR 3D CANVAS "ESTADIO NOCTURNO & PIZZA"
            ========================================================= */
-        const Vineyard3D = (() => {
-            const canvas = document.getElementById('vineyard3dCanvas');
+        const StadiumWorld3D = (() => {
+            const canvas = document.getElementById('stadium3dCanvas');
             const ctx = canvas.getContext('2d');
 
             let W = 0, H = 0, dpr = 1;
@@ -1978,14 +1325,70 @@
             let tClock = 0, lastTs = 0, accum = 0;
             let headX = 0, headY = 0, targetHeadX = 0, targetHeadY = 0;
 
-            // Progreso orbital del sol (0 a 1 = Día completo, manejado por interpolación suave)
-            let sunProgress = 0.15; // 0.15 = Día, 0.65 = Atardecer / Noche
-            let targetSunProgress = 0.15;
+            const Z_MAX = 120;
+            const Z_MIN = 4.0;
 
-            const VINE_LANES = [-6.4, -4.7, -3.1, -1.65, 1.65, 3.1, 4.7, 6.4];
-            const Z_MAX = 135;
-            const Z_MIN = 3.8;
-            const ROW_STEP = 8.5;
+            // Sprites en memoria (Estadio, Pelotas de fútbol, Rebanadas de pizza, Pepperonis)
+            let spriteSoccerBall = null;
+            let spritePizzaSlice = null;
+            let spritePepperoni = null;
+
+            function createOffscreen(w, h, drawFn) {
+                const c = document.createElement('canvas');
+                c.width = w; c.height = h;
+                const cctx = c.getContext('2d');
+                drawFn(cctx, w, h);
+                return c;
+            }
+
+            function buildStadiumSprites() {
+                // 1. Pelota de fútbol clásica
+                spriteSoccerBall = createOffscreen(80, 80, (g, w, h) => {
+                    const cx = w * 0.5, cy = h * 0.5, r = 32;
+                    g.fillStyle = 'rgba(0, 200, 53, 0.25)';
+                    g.beginPath(); g.ellipse(cx, cy + 10, r, r * 0.5, 0, 0, Math.PI * 2); g.fill();
+                    g.fillStyle = '#FFFFFF';
+                    g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fill();
+                    g.strokeStyle = '#000000'; g.lineWidth = 3; g.stroke();
+                    // Pentágono central negro de la pelota
+                    g.fillStyle = '#000000';
+                    g.beginPath();
+                    for (let p = 0; p < 5; p++) {
+                        const ang = (p * Math.PI * 2) / 5 - Math.PI * 0.5;
+                        const px = cx + Math.cos(ang) * 11;
+                        const py = cy + Math.sin(ang) * 11;
+                        if (p === 0) g.moveTo(px, py); else g.lineTo(px, py);
+                    }
+                    g.closePath(); g.fill();
+                });
+
+                // 2. Rebanada de pizza táctica
+                spritePizzaSlice = createOffscreen(180, 220, (g, w, h) => {
+                    const cx = w * 0.5, cy = h * 0.5;
+                    g.translate(cx, cy);
+                    g.fillStyle = 'rgba(0,0,0,0.4)';
+                    g.beginPath(); g.moveTo(0, 80); g.lineTo(-68, -60); g.lineTo(68, -60); g.closePath(); g.fill();
+
+                    g.fillStyle = '#D9822B'; // Masa
+                    g.beginPath(); g.moveTo(0, 72); g.lineTo(-62, -54); g.quadraticCurveTo(0, -74, 62, -54); g.closePath(); g.fill();
+                    g.fillStyle = '#FE0109'; // Salsa
+                    g.beginPath(); g.moveTo(0, 66); g.lineTo(-54, -48); g.quadraticCurveTo(0, -64, 54, -48); g.closePath(); g.fill();
+                    g.fillStyle = '#FEF403'; // Queso
+                    g.beginPath(); g.moveTo(0, 70); g.lineTo(-50, -44); g.quadraticCurveTo(0, -58, 50, -44); g.closePath(); g.fill();
+                    // Pepperoni
+                    g.fillStyle = '#7D0002'; g.beginPath(); g.arc(-15, -10, 14, 0, Math.PI*2); g.fill();
+                    g.fillStyle = '#FE0109'; g.beginPath(); g.arc(-15, -11, 12, 0, Math.PI*2); g.fill();
+                });
+            }
+
+            const ENTITIES = [
+                { type: 'ball', wx: -3.2, wy: 1.2, baseZ: 15, scale: 0.9, rotSpeed: 0.5 },
+                { type: 'ball', wx: 3.5, wy: 1.6, baseZ: 38, scale: 1.1, rotSpeed: -0.4 },
+                { type: 'ball', wx: -2.1, wy: 2.1, baseZ: 72, scale: 1.35, rotSpeed: 0.6 },
+                { type: 'slice', wx: 2.8, wy: 0.9, baseZ: 25, scale: 1.0, rotSpeed: 0.3 },
+                { type: 'slice', wx: -2.5, wy: 1.3, baseZ: 55, scale: 1.2, rotSpeed: -0.25 },
+                { type: 'slice', wx: 1.5, wy: 1.8, baseZ: 90, scale: 1.45, rotSpeed: 0.35 }
+            ];
 
             function resizeDisplay() {
                 W = window.innerWidth;
@@ -1996,224 +1399,94 @@
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             }
 
-            function drawHillLayer(yBase, amp, freq, phase, color, parallaxShift) {
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.moveTo(0, H);
-                const step = Math.max(18, Math.round(W / 26));
-                for (let x = 0; x <= W + step; x += step) {
-                    const nx = x / W;
-                    const y = yBase
-                        - Math.sin(nx * freq + phase + parallaxShift) * amp
-                        - Math.cos(nx * (freq * 1.7) - phase * 0.6 + parallaxShift * 0.7) * (amp * 0.42);
-                    ctx.lineTo(x, y);
-                }
-                ctx.lineTo(W, H);
-                ctx.closePath();
-                ctx.fill();
-            }
-
-            // Interpolador lineal de color RGB para transición orgánica entre sol y atardecer
-            function lerpCol(c1, c2, t) {
-                return [
-                    Math.round(c1[0] + (c2[0] - c1[0]) * t),
-                    Math.round(c1[1] + (c2[1] - c1[1]) * t),
-                    Math.round(c1[2] + (c2[2] - c1[2]) * t)
-                ];
-            }
-
             function renderFrame(dt) {
                 tClock += dt;
                 headX += (targetHeadX - headX) * Math.min(1, dt * 3.5);
                 headY += (targetHeadY - headY) * Math.min(1, dt * 3.5);
 
-                // Interpolación suave (lerp) hacia el estado solar seleccionado
-                sunProgress += (targetSunProgress - sunProgress) * Math.min(1, dt * 2.2);
-
-                const horizonY = H * 0.34 + headY * 14;
+                const horizonY = H * 0.34 + headY * 12;
                 const focal = Math.max(W, H) * 0.85;
-                const camH = 3.2;
-                const cx = W * 0.5 + headX * 26;
+                const camH = 3.0;
+                const cx = W * 0.5 + headX * 24;
 
-                // Paletas dinámicas mezcladas matemáticamente por sunProgress
-                const skyTopDay = [237, 245, 215], skyTopSet = [241, 212, 234];
-                const skyMidDay = [251, 247, 231], skyMidSet = [252, 230, 216];
-                const skyHorDay = [255, 253, 245], skyHorSet = [255, 245, 232];
-
-                const st = lerpCol(skyTopDay, skyTopSet, sunProgress);
-                const sm = lerpCol(skyMidDay, skyMidSet, sunProgress);
-                const sh = lerpCol(skyHorDay, skyHorSet, sunProgress);
-
-                // 1. Cielo orbital degradado en vivo
-                const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY + 12);
-                skyGrad.addColorStop(0, `rgb(${st.join(',')})`);
-                skyGrad.addColorStop(0.55, `rgb(${sm.join(',')})`);
-                skyGrad.addColorStop(1, `rgb(${sh.join(',')})`);
+                // 1. Cielo nocturno de estadio (Negro profundo a verde césped sutil)
+                const skyGrad = ctx.createLinearGradient(0, 0, 0, horizonY + 14);
+                skyGrad.addColorStop(0, '#000000');
+                skyGrad.addColorStop(0.6, '#040D07');
+                skyGrad.addColorStop(1, '#0A2210');
                 ctx.fillStyle = skyGrad;
                 ctx.fillRect(0, 0, W, horizonY + 14);
 
-                // Órbita real del Sol cruzando el cielo en arco parabólico
-                const sunAngle = sunProgress * Math.PI;
-                const sunX = W * 0.25 + Math.sin(sunAngle) * (W * 0.5) - headX * 10;
-                const sunY = Math.max(24, horizonY * 0.9 - Math.sin(sunAngle) * (horizonY * 0.65));
-                const sunRad = Math.min(W, H) * (0.13 + Math.sin(sunAngle) * 0.04);
+                // Focos de iluminación cenital de estadio (Floodlights)
+                const floodGrad1 = ctx.createRadialGradient(W * 0.2, 0, 10, W * 0.2, 0, W * 0.8);
+                floodGrad1.addColorStop(0, 'rgba(0, 200, 53, 0.14)');
+                floodGrad1.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = floodGrad1;
+                ctx.fillRect(0, 0, W, horizonY);
 
-                const sunCore = sunProgress > 0.4 ? 'rgba(255, 226, 178, 0.95)' : 'rgba(255, 250, 214, 0.95)';
-                const sunHalo = sunProgress > 0.4 ? 'rgba(146, 28, 150, 0.20)' : 'rgba(195, 220, 21, 0.24)';
-
-                const sunGrad = ctx.createRadialGradient(sunX, sunY, 4, sunX, sunY, sunRad);
-                sunGrad.addColorStop(0, sunCore);
-                sunGrad.addColorStop(0.35, sunHalo);
-                sunGrad.addColorStop(1, 'rgba(251, 247, 231, 0)');
-                ctx.fillStyle = sunGrad;
-                ctx.beginPath();
-                ctx.arc(sunX, sunY, sunRad, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Nubes suaves a la deriva
-                ctx.fillStyle = sunProgress > 0.4 ? 'rgba(255, 244, 240, 0.70)' : 'rgba(255, 255, 255, 0.72)';
-                for (let i = 0; i < 4; i++) {
-                    const cloudW = W * (0.20 + (i % 2) * 0.08);
-                    const cxCloud = ((i * W * 0.32 + tClock * (4 + i * 1.1)) % (W + cloudW * 2)) - cloudW;
-                    const cyCloud = horizonY * (0.28 + (i % 3) * 0.16);
-                    ctx.beginPath();
-                    ctx.ellipse(cxCloud, cyCloud, cloudW * 0.45, 11 + (i % 2) * 4, 0, 0, Math.PI * 2);
-                    ctx.ellipse(cxCloud - cloudW * 0.18, cyCloud + 3, cloudW * 0.28, 8, 0, 0, Math.PI * 2);
-                    ctx.ellipse(cxCloud + cloudW * 0.18, cyCloud + 4, cloudW * 0.30, 8, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-
-                // 2. Colinas con tono dinámico
-                const hillBase = lerpCol([223, 236, 200], [232, 203, 225], sunProgress);
-                drawHillLayer(horizonY + 2,  H * 0.065, 3.2, 0.4 + tClock * 0.015, `rgb(${hillBase.join(',')})`, headX * 0.12);
-                drawHillLayer(horizonY + 6,  H * 0.052, 4.4, 1.8 + tClock * 0.022, `rgb(${lerpCol([205, 224, 174], [214, 185, 209], sunProgress).join(',')})`, headX * 0.22);
-                drawHillLayer(horizonY + 9,  H * 0.038, 5.6, 3.1 + tClock * 0.030, `rgb(${lerpCol([182, 209, 136], [191, 168, 184], sunProgress).join(',')})`, headX * 0.34);
-                drawHillLayer(horizonY + 11, H * 0.024, 6.8, 0.9 + tClock * 0.040, `rgb(${lerpCol([155, 192, 94], [143, 156, 76], sunProgress).join(',')})`, headX * 0.48);
-
-                // 3. Suelo del valle
-                const gTop = lerpCol([233, 242, 206], [241, 226, 208], sunProgress);
-                const gBot = lerpCol([213, 229, 168], [213, 223, 158], sunProgress);
-                const gGrad = ctx.createLinearGradient(0, horizonY, 0, H);
-                gGrad.addColorStop(0, `rgb(${sh.join(',')})`);
-                gGrad.addColorStop(0.18, `rgb(${gTop.join(',')})`);
-                gGrad.addColorStop(1, `rgb(${gBot.join(',')})`);
-                ctx.fillStyle = gGrad;
+                // 2. Cancha / Césped en perspectiva 3D oscura con líneas blancas de marcación
+                const turfGrad = ctx.createLinearGradient(0, horizonY, 0, H);
+                turfGrad.addColorStop(0, '#0A2210');
+                turfGrad.addColorStop(0.2, '#041408');
+                turfGrad.addColorStop(1, '#010803');
+                ctx.fillStyle = turfGrad;
                 ctx.fillRect(0, horizonY, W, H - horizonY);
 
                 const projX = (wx, z) => cx + wx * (focal / z);
                 const projY = (wh, z) => horizonY + (camH - wh) * (focal / z);
 
-                // 4. Franja del río
-                ctx.beginPath();
-                for (let z = Z_MAX; z >= Z_MIN; z -= 6) {
-                    const rx = 0.25 + Math.sin(z * 0.045 + tClock * 0.25) * 0.32;
-                    const xL = projX(rx - 0.55, z), yG = projY(0, z);
-                    if (z === Z_MAX) ctx.moveTo(xL, yG); else ctx.lineTo(xL, yG);
-                }
-                for (let z = Z_MIN; z <= Z_MAX; z += 6) {
-                    const rx = 0.25 + Math.sin(z * 0.045 + tClock * 0.25) * 0.32;
-                    const xR = projX(rx + 0.55, z), yG = projY(0, z);
-                    ctx.lineTo(xR, yG);
-                }
-                ctx.closePath();
-                ctx.fillStyle = sunProgress > 0.4 ? 'rgba(188, 174, 214, 0.52)' : 'rgba(130, 206, 224, 0.58)';
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 253, 245, 0.65)';
-                ctx.lineWidth = 1.2;
-                ctx.stroke();
-
-                // 5. Surcos de vides en perspectiva
-                for (let li = 0; li < VINE_LANES.length; li++) {
-                    const laneX = VINE_LANES[li];
-                    const xFarL = projX(laneX - 0.42, Z_MAX), xFarR = projX(laneX + 0.42, Z_MAX);
-                    const yFar = projY(0, Z_MAX);
-                    const xNearL = projX(laneX - 0.42, Z_MIN), xNearR = projX(laneX + 0.42, Z_MIN);
-                    const yNear = projY(0, Z_MIN);
-
-                    ctx.fillStyle = sunProgress > 0.4 ? 'rgba(164, 112, 92, 0.18)' : 'rgba(182, 134, 106, 0.16)';
+                // Líneas de cal del campo en perspectiva 3D
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+                ctx.lineWidth = 1.8;
+                for (let lx = -5; lx <= 5; lx += 2.5) {
                     ctx.beginPath();
-                    ctx.moveTo(xFarL, yFar);
-                    ctx.lineTo(xFarR, yFar);
-                    ctx.lineTo(xNearR, yNear);
-                    ctx.lineTo(xNearL, yNear);
-                    ctx.closePath();
-                    ctx.fill();
-
-                    ctx.strokeStyle = 'rgba(87, 142, 3, 0.22)';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(projX(laneX, Z_MAX), projY(0.45, Z_MAX));
-                    ctx.lineTo(projX(laneX, Z_MIN), projY(0.45, Z_MIN));
+                    ctx.moveTo(projX(lx, Z_MAX), projY(0, Z_MAX));
+                    ctx.lineTo(projX(lx * 0.3, Z_MIN), projY(0, Z_MIN));
                     ctx.stroke();
                 }
 
-                // 6. Plantas de vid y uvas
-                const travel = (tClock * 5.2) % ROW_STEP;
-                const stepsCount = Math.floor((Z_MAX - Z_MIN) / ROW_STEP);
+                // 3. Renderizado 3D de Pelotas de fútbol y Rebanadas de pizza
+                const speedZ = 6.0;
+                const zSpan = Z_MAX - Z_MIN;
 
-                for (let s = stepsCount; s >= 0; s--) {
-                    const z = Z_MIN + s * ROW_STEP - travel;
+                const queue = ENTITIES.map(e => {
+                    const curZ = Z_MIN + (((e.baseZ - tClock * speedZ) % zSpan) + zSpan) % zSpan;
+                    return { ...e, curZ };
+                }).sort((a, b) => b.curZ - a.curZ);
+
+                for (let i = 0; i < queue.length; i++) {
+                    const ent = queue[i];
+                    const z = ent.curZ;
                     if (z < Z_MIN || z > Z_MAX) continue;
 
                     const sc = focal / z;
-                    const yBase = projY(0, z);
-                    if (yBase > H + 80) continue;
+                    const alpha = Math.max(0, Math.min(1, 1 - (z - 24) / (Z_MAX - 24)));
+                    if (alpha <= 0.03) continue;
 
-                    const distAlpha = Math.max(0, Math.min(1, 1 - (z - 25) / (Z_MAX - 25)));
-                    if (distAlpha <= 0.02) continue;
+                    ctx.globalAlpha = alpha;
 
-                    const bushR = Math.max(2, 0.46 * sc);
-                    const bushH = bushR * 1.15;
-                    const postH = Math.max(3, 0.72 * sc);
+                    const sx = projX(ent.wx, z);
+                    const sy = projY(ent.wy + Math.sin(tClock * 2 + ent.wx) * 0.15, z);
 
-                    ctx.globalAlpha = distAlpha * 0.88;
-
-                    for (let li = 0; li < VINE_LANES.length; li++) {
-                        const laneX = VINE_LANES[li];
-                        const sx = projX(laneX, z);
-                        if (sx < -bushR * 2 || sx > W + bushR * 2) continue;
-
-                        ctx.strokeStyle = sunProgress > 0.4 ? 'rgba(102, 66, 72, 0.45)' : 'rgba(122, 86, 62, 0.45)';
-                        ctx.lineWidth = Math.max(1, 0.06 * sc);
-                        ctx.beginPath();
-                        ctx.moveTo(sx, yBase);
-                        ctx.lineTo(sx, yBase - postH);
-                        ctx.stroke();
-
-                        ctx.fillStyle = sunProgress > 0.4 ? '#4D7E04' : '#578E03';
-                        ctx.beginPath();
-                        ctx.ellipse(sx, yBase - bushH * 0.55, bushR, bushH * 0.62, 0, 0, Math.PI * 2);
-                        ctx.fill();
-
-                        ctx.fillStyle = sunProgress > 0.4 ? '#8CB612' : '#9EC510';
-                        ctx.beginPath();
-                        ctx.ellipse(sx - bushR * 0.14, yBase - bushH * 0.78, bushR * 0.72, bushH * 0.44, 0, 0, Math.PI * 2);
-                        ctx.fill();
-
-                        if (bushR > 5 && ((li + s) % 2 === 0)) {
-                            const gr = Math.max(1.6, bushR * 0.16);
-                            ctx.fillStyle = '#921C96';
-                            ctx.beginPath();
-                            ctx.arc(sx + bushR * 0.25, yBase - bushH * 0.46, gr, 0, Math.PI * 2);
-                            ctx.arc(sx - bushR * 0.22, yBase - bushH * 0.36, gr * 0.85, 0, Math.PI * 2);
-                            ctx.fill();
-
-                            ctx.fillStyle = '#59025C';
-                            ctx.beginPath();
-                            ctx.arc(sx + bushR * 0.26, yBase - bushH * 0.35, gr * 0.65, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
+                    if (ent.type === 'ball' && spriteSoccerBall) {
+                        const size = (spriteSoccerBall.width * (ent.scale * sc)) / 100;
+                        ctx.save();
+                        ctx.translate(sx, sy);
+                        ctx.rotate(tClock * (ent.rotSpeed || 0.4));
+                        ctx.drawImage(spriteSoccerBall, -size * 0.5, -size * 0.5, size, size);
+                        ctx.restore();
+                    } else if (ent.type === 'slice' && spritePizzaSlice) {
+                        const sizeW = (spritePizzaSlice.width * (ent.scale * sc)) / 120;
+                        const sizeH = (spritePizzaSlice.height * (ent.scale * sc)) / 120;
+                        ctx.save();
+                        ctx.translate(sx, sy);
+                        ctx.rotate(Math.sin(tClock * 1.5) * 0.2);
+                        ctx.drawImage(spritePizzaSlice, -sizeW * 0.5, -sizeH * 0.5, sizeW, sizeH);
+                        ctx.restore();
                     }
                 }
 
                 ctx.globalAlpha = 1;
-
-                // 7. Bruma sedosa del horizonte
-                const hazeGrad = ctx.createLinearGradient(0, horizonY - 12, 0, horizonY + H * 0.16);
-                hazeGrad.addColorStop(0, `rgb(${sh.join(',')})`);
-                hazeGrad.addColorStop(1, 'rgba(251, 247, 231, 0)');
-                ctx.fillStyle = hazeGrad;
-                ctx.fillRect(0, horizonY - 12, W, H * 0.18);
             }
 
             function loop(now) {
@@ -2222,7 +1495,7 @@
                 const dt = Math.min(0.05, Math.max(0.001, (now - lastTs) / 1000));
                 lastTs = now;
                 accum += dt;
-                if (accum >= 0.032) {
+                if (accum >= 0.016) {
                     renderFrame(accum);
                     accum = 0;
                 }
@@ -2230,6 +1503,7 @@
 
             return {
                 init() {
+                    buildStadiumSprites();
                     resizeDisplay();
                     renderFrame(0.016);
                     lastTs = performance.now();
@@ -2240,16 +1514,13 @@
                     });
                     window.addEventListener('scroll', () => {
                         const sy = window.scrollY || 0;
-                        targetHeadY = Math.min(1.6, Math.max(-1.6, sy * 0.002));
+                        targetHeadY = Math.min(1.4, Math.max(-1.4, sy * 0.0018));
                     }, { passive: true });
                     window.addEventListener('pointermove', (e) => {
                         if (e.pointerType === 'mouse') {
-                            targetHeadX = ((e.clientX / window.innerWidth) - 0.5) * 1.3;
+                            targetHeadX = ((e.clientX / window.innerWidth) - 0.5) * 1.2;
                         }
                     }, { passive: true });
-                },
-                setSun(val) {
-                    targetSunProgress = val;
                 },
                 setPaused(val) {
                     paused = val;
@@ -2257,252 +1528,82 @@
             };
         })();
 
-        function toggleVineyardMood() {
-            triggerHaptic();
-            const cur = document.body.getAttribute('data-mood') || 'day';
-            const next = cur === 'day' ? 'sunset' : 'day';
-            document.body.setAttribute('data-mood', next);
-            
-            // Órbita solar dinámica gradual
-            Vineyard3D.setSun(next === 'sunset' ? 0.72 : 0.15);
-
-            document.getElementById('moodIcon').textContent = next === 'day' ? '🍇' : '🌅';
-            document.getElementById('moodLabel').textContent = next === 'day' ? 'Día' : 'Atardecer';
-            try { localStorage.setItem('dj_mood', next); } catch(e) {}
-        }
-
         /* =========================================================
-           2. MOTOR DE MÚSICA AUTO-DETECTADA EN /music (GITHUB API, SIN SHEETS)
+           2. MINI-JUEGO TÁCTICO: "REVISIÓN DEL VAR"
            ========================================================= */
-        const REPO_API_MUSIC = 'https://api.github.com/repos/linkuniversal/vinotecadedonjorge/contents/music';
-        const DEFAULT_VOL = 0.26;
-        const bgMusic = new Audio();
-        bgMusic.preload = 'auto';
-
-        let musicPlaylist = [];
-        let musicLoaded = false;
-        let currentTrackIdx = -1;
-        let isMusicPlaying = false;
-        let isTransitioning = false;
-        let fadeTimer = null;
-        let autoFadeTriggered = false;
-
-        async function loadMusicFromRepo() {
-            if (musicLoaded && musicPlaylist.length > 0) return musicPlaylist;
-            try {
-                const res = await fetch(REPO_API_MUSIC, { cache: 'no-store' });
-                if (res.ok) {
-                    const files = await res.json();
-                    if (Array.isArray(files)) {
-                        musicPlaylist = files
-                            .filter(f => f.type === 'file' && f.name.toLowerCase().endsWith('.mp3'))
-                            .map(f => ({
-                                local: `./music/${encodeURIComponent(f.name)}`,
-                                remote: f.download_url,
-                                name: f.name
-                            }));
-                    }
-                }
-            } catch (e) {}
-            musicLoaded = true;
-            return musicPlaylist;
-        }
-
-        function updateMusicUI(active, customMsg = null) {
-            const sw = document.getElementById('musicSwitch');
-            const lbl = document.getElementById('musicLabel');
-            if (sw) sw.classList.toggle('active', active);
-            if (lbl) lbl.textContent = customMsg || (active ? '🔊 Música' : '🔈 Música');
-        }
-
-        function pickRandomIndex() {
-            if (musicPlaylist.length <= 1) return 0;
-            let next;
-            do { next = Math.floor(Math.random() * musicPlaylist.length); } while (next === currentTrackIdx);
-            return next;
-        }
-
-        function playTrackObj(track, duration = 900) {
-            if (!track) { isTransitioning = false; return; }
-            if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
-            autoFadeTriggered = false;
-
-            const useRemote = window.location.protocol === 'file:';
-            bgMusic.dataset.fallbackUsed = useRemote ? '1' : '';
-            bgMusic.dataset.remoteUrl = track.remote || '';
-            bgMusic.src = useRemote && track.remote ? track.remote : track.local;
-            bgMusic.volume = 0;
-
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                updateMusicUI(true);
-                const steps = 20, stepTime = duration / steps, stepVol = DEFAULT_VOL / steps;
-                fadeTimer = setInterval(() => {
-                    if (bgMusic.volume + stepVol < DEFAULT_VOL) bgMusic.volume += stepVol;
-                    else {
-                        bgMusic.volume = DEFAULT_VOL;
-                        clearInterval(fadeTimer);
-                        fadeTimer = null;
-                        isTransitioning = false;
-                    }
-                }, stepTime);
-            }).catch(() => {
-                isTransitioning = false;
-            });
-        }
-
-        function fadeOutMusic(duration = 400, onDone = null, keepingPlayState = false) {
-            if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
-            if (!keepingPlayState) {
-                isMusicPlaying = false;
-                updateMusicUI(false);
-            }
-            if (bgMusic.paused) { if (onDone) onDone(); return; }
-            const steps = 16, stepTime = duration / steps, stepVol = bgMusic.volume / steps;
-            fadeTimer = setInterval(() => {
-                if (bgMusic.volume - stepVol > 0) bgMusic.volume -= stepVol;
-                else {
-                    bgMusic.volume = 0;
-                    try { bgMusic.pause(); } catch(e) {}
-                    clearInterval(fadeTimer);
-                    fadeTimer = null;
-                    if (onDone) onDone();
-                }
-            }, stepTime);
-        }
-
-        async function toggleMusic() {
-            triggerHaptic();
-            if (!isMusicPlaying) {
-                await loadMusicFromRepo();
-                if (musicPlaylist.length === 0) {
-                    updateMusicUI(false, 'Sube .mp3 a /music');
-                    setTimeout(() => updateMusicUI(false), 2200);
-                    return;
-                }
-                currentTrackIdx = pickRandomIndex();
-                playTrackObj(musicPlaylist[currentTrackIdx], 900);
-            } else {
-                fadeOutMusic(420);
-            }
-        }
-
-        async function skipMusic() {
-            triggerHaptic();
-            await loadMusicFromRepo();
-            if (musicPlaylist.length === 0) {
-                updateMusicUI(false, 'Sube .mp3 a /music');
-                setTimeout(() => updateMusicUI(false), 2200);
-                return;
-            }
-            if (!isMusicPlaying) {
-                currentTrackIdx = pickRandomIndex();
-                playTrackObj(musicPlaylist[currentTrackIdx], 800);
-                return;
-            }
-            if (isTransitioning) return;
-            isTransitioning = true;
-            fadeOutMusic(280, () => {
-                currentTrackIdx = pickRandomIndex();
-                playTrackObj(musicPlaylist[currentTrackIdx], 800);
-            }, true);
-        }
-
-        bgMusic.addEventListener('timeupdate', () => {
-            if (isMusicPlaying && !bgMusic.paused && bgMusic.duration) {
-                const rem = bgMusic.duration - bgMusic.currentTime;
-                if (rem <= 2.4 && !autoFadeTriggered && !isTransitioning) {
-                    autoFadeTriggered = true;
-                    isTransitioning = true;
-                    fadeOutMusic(2200, () => {
-                        currentTrackIdx = pickRandomIndex();
-                        playTrackObj(musicPlaylist[currentTrackIdx], 1000);
-                    }, true);
-                }
-            }
-        });
-
-        bgMusic.addEventListener('ended', () => {
-            if (isMusicPlaying && !isTransitioning && musicPlaylist.length > 0) {
-                isTransitioning = true;
-                currentTrackIdx = pickRandomIndex();
-                playTrackObj(musicPlaylist[currentTrackIdx], 900);
-            }
-        });
-
-        bgMusic.addEventListener('error', () => {
-            if (!bgMusic.dataset.fallbackUsed && bgMusic.dataset.remoteUrl) {
-                bgMusic.dataset.fallbackUsed = '1';
-                bgMusic.src = bgMusic.dataset.remoteUrl;
-                bgMusic.play().catch(() => {});
-            } else if (isMusicPlaying && musicPlaylist.length > 1) {
-                currentTrackIdx = pickRandomIndex();
-                playTrackObj(musicPlaylist[currentTrackIdx], 700);
-            }
-        });
-
-        /* =========================================================
-           3. GUÍA POR REGIONES ("CADA PALADAR TIENE SU REGIÓN")
-           ========================================================= */
-        const REGIONS_DATA = {
-            patagonia: {
-                title: 'Patagonia',
-                desc: 'Para quienes prefieren vinos más suaves.',
-                meta: 'En nuestra casa: Bodega Ribera del Cuarzo · Valle Azul, Río Negro (Araucana Azul).'
-            },
-            mendoza: {
-                title: 'Mendoza',
-                desc: 'Estructura mediana y equilibrio.',
-                meta: 'En nuestra casa: Bodega Clos de Chacras · Eredità · Gran Estirpe · Terrazas.'
-            },
-            salta: {
-                title: 'Salta',
-                desc: 'Intensos y con cuerpo, de altura.',
-                meta: 'Vinos de altura del norte argentino para paladares intensos.'
-            }
-        };
-
-        function selectRegion(key) {
-            triggerHaptic();
-            const d = REGIONS_DATA[key];
-            if (!d) return;
-            document.querySelectorAll('.region-tab-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.region === key);
-            });
-            document.getElementById('regTitle').textContent = d.title;
-            document.getElementById('regDesc').textContent = d.desc;
-            document.getElementById('regMeta').textContent = d.meta;
-        }
-
-        /* =========================================================
-           4. GALERÍA Y LIGHTBOX FULLSCREEN
-           ========================================================= */
-        const GALLERY_PHOTOS = [
-            { file: 'vinotecapuertadelocalycuadra.webp', caption: 'Frente de La Vinoteca de Don Jorge · Av. Rep. Argentina 188' },
-            { file: 'vinotecapordentro.webp', caption: 'Showroom climatizado · Puerto Iguazú' },
-            { file: 'vinotecapordentro2.webp', caption: 'Salón de La Vinoteca de Don Jorge' },
-            { file: 'vinotecapordentro3.webp', caption: 'La Cava de ladrillo visto' },
-            { file: 'estanteriasvinos2.webp', caption: 'Estanterías organizadas por bodega y cepa' },
-            { file: 'vinosestanterias.webp', caption: 'Selección de etiquetas argentinas' },
-            { file: 'vinosprimerplano.webp', caption: 'Etiquetas seleccionadas en showroom' },
-            { file: 'chandonplanomedio.webp', caption: 'Espumantes y propuestas del salón' },
-            { file: 'vinoyjamon.webp', caption: 'Vinos y delicatessen' }
+        const varOutcomes = [
+            '⚽ ¡GOLAZO VALIDADO! Mostrá este mensaje en caja y tenés un 10% de descuento.',
+            '🛑 ¡OFFSIDE MILIMÉTRICO! Pero no pasa nada, pasá igual a comer.',
+            '🎉 ¡PENAL Y GOL! Ganaste una consumición para tu mesa.',
+            '✅ ¡JUGADA LIMPIA! ¡Venite a disfrutar el partido y la pizza libre!'
         ];
 
-        const RAW_BASE = 'https://raw.githubusercontent.com/linkuniversal/vinotecadedonjorge/main/';
-        let currentPhotoIdx = 0;
-        const photoStrip = document.getElementById('photoStrip');
+        function triggerVarReview() {
+            triggerHaptic();
+            const box = document.getElementById('varScreenText');
+            const msg = document.getElementById('varFeedbackMsg');
+            const btn = document.getElementById('btnVarAction');
+
+            btn.disabled = true;
+            box.textContent = '🖥️ REVISANDO JUGADA (CÁMARA LENTA)...';
+            msg.classList.remove('active');
+
+            setTimeout(() => {
+                const randomMsg = varOutcomes[Math.floor(Math.random() * varOutcomes.length)];
+                box.textContent = '¡DECISIÓN DEL VAR TOMADA!';
+                msg.textContent = randomMsg;
+                msg.classList.add('active');
+                btn.disabled = false;
+                if (navigator.vibrate) navigator.vibrate([80, 40, 80]);
+            }, 1400);
+        }
+
+        /* =========================================================
+           3. BLINDAJE DE VIDEOS ANTI-CONGELAMIENTO
+           ========================================================= */
+        function initVideoObserver() {
+            const vids = document.querySelectorAll('.reel-box video');
+            if (!('IntersectionObserver' in window)) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const vid = entry.target;
+                    if (entry.isIntersecting) {
+                        const p = vid.play();
+                        if (p !== undefined) p.catch(() => {});
+                    } else {
+                        vid.pause();
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            vids.forEach(v => observer.observe(v));
+        }
+
+        function scrollReels(dir) {
+            const strip = document.getElementById('reelsStrip');
+            if (strip) strip.scrollBy({ left: dir * 180, behavior: 'smooth' });
+        }
+
+        /* =========================================================
+           4. LIGHTBOX DE FOTOS
+           ========================================================= */
+        const GALLERY_ITEMS = [
+            { file: 'comensalesenlapizzeria.webp', title: 'Ambiente en VAR Pizza Libre' },
+            { file: 'pizzaprimerplano.webp', title: 'Nuestras especialidades a la piedra' },
+            { file: 'sirviendounaporciondepizza.webp', title: 'Porciones libres sin límite' },
+            { file: 'sirviendountrago.webp', title: 'Tercer tiempo: Jarras de Campari y Fernet' }
+        ];
+
+        const RAW_BASE = 'https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/';
+        let currentIdx = 0;
         const lbModal = document.getElementById('galleryLightbox');
         const lbImg = document.getElementById('lbMainImg');
         const lbCounter = document.getElementById('lbCounter');
         const lbCaption = document.getElementById('lbCaption');
 
-        function scrollGallery(dir) {
-            if (photoStrip) photoStrip.scrollBy({ left: dir * 210, behavior: 'smooth' });
-        }
-
-        function updateLightbox() {
-            const item = GALLERY_PHOTOS[currentPhotoIdx];
+        function updateLightboxView() {
+            const item = GALLERY_ITEMS[currentIdx];
             lbImg.onerror = function() {
                 if (!this.dataset.fb) {
                     this.dataset.fb = '1';
@@ -2511,27 +1612,27 @@
             };
             lbImg.dataset.fb = '';
             lbImg.src = './' + item.file;
-            lbCounter.textContent = `${currentPhotoIdx + 1} / ${GALLERY_PHOTOS.length}`;
-            lbCaption.textContent = item.caption;
+            lbCounter.textContent = `${currentIdx + 1} / ${GALLERY_ITEMS.length}`;
+            lbCaption.textContent = item.title;
         }
 
         function openLightbox(idx) {
             triggerHaptic();
-            currentPhotoIdx = idx;
-            updateLightbox();
+            currentIdx = idx;
+            updateLightboxView();
             lbModal.classList.add('active');
-            Vineyard3D.setPaused(true);
+            StadiumWorld3D.setPaused(true);
         }
 
         function closeLightbox(e) {
             if (e && e.stopPropagation) e.stopPropagation();
             lbModal.classList.remove('active');
-            Vineyard3D.setPaused(false);
+            StadiumWorld3D.setPaused(false);
         }
 
         function navLightbox(dir) {
-            currentPhotoIdx = (currentPhotoIdx + dir + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length;
-            updateLightbox();
+            currentIdx = (currentIdx + dir + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+            updateLightboxView();
         }
 
         let touchStartX = 0;
@@ -2542,107 +1643,23 @@
             if (Math.abs(diff) > 38) navLightbox(diff < 0 ? 1 : -1);
         });
 
-        /* =========================================================
-           5. MODAL HISTORIA & TELEMETRÍA HORARIOS (ARGENTINA UTC-3)
-           ========================================================= */
-        const storyModal = document.getElementById('storyModal');
-        function openStoryModal() {
-            storyModal.classList.add('active');
-            Vineyard3D.setPaused(true);
-        }
-        function closeStoryModal(e) {
-            if (e && e.stopPropagation) e.stopPropagation();
-            storyModal.classList.remove('active');
-            Vineyard3D.setPaused(false);
-        }
-
-        function updateLiveHours() {
-            const now = new Date();
-            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-            const arg = new Date(utc - 3 * 3600000);
-            const day = arg.getDay();
-            const timeVal = arg.getHours() + arg.getMinutes() / 60;
-
-            const pill = document.getElementById('liveStatusPill');
-            const rMonSat = document.getElementById('slot-mon-sat');
-            const rSun = document.getElementById('slot-sun');
-            rMonSat.classList.remove('active-slot');
-            rSun.classList.remove('active-slot');
-
-            let isOpen = false;
-            let closedHint = 'Abre 08:30h';
-
-            if (day === 0) {
-                rSun.classList.add('active-slot');
-                if ((timeVal >= 9.0 && timeVal < 13.0) || (timeVal >= 16.0 && timeVal < 20.0)) {
-                    isOpen = true;
-                } else if (timeVal >= 13.0 && timeVal < 16.0) {
-                    closedHint = 'Abre 16:00h';
-                } else if (timeVal < 9.0) {
-                    closedHint = 'Abre 09:00h';
-                }
-            } else {
-                rMonSat.classList.add('active-slot');
-                if (timeVal >= 8.5 && timeVal < 22.0) {
-                    isOpen = true;
-                } else {
-                    closedHint = (day === 6 && timeVal >= 22.0) ? 'Abre Dom 09:00h' : 'Abre 08:30h';
-                }
-            }
-
-            if (isOpen) {
-                pill.textContent = '● Abierto Ahora';
-                pill.style.color = '#3E6702';
-                pill.style.borderColor = '#578E03';
-                pill.style.background = 'rgba(195, 220, 21, 0.34)';
-            } else {
-                pill.textContent = `Cerrado · ${closedHint}`;
-                pill.style.color = '#59025C';
-                pill.style.borderColor = 'rgba(146, 28, 150, 0.30)';
-                pill.style.background = '#FFFFFF';
-            }
-        }
-
         window.addEventListener('keydown', (e) => {
             if (lbModal.classList.contains('active')) {
                 if (e.key === 'ArrowLeft') { e.preventDefault(); navLightbox(-1); }
                 else if (e.key === 'ArrowRight') { e.preventDefault(); navLightbox(1); }
                 else if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); }
-            } else if (storyModal.classList.contains('active') && e.key === 'Escape') {
-                e.preventDefault();
-                closeStoryModal();
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (link && isMusicPlaying && (link.target === '_blank' || link.href.includes('tel:') || link.href.includes('maps'))) {
-                fadeOutMusic(380);
             }
         });
 
         document.addEventListener('visibilitychange', () => {
-            const hide = document.hidden;
-            Vineyard3D.setPaused(hide || lbModal.classList.contains('active') || storyModal.classList.contains('active'));
-            if (hide && isMusicPlaying) fadeOutMusic(320);
+            const hidden = document.hidden;
+            StadiumWorld3D.setPaused(hidden || lbModal.classList.contains('active'));
         });
 
         window.addEventListener('DOMContentLoaded', () => {
             if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-            Vineyard3D.init();
-            updateLiveHours();
-            loadMusicFromRepo();
-
-            try {
-                const savedMood = localStorage.getItem('dj_mood');
-                if (savedMood === 'sunset') {
-                    document.body.setAttribute('data-mood', 'sunset');
-                    Vineyard3D.setSun(0.72);
-                    document.getElementById('moodIcon').textContent = '🌅';
-                    document.getElementById('moodLabel').textContent = 'Atardecer';
-                }
-            } catch(e) {}
-
+            StadiumWorld3D.init();
+            initVideoObserver();
             requestAnimationFrame(() => document.body.classList.remove('preload'));
         });
     </script>
