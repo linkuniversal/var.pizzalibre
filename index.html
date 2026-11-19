@@ -74,7 +74,7 @@
             background: transparent;
             color: var(--ink-body);
             min-height: 100vh;
-            min-height: 100svh;
+            min-height: 100dvh;
             width: 100%;
             max-width: 100%;
             overflow-x: clip;
@@ -87,15 +87,13 @@
         }
 
         /* ==========================================================================
-           2. ESTADIO 3D ARQUITECTÓNICO DE DÍA (CERO VELO LAVADO, CONTRASTE TOTAL)
+           2. ESTADIO 3D ARQUITECTÓNICO DE DÍA (FULL VIEWPORT INSET:0 · 60 FPS)
            ========================================================================== */
         .stadium-stage {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
-            height: 100vh;
-            height: 100svh;
+            height: 100%;
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
@@ -114,8 +112,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at 50% 42%, rgba(8, 18, 12, 0.00) 42%, rgba(8, 18, 12, 0.20) 100%),
-                linear-gradient(180deg, rgba(10, 24, 42, 0.06) 0%, rgba(10, 24, 14, 0.00) 35%, rgba(8, 22, 12, 0.14) 100%);
+                radial-gradient(ellipse at 50% 42%, rgba(8, 18, 12, 0.00) 42%, rgba(8, 18, 12, 0.18) 100%),
+                linear-gradient(180deg, rgba(10, 24, 42, 0.05) 0%, rgba(10, 24, 14, 0.00) 35%, rgba(8, 22, 12, 0.12) 100%);
         }
 
         /* ==========================================================================
@@ -222,7 +220,6 @@
             50% { transform: scale(1.22); opacity: 0.72; }
         }
 
-        /* MEDALLÓN CIRCULAR NEGRO OFICIAL VAR. CON EL SVG CORREGIDO */
         .var-medallion {
             width: clamp(114px, 31vw, 146px);
             height: clamp(114px, 31vw, 146px);
@@ -283,7 +280,6 @@
             max-width: 100%;
         }
 
-        /* CARTEL ESTILO PASTO VERDE DE INSTAGRAM */
         .grass-slogan-banner {
             background: linear-gradient(135deg, #22AB3F 0%, #167F2C 100%);
             color: #FFFFFF;
@@ -581,7 +577,7 @@
         }
 
         /* ==========================================================================
-           8. MOSAICO VISUAL PROTAGÓNICO: VIDEO + FOTOS
+           8. MOSAICO VISUAL PROTAGÓNICO: VIDEO 11S BLINDADO + FOTOS
            ========================================================================== */
         .showcase-card {
             background: var(--card-surface);
@@ -628,6 +624,11 @@
             object-fit: cover;
             display: block;
             transition: transform 0.45s var(--spring);
+        }
+
+        .media-tile video {
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .media-tile:not(.video-hero):hover img {
@@ -1102,8 +1103,8 @@
 </head>
 <body class="preload">
 
-    <!-- ESTADIO 3D ARQUITECTÓNICO CACHEADO EN OFFSCREEN + HINCHADA PIZZA EN LA OLA -->
-    <div class="stadium-stage" aria-hidden="true">
+    <!-- ESTADIO 3D ARQUITECTÓNICO CACHEADO (60 FPS · FULL VIEWPORT SIN HUECOS) -->
+    <div class="stadium-stage" id="stadiumStage" aria-hidden="true">
         <canvas id="stadiumDay3D"></canvas>
         <div class="stadium-veil"></div>
     </div>
@@ -1242,7 +1243,7 @@
             </a>
         </section>
 
-        <!-- 4. MOSAICO PROTAGÓNICO: VIDEO EN VIVO + FOTOS -->
+        <!-- 4. MOSAICO PROTAGÓNICO: VIDEO 11S BLINDADO + FOTOS -->
         <section class="showcase-card">
             <div class="section-top-bar">
                 <h2 class="section-heading">Así se vive en VAR</h2>
@@ -1252,11 +1253,13 @@
             <div class="media-bento">
                 <div class="media-tile video-hero">
                     <video
+                        id="varMainVideo"
                         src="./videopizza.mp4"
+                        poster="./pizzaprimerplano.webp"
                         autoplay loop muted playsinline webkit-playsinline
                         disablepictureinpicture disableremoteplayback
                         preload="auto"
-                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/videopizza.mp4';}"
+                        onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://raw.githubusercontent.com/linkuniversal/var.pizzalibre/main/videopizza.mp4';this.load();this.play().catch(()=>{});}"
                     ></video>
                     <span class="tile-badge live">● VAR CAM</span>
                     <span class="tile-badge">Servicio en vivo</span>
@@ -1378,9 +1381,9 @@
 
     <!-- ==========================================================================
          MOTORES JAVASCRIPT:
-         1. ESTADIO 3D ARQUITECTÓNICO CACHEADO EN OFFSCREEN (CERO LAG · 60 FPS)
+         1. ESTADIO 3D ARQUITECTÓNICO CACHEADO A 60 FPS REALES (SIN HUECOS ABAJO)
          2. REVISIÓN DEL VAR
-         3. OBSERVER DE VIDEO & LIGHTBOX
+         3. BLINDAJE COMPLETO DE VIDEO (iOS/WPP/IG + FIRST-TOUCH UNLOCK) & LIGHTBOX
          ========================================================================== -->
     <script>
         function triggerHaptic() {
@@ -1390,31 +1393,31 @@
         }
 
         /* =========================================================
-           1. ESTADIO 3D ARQUITECTÓNICO CON CACHÉ OFFSCREEN & PERSPECTIVA ATMOSFÉRICA
+           1. ESTADIO 3D ARQUITECTÓNICO CACHEADO (60 FPS · HASTA EL BORDE INFERIOR)
            ========================================================= */
         const StadiumDay3D = (() => {
+            const stage = document.getElementById('stadiumStage');
             const canvas = document.getElementById('stadiumDay3D');
             const ctx = canvas.getContext('2d');
 
             let W = 0, H = 0, dpr = 1;
             let paused = false;
-            let tClock = 0, lastTs = 0, accum = 0;
+            let tClock = 0, lastTs = 0;
             let headX = 0, headY = 0, targetHeadX = 0, targetHeadY = 0;
 
-            // Buffers offscreen cacheados (se dibujan 1 sola vez por resize)
-            const SKY_PAD_X = 34;
-            const PITCH_PAD_X = 48;
-            const PITCH_PAD_Y = 24;
+            const SKY_PAD_X = 36;
+            const PITCH_PAD_X = 52;
+            const PITCH_PAD_Y = 26;
+            const PITCH_PAD_BOT = 44;
             let skyBuffer = null;
             let pitchBuffer = null;
             let baseHorizon = 240;
 
-            const Z_MIN = 3.6;
-            const Z_MAX = 115;
+            const Z_MIN = 3.2;
+            const Z_MAX = 130;
 
             const TEAM_COLS = ['#1F9D3A', '#E1251B', '#FFD43B', '#5BBDF5'];
 
-            // Helper compatible con cualquier WebView Android/iOS antiguo
             function drawRoundedRect(g, x, y, w, h, r) {
                 const rad = Math.min(r, w * 0.5, h * 0.5);
                 g.beginPath();
@@ -1430,7 +1433,7 @@
                 g.closePath();
             }
 
-            // Micro-sprites estilizados de hinchas-pizza (sin caras infantiles gigantes)
+            // Sprites estilizados de hinchas-pizza (sin caras infantiles grandes)
             let fanMicroSprites = [];
             function buildFanSprites() {
                 fanMicroSprites = TEAM_COLS.map((scarfCol, idx) => {
@@ -1439,13 +1442,11 @@
                     c.height = 30;
                     const g = c.getContext('2d');
 
-                    // Sombra en la butaca
                     g.fillStyle = 'rgba(8, 16, 12, 0.34)';
                     g.beginPath();
                     g.ellipse(12, 26, 6.5, 2.2, 0, 0, Math.PI * 2);
                     g.fill();
 
-                    // Brazos alentando con banderín sutil
                     g.strokeStyle = '#C97729';
                     g.lineWidth = 2.1;
                     g.lineCap = 'round';
@@ -1456,7 +1457,6 @@
                     g.lineTo(21, 9);
                     g.stroke();
 
-                    // Banderín del club
                     if (idx % 2 === 0) {
                         g.strokeStyle = '#F7FAF8';
                         g.lineWidth = 1.2;
@@ -1473,7 +1473,6 @@
                         g.fill();
                     }
 
-                    // Cuerpo pizza estilizado (borde tostado + muzzarella + salsa, con sombreado 3D)
                     g.fillStyle = '#B86A22';
                     g.beginPath();
                     g.moveTo(12, 25);
@@ -1490,12 +1489,10 @@
                     g.closePath();
                     g.fill();
 
-                    // Detalles pepperoni/albahaca
                     g.fillStyle = idx % 2 === 0 ? '#D4261C' : '#1A8833';
                     g.beginPath(); g.arc(10, 14, 1.5, 0, Math.PI * 2); g.fill();
                     g.beginPath(); g.arc(14, 17, 1.3, 0, Math.PI * 2); g.fill();
 
-                    // Bufanda de cancha
                     g.fillStyle = scarfCol;
                     g.fillRect(8, 18.5, 8, 2.8);
 
@@ -1503,29 +1500,30 @@
                 });
             }
 
-            // Hinchas densos en bandejas laterales + popular cabecera
             let sideFans = [];
             let bowlFans = [];
+            let liveFlags = [];
+            let confetti = [];
 
-            function seedCrowd(focal, cxCenter, horizonY, camH) {
+            function seedDynamicElements() {
                 sideFans = [];
                 bowlFans = [];
 
-                // Hinchas en las bandejas laterales (5 escalones x 20 filas)
-                for (let row = 0; row < 20; row++) {
-                    const z = 8 + row * 5.1;
+                // Hinchas en bandejas laterales cubriendo desde z=6.2 (borde inferior) hasta z=118 (fondo)
+                for (let row = 0; row < 25; row++) {
+                    const z = 6.2 + row * 4.5;
                     for (let tier = 0; tier < 5; tier++) {
-                        if ((row + tier) % 3 === 1 && row > 12) continue;
+                        if ((row + tier) % 3 === 1 && row > 15) continue;
                         const jitter = ((row * 17 + tier * 29) % 10) * 0.08;
                         sideFans.push({
-                            wx: -(6.35 + tier * 1.15 + jitter * 0.35),
+                            wx: -(5.75 + tier * 1.12 + jitter * 0.3),
                             wy: 0.45 + tier * 0.72,
                             z: z + jitter,
                             sp: (row + tier) % 4,
                             phase: row * 0.45 + tier * 0.55
                         });
                         sideFans.push({
-                            wx: 6.35 + tier * 1.15 + jitter * 0.35,
+                            wx: 5.75 + tier * 1.12 + jitter * 0.3,
                             wy: 0.45 + tier * 0.72,
                             z: z + jitter,
                             sp: (row + tier + 2) % 4,
@@ -1535,7 +1533,6 @@
                 }
                 sideFans.sort((a, b) => b.z - a.z);
 
-                // Multitud densa en la popular y platea alta del fondo
                 const cols = Math.max(48, Math.round(W / 13));
                 for (let i = 0; i < cols; i++) {
                     const nx = (i + 0.5) / cols;
@@ -1552,11 +1549,33 @@
                         }
                     }
                 }
+
+                // Banderas grandes flameando en la tribuna del fondo
+                liveFlags = [0.09, 0.17, 0.25, 0.35, 0.65, 0.75, 0.83, 0.91].map((nx, idx) => ({
+                    nx,
+                    col: TEAM_COLS[idx % TEAM_COLS.length],
+                    phase: idx * 1.15,
+                    w: 18 + (idx % 2) * 5,
+                    h: 11 + (idx % 2) * 3
+                }));
+
+                // Papelitos / chispas festivas en 3D por los flancos del estadio
+                confetti = Array.from({ length: 30 }, (_, i) => {
+                    const leftSide = i % 2 === 0;
+                    return {
+                        nx: leftSide ? (0.03 + ((i * 19) % 24) / 100) : (0.73 + ((i * 23) % 24) / 100),
+                        yStart: ((i * 53) % 100) / 100,
+                        speed: 0.035 + (i % 5) * 0.011,
+                        swayAmp: 8 + (i % 4) * 5,
+                        phase: i * 0.8,
+                        size: 2.2 + (i % 3) * 1.1,
+                        col: i % 4 === 0 ? '#FFFFFF' : TEAM_COLS[i % 4]
+                    };
+                });
             }
 
             function drawTower(g, tx, baseY, towerH, dir) {
                 const topY = baseY - towerH;
-                // Mástil metálico con cara iluminada y cara en sombra
                 g.strokeStyle = '#18221D';
                 g.lineWidth = 4.2;
                 g.beginPath();
@@ -1571,7 +1590,6 @@
                 g.lineTo(tx + 2, topY + 14);
                 g.stroke();
 
-                // Crucetas diagonales
                 g.strokeStyle = '#38463F';
                 g.lineWidth = 1.4;
                 for (let s = 0.2; s < 0.88; s += 0.22) {
@@ -1582,7 +1600,6 @@
                     g.stroke();
                 }
 
-                // Cabezal LED arquitectónico
                 const hw = 38, hh = 18;
                 const hx = tx - hw * 0.5 + dir * 3;
                 g.fillStyle = '#141B17';
@@ -1592,7 +1609,6 @@
                 g.fill();
                 g.stroke();
 
-                // Focos iluminados
                 g.fillStyle = '#FFF8DC';
                 for (let r = 0; r < 2; r++) {
                     for (let c = 0; c < 4; c++) {
@@ -1602,13 +1618,13 @@
             }
 
             function buildStaticLayers() {
-                baseHorizon = Math.round(H * 0.32);
+                baseHorizon = Math.round(H * 0.31);
 
                 /* ----------------------------------------------------------
                    1. BUFFER DE CIELO + TORRES + DOBLE BANDEJA CURVA DEL FONDO
                    ---------------------------------------------------------- */
                 const sw = W + SKY_PAD_X * 2;
-                const sh = baseHorizon + 42;
+                const sh = baseHorizon + 48;
                 skyBuffer = document.createElement('canvas');
                 skyBuffer.width = Math.round(sw * dpr);
                 skyBuffer.height = Math.round(sh * dpr);
@@ -1618,7 +1634,6 @@
                 const sxMid = sw * 0.5;
                 const sH = baseHorizon;
 
-                // Gradiente de cielo porteño de día con perspectiva atmosférica real
                 const skyGrad = sg.createLinearGradient(0, 0, 0, sH);
                 skyGrad.addColorStop(0, '#1D68AF');
                 skyGrad.addColorStop(0.45, '#53A6E5');
@@ -1627,7 +1642,6 @@
                 sg.fillStyle = skyGrad;
                 sg.fillRect(0, 0, sw, sh);
 
-                // Sol y haces diagonales de estadio
                 const sunX = sw * 0.80;
                 const sunY = Math.max(24, sH * 0.24);
                 const sunRad = Math.min(W, H) * 0.16;
@@ -1640,38 +1654,22 @@
                 sg.arc(sunX, sunY, sunRad, 0, Math.PI * 2);
                 sg.fill();
 
-                // Haces suaves de luz solar cruzando hacia la izquierda
-                sg.save();
-                sg.fillStyle = 'rgba(255, 250, 224, 0.08)';
-                for (let b = 0; b < 3; b++) {
-                    sg.beginPath();
-                    sg.moveTo(sunX - 20 + b * 18, sunY);
-                    sg.lineTo(sw * (0.14 + b * 0.18), sH + 20);
-                    sg.lineTo(sw * (0.28 + b * 0.18), sH + 20);
-                    sg.closePath();
-                    sg.fill();
-                }
-                sg.restore();
-
-                // Silueta urbana sutil en el horizonte muy lejano (profundidad real)
+                // Silueta urbana lejana
                 sg.fillStyle = 'rgba(122, 178, 214, 0.42)';
                 for (let bx = 0; bx < sw; bx += 22) {
                     const bh = 14 + ((bx * 37) % 24);
                     sg.fillRect(bx, sH - bh - 36, 18, bh + 36);
                 }
 
-                // Arquitectura del Estadio del Fondo (Platea Alta + Techo con Cerchas + Popular)
-                const bowlH = Math.max(76, H * 0.165);
+                const bowlH = Math.max(74, H * 0.165);
                 const roofY = sH - bowlH;
 
-                // 4 Torres de iluminación
-                const tH = Math.max(52, H * 0.11);
+                const tH = Math.max(50, H * 0.11);
                 drawTower(sg, sw * 0.12, roofY + 24, tH, 1);
                 drawTower(sg, sw * 0.29, roofY + 22, tH * 0.88, 1);
                 drawTower(sg, sw * 0.71, roofY + 22, tH * 0.88, -1);
                 drawTower(sg, sw * 0.88, roofY + 24, tH, -1);
 
-                // Techo parabólico (cara superior iluminada + cara inferior en sombra)
                 sg.fillStyle = '#151E19';
                 sg.beginPath();
                 sg.moveTo(0, roofY + 24);
@@ -1681,7 +1679,6 @@
                 sg.closePath();
                 sg.fill();
 
-                // Cerchas / vigas 3D del techo
                 sg.strokeStyle = '#33423A';
                 sg.lineWidth = 2;
                 for (let f = 0.05; f <= 0.96; f += 0.075) {
@@ -1693,7 +1690,6 @@
                     sg.stroke();
                 }
 
-                // Fascia blanca iluminada del borde superior del techo
                 sg.strokeStyle = '#ECF3EF';
                 sg.lineWidth = 2.6;
                 sg.beginPath();
@@ -1701,7 +1697,6 @@
                 sg.quadraticCurveTo(sxMid, roofY - 12, sw, roofY + 24);
                 sg.stroke();
 
-                // Bandeja Alta (sombra proyectada del techo arriba, hormigón iluminado abajo)
                 const upperTop = roofY + 34;
                 const midBandY = upperTop + (sH - upperTop) * 0.46;
                 const upperGrad = sg.createLinearGradient(0, upperTop, 0, midBandY);
@@ -1711,13 +1706,11 @@
                 sg.fillStyle = upperGrad;
                 sg.fillRect(0, upperTop, sw, midBandY - upperTop);
 
-                // Separación arquitectónica entre Bandeja Alta y Bandeja Baja (anillo de hormigón + LED)
                 sg.fillStyle = '#141B17';
                 sg.fillRect(0, midBandY - 4, sw, 10);
                 sg.fillStyle = '#E6EFEA';
                 sg.fillRect(0, midBandY - 5, sw, 2.2);
 
-                // Bandeja Baja (Popular del fondo)
                 const lowerGrad = sg.createLinearGradient(0, midBandY + 6, 0, sH);
                 lowerGrad.addColorStop(0, '#7B8E85');
                 lowerGrad.addColorStop(0.45, '#A7B8AF');
@@ -1725,7 +1718,6 @@
                 sg.fillStyle = lowerGrad;
                 sg.fillRect(0, midBandY + 6, sw, sH - (midBandY + 6) + 2);
 
-                // Escalones horizontales + pasillos verticales en ambas bandejas
                 sg.fillStyle = 'rgba(18, 28, 22, 0.14)';
                 for (let yT = upperTop + 6; yT < sH - 14; yT += 7) {
                     sg.fillRect(0, yT, sw, 2);
@@ -1735,7 +1727,6 @@
                     sg.fillRect(sw * px - 3, upperTop + 6, 6, sH - upperTop - 16);
                 }
 
-                // 2 Marcadores LED en la bandeja alta (visibles en desktop y tablet)
                 if (W > 600) {
                     const sbW = Math.min(104, W * 0.095);
                     const sbH = 30;
@@ -1754,7 +1745,6 @@
                     }
                 }
 
-                // Trapos y banderas de hinchada colgados en las barandas
                 const trapCols = ['#1F9D3A', '#E1251B', '#FFB800', '#16241C', '#1F9D3A', '#3B9EE8', '#E1251B', '#1F9D3A'];
                 const segW = sw / 12;
                 for (let b = 0; b < 12; b++) {
@@ -1764,7 +1754,6 @@
                     sg.fillRect(b * segW + 2, midBandY + 6, segW - 4, 2);
                 }
 
-                // Cartelería LED del perímetro detrás del arco
                 const perimY = sH - 13;
                 sg.fillStyle = '#111814';
                 sg.fillRect(0, perimY, sw, 14);
@@ -1774,18 +1763,17 @@
                     sg.fillRect(bx + 2, perimY + 2, sw / 10 - 4, 9);
                 }
 
-                // Velo atmosférico sutil en el horizonte del estadio (profundidad aérea real)
                 const hazeSky = sg.createLinearGradient(0, roofY + 10, 0, sH);
                 hazeSky.addColorStop(0, 'rgba(182, 224, 248, 0.04)');
-                hazeSky.addColorStop(1, 'rgba(182, 224, 248, 0.30)');
+                hazeSky.addColorStop(1, 'rgba(182, 224, 248, 0.28)');
                 sg.fillStyle = hazeSky;
                 sg.fillRect(0, roofY + 10, sw, sH - roofY);
 
                 /* ----------------------------------------------------------
-                   2. BUFFER DE CAMPO DE JUEGO 3D + GRADAS LATERALES + SOMBRAS
+                   2. BUFFER DE CAMPO 3D EN DAMERO + GRADAS HASTA EL BORDE INFERIOR
                    ---------------------------------------------------------- */
                 const pw = W + PITCH_PAD_X * 2;
-                const ph = H - baseHorizon + PITCH_PAD_Y + 20;
+                const ph = H - baseHorizon + PITCH_PAD_Y + PITCH_PAD_BOT;
                 pitchBuffer = document.createElement('canvas');
                 pitchBuffer.width = Math.round(pw * dpr);
                 pitchBuffer.height = Math.round(ph * dpr);
@@ -1793,40 +1781,63 @@
                 pg.setTransform(dpr, 0, 0, dpr, 0, 0);
 
                 const pHorizon = PITCH_PAD_Y;
-                const pFocal = Math.max(W, H) * 0.80;
-                const pCamH = 5.0;
+                const pFocal = H * 0.80;
+                const pCamH = 6.6;
                 const pCx = pw * 0.5;
                 const px3 = (wx, z) => pCx + wx * (pFocal / z);
                 const py3 = (wh, z) => pHorizon + (pCamH - wh) * (pFocal / z);
 
-                // Base césped verde estadio profundo (sin tonos lavados)
+                // Base césped verde estadio profundo
                 const turfG = pg.createLinearGradient(0, pHorizon, 0, ph);
-                turfG.addColorStop(0, '#1D9136');
-                turfG.addColorStop(0.35, '#177F2C');
-                turfG.addColorStop(1, '#0E5D1E');
+                turfG.addColorStop(0, '#1E9237');
+                turfG.addColorStop(0.35, '#17802D');
+                turfG.addColorStop(1, '#106221');
                 pg.fillStyle = turfG;
                 pg.fillRect(0, pHorizon, pw, ph - pHorizon);
 
-                // Franjas de corte transversal profesional
-                const stripeStep = 8.5;
-                for (let z = Z_MAX; z >= Z_MIN; z -= stripeStep * 2) {
-                    const yF = py3(0, Math.min(Z_MAX, z));
-                    const yN = py3(0, Math.max(Z_MIN, z - stripeStep));
-                    pg.fillStyle = 'rgba(8, 56, 18, 0.25)';
-                    pg.fillRect(0, yF, pw, Math.max(1, yN - yF));
+                // Corte profesional en damero 3D hasta el último píxel de abajo
+                const fieldHalfW = 5.3;
+                const stripeStep = 7.5;
+                const colWidthW = 1.76;
+                for (let z = Z_MAX; z >= Z_MIN; z -= stripeStep) {
+                    const zFar = Math.min(Z_MAX, z);
+                    const zNear = Math.max(Z_MIN, z - stripeStep);
+                    const rowIdx = Math.round(z / stripeStep);
+                    const yF = py3(0, zFar);
+                    const yN = py3(0, zNear);
+
+                    // Banda transversal base
+                    if (rowIdx % 2 === 0) {
+                        pg.fillStyle = 'rgba(8, 56, 18, 0.20)';
+                        pg.fillRect(0, yF, pw, Math.max(1, yN - yF));
+                    }
+
+                    // Cuadrículas longitudinales de corte en damero dentro del campo
+                    for (let wx = -fieldHalfW; wx < fieldHalfW - 0.1; wx += colWidthW) {
+                        const colIdx = Math.round((wx + fieldHalfW) / colWidthW);
+                        if ((rowIdx + colIdx) % 2 === 1) {
+                            pg.fillStyle = 'rgba(255, 255, 255, 0.055)';
+                            pg.beginPath();
+                            pg.moveTo(px3(wx, zFar), yF);
+                            pg.lineTo(px3(Math.min(fieldHalfW, wx + colWidthW), zFar), yF);
+                            pg.lineTo(px3(Math.min(fieldHalfW, wx + colWidthW), zNear), yN);
+                            pg.lineTo(px3(wx, zNear), yN);
+                            pg.closePath();
+                            pg.fill();
+                        }
+                    }
                 }
 
-                // Textura sutil granulada del césped (cacheada, cero coste por frame)
-                pg.fillStyle = 'rgba(255, 255, 255, 0.035)';
+                // Textura sutil granulada del césped
+                pg.fillStyle = 'rgba(255, 255, 255, 0.032)';
                 for (let g = 0; g < 950; g++) {
-                    const gx = ((g * 7919) % pw);
+                    const gx = (g * 7919) % pw;
                     const gy = pHorizon + ((g * 4999) % (ph - pHorizon));
                     pg.fillRect(gx, gy, 2, 1.5);
                 }
 
-                // Líneas reglamentarias de cal blanca
-                const fieldHalfW = 5.8;
-                const goalLineZ = 94;
+                // Líneas reglamentarias del campo hasta el borde inferior
+                const goalLineZ = 98;
                 pg.strokeStyle = 'rgba(248, 253, 250, 0.90)';
                 pg.lineWidth = 2.3;
                 pg.beginPath();
@@ -1838,22 +1849,22 @@
                 pg.lineTo(px3(fieldHalfW, goalLineZ), py3(0, goalLineZ));
                 pg.stroke();
 
-                // Área grande y área chica al fondo
-                const penZ = 74;
-                const sixZ = 86;
+                // Área grande y área chica del fondo
+                const penZ = 76;
+                const sixZ = 89;
                 pg.beginPath();
-                pg.moveTo(px3(-3.3, goalLineZ), py3(0, goalLineZ));
-                pg.lineTo(px3(-3.3, penZ), py3(0, penZ));
-                pg.lineTo(px3(3.3, penZ), py3(0, penZ));
-                pg.lineTo(px3(3.3, goalLineZ), py3(0, goalLineZ));
-                pg.moveTo(px3(-1.9, goalLineZ), py3(0, goalLineZ));
-                pg.lineTo(px3(-1.9, sixZ), py3(0, sixZ));
-                pg.lineTo(px3(1.9, sixZ), py3(0, sixZ));
-                pg.lineTo(px3(1.9, goalLineZ), py3(0, goalLineZ));
+                pg.moveTo(px3(-3.1, goalLineZ), py3(0, goalLineZ));
+                pg.lineTo(px3(-3.1, penZ), py3(0, penZ));
+                pg.lineTo(px3(3.1, penZ), py3(0, penZ));
+                pg.lineTo(px3(3.1, goalLineZ), py3(0, goalLineZ));
+                pg.moveTo(px3(-1.8, goalLineZ), py3(0, goalLineZ));
+                pg.lineTo(px3(-1.8, sixZ), py3(0, sixZ));
+                pg.lineTo(px3(1.8, sixZ), py3(0, sixZ));
+                pg.lineTo(px3(1.8, goalLineZ), py3(0, goalLineZ));
                 pg.stroke();
 
-                // Mitad de cancha y círculo central en 3D
-                const midZ = 21;
+                // Mitad de cancha + gran círculo central en la zona media-baja visible
+                const midZ = 16.5;
                 pg.beginPath();
                 pg.moveTo(px3(-fieldHalfW, midZ), py3(0, midZ));
                 pg.lineTo(px3(fieldHalfW, midZ), py3(0, midZ));
@@ -1861,20 +1872,40 @@
 
                 pg.beginPath();
                 const cR = 2.45;
-                for (let a = 0; a <= 40; a++) {
-                    const ang = (a / 40) * Math.PI * 2;
-                    const px = px3(Math.cos(ang) * cR, midZ + Math.sin(ang) * 7.8);
-                    const py = py3(0, midZ + Math.sin(ang) * 7.8);
+                for (let a = 0; a <= 44; a++) {
+                    const ang = (a / 44) * Math.PI * 2;
+                    const px = px3(Math.cos(ang) * cR, midZ + Math.sin(ang) * 5.2);
+                    const py = py3(0, midZ + Math.sin(ang) * 5.2);
                     if (a === 0) pg.moveTo(px, py); else pg.lineTo(px, py);
                 }
                 pg.closePath();
                 pg.stroke();
 
-                // Punto central
                 pg.fillStyle = '#FFFFFF';
                 pg.beginPath();
                 pg.ellipse(px3(0, midZ), py3(0, midZ), 5, 2.5, 0, 0, Math.PI * 2);
                 pg.fill();
+
+                // Línea de área cercana en el primer plano inferior (elimina cualquier sensación de vacío abajo)
+                const nearPenZ = 8.4;
+                pg.strokeStyle = 'rgba(248, 253, 250, 0.86)';
+                pg.lineWidth = 2.6;
+                pg.beginPath();
+                pg.moveTo(px3(-3.2, nearPenZ), py3(0, nearPenZ));
+                pg.lineTo(px3(3.2, nearPenZ), py3(0, nearPenZ));
+                pg.moveTo(px3(-3.2, nearPenZ), py3(0, Z_MIN));
+                pg.moveTo(px3(3.2, nearPenZ), py3(0, Z_MIN));
+                pg.stroke();
+
+                // Arco de área cercano
+                pg.beginPath();
+                for (let a = 0; a <= 24; a++) {
+                    const ang = (a / 24) * Math.PI;
+                    const px = px3(Math.cos(ang) * 1.4, nearPenZ + Math.sin(ang) * 1.8);
+                    const py = py3(0, nearPenZ + Math.sin(ang) * 1.8);
+                    if (a === 0) pg.moveTo(px, py); else pg.lineTo(px, py);
+                }
+                pg.stroke();
 
                 // Banderines de córner
                 for (const cSide of [-1, 1]) {
@@ -1923,34 +1954,31 @@
                 pg.lineTo(px3(goalW, goalLineZ), py3(0, goalLineZ));
                 pg.stroke();
 
-                // Pista / borde perimetral y gradas laterales de 5 escalones con iluminación direccional
+                // Cartelería LED y gradas laterales de 5 escalones visibles hasta el borde inferior
                 for (const side of [-1, 1]) {
                     const isLeftLit = side === -1;
 
-                    // Cartelería perimetral LED a lo largo de los laterales
                     pg.fillStyle = '#111814';
                     pg.beginPath();
-                    pg.moveTo(px3(side * 6.08, Z_MAX), py3(0, Z_MAX));
-                    pg.lineTo(px3(side * 6.08, Z_MAX), py3(0.55, Z_MAX));
-                    pg.lineTo(px3(side * 6.08, Z_MIN), py3(0.55, Z_MIN));
-                    pg.lineTo(px3(side * 6.08, Z_MIN), py3(0, Z_MIN));
+                    pg.moveTo(px3(side * 5.55, Z_MAX), py3(0, Z_MAX));
+                    pg.lineTo(px3(side * 5.55, Z_MAX), py3(0.55, Z_MAX));
+                    pg.lineTo(px3(side * 5.55, Z_MIN), py3(0.55, Z_MIN));
+                    pg.lineTo(px3(side * 5.55, Z_MIN), py3(0, Z_MIN));
                     pg.closePath();
                     pg.fill();
 
-                    // Franja color en borde LED
                     pg.fillStyle = side === -1 ? '#1F9D3A' : '#E1251B';
                     pg.beginPath();
-                    pg.moveTo(px3(side * 6.08, Z_MAX), py3(0.12, Z_MAX));
-                    pg.lineTo(px3(side * 6.08, Z_MAX), py3(0.45, Z_MAX));
-                    pg.lineTo(px3(side * 6.08, Z_MIN), py3(0.45, Z_MIN));
-                    pg.lineTo(px3(side * 6.08, Z_MIN), py3(0.12, Z_MIN));
+                    pg.moveTo(px3(side * 5.55, Z_MAX), py3(0.12, Z_MAX));
+                    pg.lineTo(px3(side * 5.55, Z_MAX), py3(0.45, Z_MAX));
+                    pg.lineTo(px3(side * 5.55, Z_MIN), py3(0.45, Z_MIN));
+                    pg.lineTo(px3(side * 5.55, Z_MIN), py3(0.12, Z_MIN));
                     pg.closePath();
                     pg.fill();
 
-                    // 5 escalones arquitectónicos (izquierda recibe más sol, derecha más sombra)
                     for (let tier = 4; tier >= 0; tier--) {
-                        const xIn  = side * (6.15 + tier * 1.15);
-                        const xOut = side * (7.30 + tier * 1.22);
+                        const xIn  = side * (5.62 + tier * 1.12);
+                        const xOut = side * (6.74 + tier * 1.18);
                         const yLow = tier * 0.72;
                         const yTop = yLow + 0.70;
 
@@ -1965,7 +1993,6 @@
                         pg.closePath();
                         pg.fill();
 
-                        // Butacas ordenadas sobre cada escalón
                         pg.fillStyle = tier === 1 || tier === 3
                             ? (isLeftLit ? 'rgba(22, 134, 46, 0.42)' : 'rgba(16, 102, 34, 0.45)')
                             : (isLeftLit ? 'rgba(200, 32, 24, 0.24)' : 'rgba(155, 24, 18, 0.28)');
@@ -1977,7 +2004,6 @@
                         pg.closePath();
                         pg.fill();
 
-                        // Línea de sombra entre escalones
                         pg.strokeStyle = 'rgba(14, 24, 18, 0.28)';
                         pg.lineWidth = 1.1;
                         pg.beginPath();
@@ -1990,26 +2016,31 @@
                 // Sombra proyectada de la tribuna derecha sobre el lateral derecho del césped
                 pg.fillStyle = 'rgba(8, 36, 16, 0.22)';
                 pg.beginPath();
-                pg.moveTo(px3(6.08, Z_MAX), py3(0, Z_MAX));
-                pg.lineTo(px3(4.5, Z_MAX), py3(0, Z_MAX));
-                pg.lineTo(px3(4.5, Z_MIN), py3(0, Z_MIN));
-                pg.lineTo(px3(6.08, Z_MIN), py3(0, Z_MIN));
+                pg.moveTo(px3(5.55, Z_MAX), py3(0, Z_MAX));
+                pg.lineTo(px3(4.1, Z_MAX), py3(0, Z_MAX));
+                pg.lineTo(px3(4.1, Z_MIN), py3(0, Z_MIN));
+                pg.lineTo(px3(5.55, Z_MIN), py3(0, Z_MIN));
                 pg.closePath();
                 pg.fill();
 
-                // Niebla atmosférica en los últimos metros del césped y las gradas hacia el horizonte
+                // Niebla atmosférica hacia el horizonte
                 const pitchHaze = pg.createLinearGradient(0, pHorizon, 0, pHorizon + H * 0.16);
                 pitchHaze.addColorStop(0, 'rgba(182, 224, 248, 0.34)');
                 pitchHaze.addColorStop(1, 'rgba(182, 224, 248, 0)');
                 pg.fillStyle = pitchHaze;
                 pg.fillRect(0, pHorizon, pw, H * 0.16);
 
-                seedCrowd(pFocal, W * 0.5, baseHorizon, pCamH);
+                seedDynamicElements();
             }
 
             function resizeDisplay() {
-                W = window.innerWidth;
-                H = window.innerHeight;
+                const rect = stage ? stage.getBoundingClientRect() : null;
+                const nextW = Math.max(240, Math.round((rect && rect.width) || window.innerWidth));
+                const nextH = Math.max(320, Math.round((rect && rect.height) || window.innerHeight));
+                if (nextW === W && nextH === H && skyBuffer && pitchBuffer) return;
+
+                W = nextW;
+                H = nextH;
                 dpr = Math.min(2, window.devicePixelRatio || 1);
                 canvas.width = Math.round(W * dpr);
                 canvas.height = Math.round(H * dpr);
@@ -2019,19 +2050,34 @@
 
             function renderFrame(dt) {
                 tClock += dt;
-                headX += (targetHeadX - headX) * Math.min(1, dt * 3.5);
-                headY += (targetHeadY - headY) * Math.min(1, dt * 3.5);
+                headX += (targetHeadX - headX) * Math.min(1, dt * 4.5);
+                headY += (targetHeadY - headY) * Math.min(1, dt * 4.5);
 
                 const skyShiftX = -SKY_PAD_X + headX * 9;
                 const pitchShiftX = -PITCH_PAD_X + headX * 26;
                 const pitchShiftY = headY * 10;
 
-                // 1. Volcar el cielo + arquitectura del estadio cacheado (<0.2ms)
+                // 1. Cielo + arquitectura cacheada
                 if (skyBuffer) {
-                    ctx.drawImage(skyBuffer, skyShiftX, 0, W + SKY_PAD_X * 2, baseHorizon + 42);
+                    ctx.drawImage(skyBuffer, skyShiftX, 0, W + SKY_PAD_X * 2, baseHorizon + 48);
                 }
 
-                // 2. Nubes vivas deslizándose suavemente detrás de las torres
+                // 2. Haces de luz solar animados suavemente + destello de reflectores
+                const sunX = skyShiftX + (W + SKY_PAD_X * 2) * 0.80;
+                const sunY = Math.max(24, baseHorizon * 0.24);
+                const sunPulse = 0.055 + 0.025 * Math.sin(tClock * 1.1);
+                ctx.fillStyle = `rgba(255, 250, 224, ${sunPulse.toFixed(3)})`;
+                for (let b = 0; b < 3; b++) {
+                    const drift = Math.sin(tClock * 0.6 + b) * 14;
+                    ctx.beginPath();
+                    ctx.moveTo(sunX - 18 + b * 18, sunY);
+                    ctx.lineTo(W * (0.14 + b * 0.18) + drift, baseHorizon + 20);
+                    ctx.lineTo(W * (0.28 + b * 0.18) + drift, baseHorizon + 20);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
+                // 3. Nubes vivas deslizándose a 60 FPS
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
                 for (let i = 0; i < 4; i++) {
                     const cw = W * (0.18 + (i % 2) * 0.08);
@@ -2044,8 +2090,8 @@
                     ctx.fill();
                 }
 
-                // 3. Hinchada en la popular del fondo haciendo la ola
-                const bowlH = Math.max(76, H * 0.165);
+                // 4. Hinchada en la popular del fondo haciendo "la ola" + banderas flameando
+                const bowlH = Math.max(74, H * 0.165);
                 const upperTop = baseHorizon - bowlH + 34;
                 const midBandY = upperTop + (baseHorizon - upperTop) * 0.46;
                 const upperRowH = (midBandY - 6 - upperTop) / 3;
@@ -2053,10 +2099,10 @@
 
                 for (let i = 0; i < bowlFans.length; i++) {
                     const f = bowlFans[i];
-                    const wave = Math.max(0, Math.sin(tClock * 4.2 - f.nx * 7.5)) * 2.6;
-                    const fx = -SKY_PAD_X + f.nx * (W + SKY_PAD_X * 2) + headX * 9;
+                    const wave = Math.max(0, Math.sin(tClock * 4.2 - f.nx * 7.5)) * 2.8;
+                    const fx = skyShiftX + f.nx * (W + SKY_PAD_X * 2);
                     const fy = (f.deck === 0 ? upperTop + 6 + f.row * upperRowH : midBandY + 12 + f.row * lowerRowH)
-                        - wave - Math.abs(Math.sin(tClock * 5 + f.phase)) * 1.3;
+                        - wave - Math.abs(Math.sin(tClock * 5 + f.phase)) * 1.2;
 
                     ctx.fillStyle = '#F3C132';
                     ctx.beginPath();
@@ -2070,9 +2116,39 @@
                     ctx.fillRect(fx - 2.8, fy - 4.5, 5.6, 1.8);
                 }
 
-                // 4. Volcar el campo de juego + gradas + líneas cacheadas (<0.2ms)
+                // Banderas flameando con física de onda sinusoidal
+                for (let i = 0; i < liveFlags.length; i++) {
+                    const fl = liveFlags[i];
+                    const fx = skyShiftX + fl.nx * (W + SKY_PAD_X * 2);
+                    const fy = midBandY + 1;
+
+                    ctx.strokeStyle = '#FFFFFF';
+                    ctx.lineWidth = 1.4;
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy + 4);
+                    ctx.lineTo(fx, fy - 14);
+                    ctx.stroke();
+
+                    ctx.fillStyle = fl.col;
+                    ctx.beginPath();
+                    ctx.moveTo(fx, fy - 14);
+                    for (let s = 1; s <= 4; s++) {
+                        const sx = fx + (fl.w * s) / 4;
+                        const dy = Math.sin(tClock * 6.5 - s * 1.1 + fl.phase) * 2.6;
+                        ctx.lineTo(sx, fy - 14 + dy);
+                    }
+                    for (let s = 4; s >= 0; s--) {
+                        const sx = fx + (fl.w * s) / 4;
+                        const dy = Math.sin(tClock * 6.5 - s * 1.1 + fl.phase) * 2.6;
+                        ctx.lineTo(sx, fy - 14 + fl.h + dy);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                }
+
+                // 5. Campo de juego en damero + gradas laterales cacheadas
                 if (pitchBuffer) {
-                    const ph = H - baseHorizon + PITCH_PAD_Y + 20;
+                    const ph = H - baseHorizon + PITCH_PAD_Y + PITCH_PAD_BOT;
                     ctx.drawImage(
                         pitchBuffer,
                         pitchShiftX,
@@ -2082,9 +2158,9 @@
                     );
                 }
 
-                // 5. Hinchas-pizza estilizados en las gradas laterales haciendo la ola 3D
-                const pFocal = Math.max(W, H) * 0.80;
-                const pCamH = 5.0;
+                // 6. Hinchas-pizza estilizados en las gradas laterales hasta el borde inferior
+                const pFocal = H * 0.80;
+                const pCamH = 6.6;
                 const cx = W * 0.5 + headX * 26;
                 const hy = baseHorizon + pitchShiftY;
 
@@ -2099,12 +2175,30 @@
                     if (sx < -24 || sx > W + 24 || sy > H + 30) continue;
 
                     const sprite = fanMicroSprites[fan.sp];
-                    const sizeW = Math.max(6, 0.56 * sc);
+                    const sizeW = Math.max(6, 0.54 * sc);
                     const sizeH = sizeW * 1.25;
 
-                    const alpha = Math.max(0.42, Math.min(1, 1 - (fan.z - 36) / 100));
+                    const alpha = Math.max(0.42, Math.min(1, 1 - (fan.z - 40) / 105));
                     ctx.globalAlpha = alpha;
                     ctx.drawImage(sprite, sx - sizeW * 0.5, sy - sizeH * 0.9, sizeW, sizeH);
+                }
+
+                ctx.globalAlpha = 1;
+
+                // 7. Papelitos / chispas festivas en 3D por los laterales (cancha viva)
+                for (let i = 0; i < confetti.length; i++) {
+                    const p = confetti[i];
+                    const prog = (p.yStart + tClock * p.speed) % 1;
+                    const py = prog * H;
+                    const px = p.nx * W + Math.sin(tClock * 2.2 + p.phase) * p.swayAmp + headX * 16;
+
+                    ctx.save();
+                    ctx.translate(px, py);
+                    ctx.rotate(tClock * 3.0 + p.phase);
+                    ctx.globalAlpha = 0.72 * (1 - prog * 0.35);
+                    ctx.fillStyle = p.col;
+                    ctx.fillRect(-p.size, -p.size * 0.5, p.size * 2, p.size);
+                    ctx.restore();
                 }
 
                 ctx.globalAlpha = 1;
@@ -2115,11 +2209,7 @@
                 if (paused) { lastTs = now; return; }
                 const dt = Math.min(0.05, Math.max(0.001, (now - lastTs) / 1000));
                 lastTs = now;
-                accum += dt;
-                if (accum >= 0.030) {
-                    renderFrame(accum);
-                    accum = 0;
-                }
+                renderFrame(dt);
             }
 
             return {
@@ -2129,10 +2219,12 @@
                     renderFrame(0.016);
                     lastTs = performance.now();
                     requestAnimationFrame(loop);
-                    window.addEventListener('resize', () => {
-                        resizeDisplay();
-                        renderFrame(0.016);
-                    });
+
+                    if ('ResizeObserver' in window && stage) {
+                        const ro = new ResizeObserver(() => resizeDisplay());
+                        ro.observe(stage);
+                    }
+                    window.addEventListener('resize', resizeDisplay);
                     window.addEventListener('scroll', () => {
                         const sy = window.scrollY || 0;
                         targetHeadY = Math.min(1.2, Math.max(-1.2, -sy * 0.0015));
@@ -2180,25 +2272,44 @@
         }
 
         /* =========================================================
-           3. VIDEO SIN CONGELAMIENTO (INTERSECTION OBSERVER)
+           3. BLINDAJE DE VIDEO 11S (iOS BAJO CONSUMO + IG/WPP + GPU)
            ========================================================= */
         function initVideoObserver() {
-            const vids = document.querySelectorAll('.media-tile video');
-            if (!('IntersectionObserver' in window)) return;
+            const vid = document.getElementById('varMainVideo');
+            if (!vid) return;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    const vid = entry.target;
-                    if (entry.isIntersecting) {
-                        const p = vid.play();
-                        if (p !== undefined) p.catch(() => {});
-                    } else {
-                        vid.pause();
-                    }
-                });
-            }, { threshold: 0.30 });
+            vid.muted = true;
+            vid.defaultMuted = true;
+            vid.playsInline = true;
+            vid.setAttribute('muted', '');
+            vid.setAttribute('playsinline', '');
+            vid.setAttribute('webkit-playsinline', '');
 
-            vids.forEach(v => observer.observe(v));
+            const tryPlay = () => {
+                if (!vid.paused) return;
+                const p = vid.play();
+                if (p !== undefined) p.catch(() => {});
+            };
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) tryPlay();
+                        else vid.pause();
+                    });
+                }, { threshold: 0.25 });
+                observer.observe(vid);
+            } else {
+                tryPlay();
+            }
+
+            // Desbloqueo automático al primer toque en iPhone (Modo Ahorro) o IG/WPP WebView
+            const unlockOnce = () => {
+                vid.muted = true;
+                tryPlay();
+            };
+            document.addEventListener('touchstart', unlockOnce, { once: true, passive: true });
+            document.addEventListener('pointerdown', unlockOnce, { once: true, passive: true });
         }
 
         /* =========================================================
